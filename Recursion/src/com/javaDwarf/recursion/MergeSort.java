@@ -1,4 +1,4 @@
-package com.javaDwarf.divideConquer;
+package com.javaDwarf.recursion;
 
 public class MergeSort {
 
@@ -73,7 +73,7 @@ public class MergeSort {
 }
 /*
  Hi,
- Thank you for showing interest in my profile. Please find my resume attached.
+ Thank you for show interest in my profile. Please find my resume attached.
  Do let me know for any questions.
  
  Thank you
