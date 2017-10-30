@@ -76,6 +76,16 @@ public class MergeSort {
  Thank you for showing interest in my profile. Please find my resume attached.
  Do let me know for any questions.
  
+Total exp:-- 3.10 years
+Relevant Total exp : 3.10 yrs
+ CTC:- 13 lpa
+Expected CTC -As per company standards
+Notice period- 30 days
+Reason for Job Change - Looking for new job opportunities
+Present Location:bangalore
+DOB: 13-04-1991
+Education: Btech CSE
+ 
  Thank you
  Amit Singh
  9008173781
