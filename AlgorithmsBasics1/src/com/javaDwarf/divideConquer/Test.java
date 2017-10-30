@@ -26,10 +26,43 @@ public class Test {
 				else if(j%3==0 && j%5==0){
 					System.out.println("FizzBuzz");
 				}
-				
+
 			}
 		}
-		
+
+	}
+
+
+	/*
+	 * Complete the function below.
+	 */
+
+	static int[] oddNumbers(int l, int r) {
+		int size  =(r-l)+1;
+		int index =0;
+		int[] arr= new int[size];
+		for(int i =l ; i<=r;i++){
+			if(i%2!=0){
+				arr[index++]=i;
+			}
+		}
+		int[] arr1 = new int[index];
+		for(int i =0 ; i<index;i++){
+			arr1[i]=arr[i];
+		}
+		return arr;
+	}
+
+	static String findNumber(int[] arr, int k) {
+		String str = "NO";
+		for(int i =0 ; i<arr.length;i++){
+			if(arr[i]==k){
+				str="YES";
+				break;
+			}
+		}
+		return str;
+
 	}
 
 }
