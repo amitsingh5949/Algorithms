@@ -4,10 +4,10 @@ import java.util.LinkedList;
 
 public class Graph {
 
-	private Vertex[] vertextArr;
-	private int size;
-	private int start;
-	private int end;
+	 Vertex[] vertextArr;
+	 int size;
+	 int start;
+	 int end;
 
 
 	public Graph(int numVertices) {

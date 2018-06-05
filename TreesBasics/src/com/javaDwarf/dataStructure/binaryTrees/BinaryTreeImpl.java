@@ -207,6 +207,7 @@ public class BinaryTreeImpl {
 		}
 	}
 
+	//left-root-right
 	public void inOrderTraversal(Node localRoot){
 
 		if(localRoot != null){
@@ -230,6 +231,7 @@ public class BinaryTreeImpl {
 	}
 	/*
 	 * It is used to generate prefix algebraic notations like *A+BC
+	 * root-left-right
 	 */
 	public void preOrderTraversal(Node localRoot){
 
@@ -242,6 +244,7 @@ public class BinaryTreeImpl {
 
 	/*
 	 * It is used to generate postfix algebraic notations like ABC+*
+	 * left-right-root
 	 */
 	public void postOrderTraversal(Node localRoot){
 
@@ -289,13 +292,6 @@ public class BinaryTreeImpl {
 	public void setRoot(Node root) {
 		this.root = root;
 	}
-
-
-
-
-
-
-
 
 
 }
