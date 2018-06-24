@@ -1,11 +1,5 @@
 package problems.dataStructure.arrays;
 
-import java.io.*;
-import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
-
 public class HourGlass {
 
 	public static int calculateHourGlassSum(int[][] arr, int row,int col){

@@ -1,7 +1,5 @@
 package com.javadwarf.dynamicprogramming;
 
-import java.util.Scanner;
-
 public class CoinChnage {
 
 	public static void main(String[] args) {

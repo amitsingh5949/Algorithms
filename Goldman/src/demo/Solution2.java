@@ -1,10 +1,6 @@
 package demo;
 
-import java.io.*;
-import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
+import java.io.IOException;
 
 public class Solution2 {
 

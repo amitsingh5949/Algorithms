@@ -1,8 +1,5 @@
 package com.javaDwarf.dataStructure.binaryTrees.geeksForGeeks;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
 import com.javaDwarf.dataStructure.binaryTrees.BinaryTreeImpl;
 import com.javaDwarf.dataStructure.binaryTrees.Employee;
 import com.javaDwarf.dataStructure.binaryTrees.Node;

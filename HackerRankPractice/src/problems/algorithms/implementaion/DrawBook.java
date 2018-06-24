@@ -1,7 +1,5 @@
 package problems.algorithms.implementaion;
 
-import java.util.Scanner;
-
 public class DrawBook {
 
 	static int solve(int n, int p){

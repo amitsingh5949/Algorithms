@@ -1,7 +1,6 @@
 package com.javaDwarf.dataStructure.binaryTrees.geeksForGeeks;
 
 import java.util.Stack;
-import java.util.concurrent.SynchronousQueue;
 
 import com.javaDwarf.dataStructure.binaryTrees.BinaryTreeImpl;
 import com.javaDwarf.dataStructure.binaryTrees.Employee;

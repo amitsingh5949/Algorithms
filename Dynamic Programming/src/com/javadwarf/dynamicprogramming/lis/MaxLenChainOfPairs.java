@@ -1,7 +1,5 @@
 package com.javadwarf.dynamicprogramming.lis;
 
-import java.util.Scanner;
-
 public class MaxLenChainOfPairs {
 
 	public static void main(String[] args) {

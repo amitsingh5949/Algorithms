@@ -1,7 +1,5 @@
 package com.javadwarf.dynamicprogramming.lis;
 
-import java.util.Scanner;
-
 public class MinJumpToReachEnd {
 
 	public static void main(String[] args) {
