@@ -1,4 +1,4 @@
-package com.javaDwarf.dataStructure.graphs.basics1.topologicalSort;
+package com.javaDwarf.dataStructure.graphs.topologicalSort;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

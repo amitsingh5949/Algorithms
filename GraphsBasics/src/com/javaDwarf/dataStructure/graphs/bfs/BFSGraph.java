@@ -1,7 +1,8 @@
-package com.javaDwarf.dataStructure.graphs.basics1;
+package com.javaDwarf.dataStructure.graphs.bfs;
 
 import java.util.LinkedList;
 import java.util.Queue;
+
 
 public class BFSGraph {
 

@@ -1,4 +1,4 @@
-package com.javaDwarf.dataStructure.graphs.basics1;
+package com.javaDwarf.dataStructure.graphs.dfs;
 
 import java.util.LinkedList;
 

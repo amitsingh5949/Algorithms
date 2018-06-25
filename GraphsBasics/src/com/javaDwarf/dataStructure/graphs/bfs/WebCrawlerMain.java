@@ -1,4 +1,4 @@
-package com.javaDwarf.dataStructure.graphs.basics1;
+package com.javaDwarf.dataStructure.graphs.bfs;
 
 import java.io.BufferedReader;
 import java.io.IOException;
