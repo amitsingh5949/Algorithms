@@ -1,4 +1,4 @@
-package com.javaDwarf.dataStructure.redBlackTrees;
+package com.javaDwarf.redBlackTrees;
 
 public class Node {
 	

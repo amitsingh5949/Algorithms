@@ -1,4 +1,4 @@
-package com.javaDwarf.dataStructure.binaryTrees;
+package com.javaDwarf.binaryTrees;
 
 public class Node {
 	

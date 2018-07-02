@@ -1,8 +1,8 @@
-package com.javaDwarf.dataStructure.binaryTrees.geeksForGeeks;
+package com.javaDwarf.binaryTrees.geeksForGeeks;
 
-import com.javaDwarf.dataStructure.binaryTrees.BinaryTreeImpl;
-import com.javaDwarf.dataStructure.binaryTrees.Employee;
-import com.javaDwarf.dataStructure.binaryTrees.Node;
+import com.javaDwarf.binaryTrees.BinaryTreeImpl;
+import com.javaDwarf.binaryTrees.Employee;
+import com.javaDwarf.binaryTrees.Node;
 
 public class HeightOfTree {
 

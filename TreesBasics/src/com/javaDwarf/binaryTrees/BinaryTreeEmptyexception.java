@@ -1,4 +1,4 @@
-package com.javaDwarf.dataStructure.redBlackTrees;
+package com.javaDwarf.binaryTrees;
 
 public class BinaryTreeEmptyexception extends Exception {
 

@@ -1,10 +1,10 @@
-package com.javaDwarf.dataStructure.binaryTrees.geeksForGeeks;
+package com.javaDwarf.binaryTrees.geeksForGeeks;
 
 import java.util.Stack;
 
-import com.javaDwarf.dataStructure.binaryTrees.BinaryTreeImpl;
-import com.javaDwarf.dataStructure.binaryTrees.Employee;
-import com.javaDwarf.dataStructure.binaryTrees.Node;
+import com.javaDwarf.binaryTrees.BinaryTreeImpl;
+import com.javaDwarf.binaryTrees.Employee;
+import com.javaDwarf.binaryTrees.Node;
 
 public class PreOrderTraversalBTWithoutRecursion {
 

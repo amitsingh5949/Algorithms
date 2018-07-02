@@ -25,9 +25,6 @@ public class PossiblePathsInKEdges {
 			int dest = in.nextInt();
 			int allowedEdge = in.nextInt();
 			
-			System.out.println();
-			graph.printGraph();
-			System.out.println();
 			System.out.println(graph.possiblePathCount(src, dest, allowedEdge));
 		}
 		in.close();
@@ -59,16 +56,19 @@ class GraphImpl4{
 	}
 
 	private int dfs(int src, int dest, int allowedEdge, int currentCount,int edgeTraversed,boolean[] visited) {
-		visited[src] = true;
-		if(edgeTraversed>allowedEdge){ 
-			return currentCount;
+		if(allowedEdge==0 && src==dest) {
+			return 1;
 		}
+		if(allowedEdge==0 && src!=dest) {
+			return 0;
+		}
+		visited[src] = true;
 		if(src == dest && edgeTraversed == allowedEdge ){
 			return ++currentCount;
 		}
 		List<Integer> neighbhour = g[src];
 		for(int temp : neighbhour){
-			if(!visited[temp]){
+			if((!visited[temp] || (visited[temp] && src == temp)) && !(edgeTraversed>=allowedEdge )){
 				edgeTraversed = edgeTraversed + 1;
 				currentCount = dfs(temp,dest,allowedEdge,currentCount,edgeTraversed,visited);
 				edgeTraversed = edgeTraversed - 1;
@@ -77,15 +77,7 @@ class GraphImpl4{
 		}
 		return currentCount;
 	}
-	public void printGraph(){
-		for(int i=0; i<g.length; i++){
-			System.out.print("Vertex " + i +" neighbhour -> " );
-			for(Integer temp : g[i]){
-				System.out.print(temp + " ");
-			}
-			System.out.println();
-		}
-	}
+	
 }
 
 /*

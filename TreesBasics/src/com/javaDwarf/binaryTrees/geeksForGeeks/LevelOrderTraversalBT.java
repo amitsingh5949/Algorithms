@@ -1,13 +1,13 @@
-package com.javaDwarf.dataStructure.binaryTrees.geeksForGeeks;
+package com.javaDwarf.binaryTrees.geeksForGeeks;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
-import com.javaDwarf.dataStructure.binaryTrees.BinaryTreeImpl;
-import com.javaDwarf.dataStructure.binaryTrees.Employee;
-import com.javaDwarf.dataStructure.binaryTrees.Node;
+import com.javaDwarf.binaryTrees.BinaryTreeImpl;
+import com.javaDwarf.binaryTrees.Employee;
+import com.javaDwarf.binaryTrees.Node;
 
-public class LevelOrderTraversalLineByLineBT {
+public class LevelOrderTraversalBT {
 
 	public static BinaryTreeImpl bt = new BinaryTreeImpl();
 
@@ -27,7 +27,11 @@ public class LevelOrderTraversalLineByLineBT {
 		bt.insert(new Employee(115, "Benitta", "Web developer"));
 		bt.insert(new Employee(130, "Yamuna", "Tester"));
 
+		bt.inOrderTraversal(bt.getRoot());
+		System.out.println("\n");
 		levelOrderTraversal1();//n square complexity
+		System.out.println("\n");
+		levelOrderTraversal2();//n square complexity
 		System.out.println("\n");
 		levelOrderTraversal3();// O(n) time complexity and O(w) space complexity (max width of tree)
 
@@ -35,53 +39,66 @@ public class LevelOrderTraversalLineByLineBT {
 
 
 	//**************************************************************************************//
-
+	
 	private static void levelOrderTraversal1() {
 		int height = HeightOfTree.heightOfTree2(bt.getRoot());
 		for(int i = 1; i<=height; i++){
-			printNodesAtLevel1(bt.getRoot(), i, 1);
-			System.out.println();
+             printNodesAtLevel(bt.getRoot(), i, 1);
 		}
 	}
-
-	private static void printNodesAtLevel1(Node n, int level, int currentLevel){
+	
+	private static void printNodesAtLevel(Node n, int level, int currentLevel){
 		if(n==null){
 			return;
 		}
 		if(level == currentLevel){
-			System.out.print(n.getEmployee().getEmpId() +" ");
+			System.out.println(n.getEmployee());
 		}
-		printNodesAtLevel1(n.getLeftChild(), level, currentLevel+1);
-		printNodesAtLevel1(n.getRightChild(), level, currentLevel+1);
+		printNodesAtLevel(n.getLeftChild(), level, currentLevel+1);
+		printNodesAtLevel(n.getRightChild(), level, currentLevel+1);
 	}
-
+	
 	//**************************************************************************************//
-
+	
+	private static void levelOrderTraversal2() {
+		int height = HeightOfTree.heightOfTree2(bt.getRoot());
+		for(int i = 1; i<=height; i++){
+             printNodesAtLevel2(bt.getRoot(), i);
+		}
+	}
+	
+	private static void printNodesAtLevel2(Node n, int level){
+		if(n==null){
+			return;
+		}
+		if(level ==1){
+			System.out.println(n.getEmployee());
+		}
+		printNodesAtLevel2(n.getLeftChild(), level-1);
+		printNodesAtLevel2(n.getRightChild(), level-1);
+	}
+	
+	//**************************************************************************************//
 
 	public static void levelOrderTraversal3() {
 		Node root = bt.getRoot();
 		Queue<Node> q = new LinkedList<>();
 
-		q.add(root);
-		q.add(null);
 		Node current = null;
-		while ( !q.isEmpty() ){
-			current = q.poll();
-			if(current==null ){
-				if(!q.isEmpty()){
-					System.out.println();
-					q.add(null);
-					continue;
-				}
-				else{
-					break;
-				}
+		boolean visitRoot = true;
+		while (visitRoot || !q.isEmpty()){
+			if(visitRoot){
+				q.add(root);
+				visitRoot = false;
 			}
-			System.out.print(current.getEmployee().getEmpId() + " ");
-			if(current.getLeftChild() != null)
-				q.add(current.getLeftChild());
-			if(current.getRightChild()!=null)
-				q.add(current.getRightChild());
+			else{
+				current = q.poll();
+				System.out.println(current.getEmployee().toString() + " ");
+				if(current.getLeftChild() != null)
+					q.add(current.getLeftChild());
+				if(current.getRightChild()!=null)
+					q.add(current.getRightChild());
+			}
 		}
 	}
 

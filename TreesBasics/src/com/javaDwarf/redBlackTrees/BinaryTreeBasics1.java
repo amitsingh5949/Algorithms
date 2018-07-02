@@ -1,10 +1,10 @@
-package com.javaDwarf.dataStructure.binaryTrees;
+package com.javaDwarf.redBlackTrees;
 
 public class BinaryTreeBasics1 {
 
 	public static void main(String[] args) {
 		
-		BinaryTreeImpl sll = new BinaryTreeImpl();
+		RedBlackTreeImpl sll = new RedBlackTreeImpl();
 		
 		sll.insert(new Employee(101, "Amit Singh", "Application Developer"));
 		sll.insert(new Employee(13, "Aryan Sharma", "Associate Manager"));

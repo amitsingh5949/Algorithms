@@ -1,4 +1,4 @@
-package com.javaDwarf.dataStructure.redBlackTrees;
+package com.javaDwarf.redBlackTrees;
 /*
  * can have utmost 2 children
  * there is only one path from root to any particular node

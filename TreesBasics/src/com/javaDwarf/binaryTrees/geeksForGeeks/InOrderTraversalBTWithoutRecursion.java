@@ -1,12 +1,12 @@
-package com.javaDwarf.dataStructure.binaryTrees.geeksForGeeks;
+package com.javaDwarf.binaryTrees.geeksForGeeks;
 
 import java.util.Stack;
 
-import com.javaDwarf.dataStructure.binaryTrees.BinaryTreeImpl;
-import com.javaDwarf.dataStructure.binaryTrees.Employee;
-import com.javaDwarf.dataStructure.binaryTrees.Node;
+import com.javaDwarf.binaryTrees.BinaryTreeImpl;
+import com.javaDwarf.binaryTrees.Employee;
+import com.javaDwarf.binaryTrees.Node;
 
-public class PostOrderTraversalBTWithoutRecursionWithTwoStacks {
+public class InOrderTraversalBTWithoutRecursion {
 
 	public static BinaryTreeImpl bt = new BinaryTreeImpl();
 
@@ -26,23 +26,32 @@ public class PostOrderTraversalBTWithoutRecursionWithTwoStacks {
 		bt.insert(new Employee(115, "Benitta", "Web developer"));
 		bt.insert(new Employee(130, "Yamuna", "Tester"));
 
-		postOrderTraversalBTWithoutRecursionWithTwoStacks(); 
+		inOrderTraversalBTWithoutRecursion();// O(n) time complexity and O(n) space complexity 
+
 	}
 
-
+	
 	//**************************************************************************************//
 
-	public static void postOrderTraversalBTWithoutRecursionWithTwoStacks() {
-		Stack<Node> sl = new Stack<>();
-		Stack<Node> sr = new Stack<>();
-		sr.add(bt.getRoot());
+	public static void inOrderTraversalBTWithoutRecursion() {
+		Stack<Node> s = new Stack<>();
+
+		s.add(bt.getRoot());
 		Node current = null;
-		while ( !sr.isEmpty()){
-			current=sr.peek();
-			while(current.getLeftChild() != null){
-			sl.add(current.getLeftChild());
-			}
+		while ( !s.isEmpty()){
+				if(s.peek().getLeftChild()==null || current != null){
+					current = s.pop();
+					System.out.print(current.getEmployee().getEmpId() +" ");
+					if(current.getRightChild()!=null){
+						s.add(current.getRightChild());
+						current=null;
+					}
+				}
+				else if(s.peek().getLeftChild() !=null ){
+					s.add(s.peek().getLeftChild());
+				}
 		}
 	}
+
 
 }

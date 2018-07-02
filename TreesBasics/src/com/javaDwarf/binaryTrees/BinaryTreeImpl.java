@@ -1,4 +1,4 @@
-package com.javaDwarf.dataStructure.binaryTrees;
+package com.javaDwarf.binaryTrees;
 /*
  * can have utmost 2 children
  * there is only one path from root to any particular node
