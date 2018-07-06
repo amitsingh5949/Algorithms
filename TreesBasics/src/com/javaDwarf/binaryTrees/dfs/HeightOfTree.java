@@ -1,4 +1,4 @@
-package com.javaDwarf.binaryTrees.geeksForGeeks;
+package com.javaDwarf.binaryTrees.dfs;
 
 import com.javaDwarf.binaryTrees.BinaryTreeImpl;
 import com.javaDwarf.binaryTrees.Employee;

@@ -1,4 +1,4 @@
-package com.javaDwarf.binaryTrees.geeksForGeeks;
+package com.javaDwarf.binaryTrees.bfs;
 
 import java.util.LinkedList;
 import java.util.Queue;

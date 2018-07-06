@@ -1,4 +1,4 @@
-package com.javaDwarf.binaryTrees.geeksForGeeks;
+package com.javaDwarf.binaryTrees.bfs;
 
 import java.util.Stack;
 
@@ -6,7 +6,7 @@ import com.javaDwarf.binaryTrees.BinaryTreeImpl;
 import com.javaDwarf.binaryTrees.Employee;
 import com.javaDwarf.binaryTrees.Node;
 
-public class InOrderTraversalBTWithoutRecursion {
+public class PreOrderTraversalBTWithoutRecursion {
 
 	public static BinaryTreeImpl bt = new BinaryTreeImpl();
 
@@ -26,32 +26,47 @@ public class InOrderTraversalBTWithoutRecursion {
 		bt.insert(new Employee(115, "Benitta", "Web developer"));
 		bt.insert(new Employee(130, "Yamuna", "Tester"));
 
-		inOrderTraversalBTWithoutRecursion();// O(n) time complexity and O(n) space complexity 
-
+		preOrderTraversalBTWithoutRecursion1(); 
+		System.out.println();
+		preOrderTraversalBTWithoutRecursion2();
 	}
 
-	
+
 	//**************************************************************************************//
 
-	public static void inOrderTraversalBTWithoutRecursion() {
+	public static void preOrderTraversalBTWithoutRecursion1() {
 		Stack<Node> s = new Stack<>();
 
 		s.add(bt.getRoot());
 		Node current = null;
 		while ( !s.isEmpty()){
-				if(s.peek().getLeftChild()==null || current != null){
-					current = s.pop();
-					System.out.print(current.getEmployee().getEmpId() +" ");
-					if(current.getRightChild()!=null){
-						s.add(current.getRightChild());
-						current=null;
-					}
+			current=s.pop();
+			while(current != null){
+				if(current.getRightChild() !=null){
+					s.add(current.getRightChild());
 				}
-				else if(s.peek().getLeftChild() !=null ){
-					s.add(s.peek().getLeftChild());
-				}
+				System.out.print(current.getEmployee().getEmpId() + " ");
+				current = current.getLeftChild();
+			}
 		}
 	}
 
+	//**************************************************************************************//
 
+	public static void preOrderTraversalBTWithoutRecursion2() {
+		Stack<Node> s = new Stack<>();
+
+		s.add(bt.getRoot());
+		Node current = null;
+		while ( !s.isEmpty()){
+			current = s.pop();
+			System.out.print(current.getEmployee().getEmpId() + " ");
+			if(current.getRightChild()!=null){
+				s.add(current.getRightChild());	
+			}
+			if(current.getLeftChild()!=null){
+				s.add(current.getLeftChild());	
+			}
+		}
+	}
 }

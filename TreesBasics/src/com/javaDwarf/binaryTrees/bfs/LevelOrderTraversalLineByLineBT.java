@@ -1,14 +1,13 @@
-package com.javaDwarf.binaryTrees.geeksForGeeks;
+package com.javaDwarf.binaryTrees.bfs;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Stack;
 
 import com.javaDwarf.binaryTrees.BinaryTreeImpl;
 import com.javaDwarf.binaryTrees.Employee;
 import com.javaDwarf.binaryTrees.Node;
 
-public class ReverseOrderTraversalBT {
+public class LevelOrderTraversalLineByLineBT {
 
 	public static BinaryTreeImpl bt = new BinaryTreeImpl();
 
@@ -27,49 +26,62 @@ public class ReverseOrderTraversalBT {
 		bt.insert(new Employee(120, "Bref", "Accident"));
 		bt.insert(new Employee(115, "Benitta", "Web developer"));
 		bt.insert(new Employee(130, "Yamuna", "Tester"));
-		reverseOrderTraversal1();
-		System.out.println();
-		reverseOrderTraversal2();
-	}
 
+		levelOrderTraversal1();//n square complexity
+		System.out.println("\n");
+		levelOrderTraversal3();// O(n) time complexity and O(w) space complexity (max width of tree)
+
+	}
 
 
 	//**************************************************************************************//
-	private static void reverseOrderTraversal1() {
+
+	private static void levelOrderTraversal1() {
 		int height = HeightOfTree.heightOfTree2(bt.getRoot());
-		for(int i = height; i>=1; i--){
-             printNodesAtLevel1(bt.getRoot(), i);
+		for(int i = 1; i<=height; i++){
+			printNodesAtLevel1(bt.getRoot(), i, 1);
+			System.out.println();
 		}
 	}
-	
-	private static void printNodesAtLevel1(Node n, int level){
+
+	private static void printNodesAtLevel1(Node n, int level, int currentLevel){
 		if(n==null){
 			return;
 		}
-		if(level ==1){
-			System.out.print(n.getEmployee().getEmpId() + " ");
+		if(level == currentLevel){
+			System.out.print(n.getEmployee().getEmpId() +" ");
 		}
-		printNodesAtLevel1(n.getLeftChild(), level-1);
-		printNodesAtLevel1(n.getRightChild(), level-1);
+		printNodesAtLevel1(n.getLeftChild(), level, currentLevel+1);
+		printNodesAtLevel1(n.getRightChild(), level, currentLevel+1);
 	}
-//*****************************************************************************************//
-	private static void reverseOrderTraversal2() {
-		
-		Stack<Node> s = new Stack<>();
+
+	//**************************************************************************************//
+
+
+	public static void levelOrderTraversal3() {
+		Node root = bt.getRoot();
 		Queue<Node> q = new LinkedList<>();
-		
-		q.add(bt.getRoot());
+
+		q.add(root);
+		q.add(null);
 		Node current = null;
-		while(!q.isEmpty()){
+		while ( !q.isEmpty() ){
 			current = q.poll();
-			if(current.getRightChild()!=null)
-				q.add(current.getRightChild());
+			if(current==null ){
+				if(!q.isEmpty()){
+					System.out.println();
+					q.add(null);
+					continue;
+				}
+				else{
+					break;
+				}
+			}
+			System.out.print(current.getEmployee().getEmpId() + " ");
 			if(current.getLeftChild() != null)
 				q.add(current.getLeftChild());
-			s.add(current);
-		}
-		while(!s.isEmpty()){
-			System.out.print(s.pop().getEmployee().getEmpId() + " ");
+			if(current.getRightChild()!=null)
+				q.add(current.getRightChild());
 		}
 	}
 
