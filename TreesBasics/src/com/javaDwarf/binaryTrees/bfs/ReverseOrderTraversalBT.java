@@ -4,42 +4,34 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
-import com.javaDwarf.binaryTrees.BinaryTreeImpl;
-import com.javaDwarf.binaryTrees.Employee;
-import com.javaDwarf.binaryTrees.Node;
 
 public class ReverseOrderTraversalBT {
 
-	public static BinaryTreeImpl bt = new BinaryTreeImpl();
 
 	public static void main(String[] args) {
 
-		bt.insert(new Employee(101, "Amit Singh", "Application Developer"));
-		bt.insert(new Employee(13, "Aryan Sharma", "Associate Manager"));
-		bt.insert(new Employee(12, "Namit Singh", "Equity Analyst"));
-		bt.insert(new Employee(78, "Amit kumar", "SMO"));
-		bt.insert(new Employee(45, "simpu Singh", "Electronics Enggineer"));
-		bt.insert(new Employee(7, "Aman", "Call Center"));
-		bt.insert(new Employee(7, "Shashank kumar", "Digital marketing manager"));
-
-		bt.insert(new Employee(110, "Sabrish", "L70"));
-		bt.insert(new Employee(105, "KJ", "L20 dev"));
-		bt.insert(new Employee(120, "Bref", "Accident"));
-		bt.insert(new Employee(115, "Benitta", "Web developer"));
-		bt.insert(new Employee(130, "Yamuna", "Tester"));
-		reverseOrderTraversal1();
+		Node root = null;
+		reverseOrderTraversal1(root);
 		System.out.println();
-		reverseOrderTraversal2();
+		reverseOrderTraversal2(root);
 	}
 
 
 
 	//**************************************************************************************//
-	private static void reverseOrderTraversal1() {
-		int height = HeightOfTree.heightOfTree2(bt.getRoot());
+	private static void reverseOrderTraversal1(Node root) {
+		int height = heightOfTree(root);
 		for(int i = height; i>=1; i--){
-             printNodesAtLevel1(bt.getRoot(), i);
+             printNodesAtLevel1(root, i);
 		}
+	}
+	
+	public static int heightOfTree(Node root) {
+		if(root == null){
+			return 0;
+		}
+		return 1 + Math.max(heightOfTree(root.left),
+				heightOfTree(root.right));
 	}
 	
 	private static void printNodesAtLevel1(Node n, int level){
@@ -47,30 +39,32 @@ public class ReverseOrderTraversalBT {
 			return;
 		}
 		if(level ==1){
-			System.out.print(n.getEmployee().getEmpId() + " ");
+			System.out.print(n.data + " ");
 		}
-		printNodesAtLevel1(n.getLeftChild(), level-1);
-		printNodesAtLevel1(n.getRightChild(), level-1);
+		printNodesAtLevel1(n.left, level-1);
+		printNodesAtLevel1(n.right, level-1);
 	}
 //*****************************************************************************************//
-	private static void reverseOrderTraversal2() {
+	private static void reverseOrderTraversal2(Node root) {
 		
 		Stack<Node> s = new Stack<>();
 		Queue<Node> q = new LinkedList<>();
 		
-		q.add(bt.getRoot());
+		q.add(root);
 		Node current = null;
 		while(!q.isEmpty()){
 			current = q.poll();
-			if(current.getRightChild()!=null)
-				q.add(current.getRightChild());
-			if(current.getLeftChild() != null)
-				q.add(current.getLeftChild());
+			if(current.right!=null)
+				q.add(current.right);
+			if(current.left != null)
+				q.add(current.left);
 			s.add(current);
 		}
 		while(!s.isEmpty()){
-			System.out.print(s.pop().getEmployee().getEmpId() + " ");
+			System.out.print(s.pop().data + " ");
 		}
+		
+		s.stream().forEach(e -> System.out.println(e.data + " "));
 	}
 
 

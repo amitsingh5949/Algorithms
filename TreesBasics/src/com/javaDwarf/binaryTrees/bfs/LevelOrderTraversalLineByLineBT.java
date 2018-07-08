@@ -3,43 +3,26 @@ package com.javaDwarf.binaryTrees.bfs;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import com.javaDwarf.binaryTrees.BinaryTreeImpl;
-import com.javaDwarf.binaryTrees.Employee;
-import com.javaDwarf.binaryTrees.Node;
-
 public class LevelOrderTraversalLineByLineBT {
 
-	public static BinaryTreeImpl bt = new BinaryTreeImpl();
 
 	public static void main(String[] args) {
 
-		bt.insert(new Employee(101, "Amit Singh", "Application Developer"));
-		bt.insert(new Employee(13, "Aryan Sharma", "Associate Manager"));
-		bt.insert(new Employee(12, "Namit Singh", "Equity Analyst"));
-		bt.insert(new Employee(78, "Amit kumar", "SMO"));
-		bt.insert(new Employee(45, "simpu Singh", "Electronics Enggineer"));
-		bt.insert(new Employee(7, "Aman", "Call Center"));
-		bt.insert(new Employee(7, "Shashank kumar", "Digital marketing manager"));
+		Node root = null;
 
-		bt.insert(new Employee(110, "Sabrish", "L70"));
-		bt.insert(new Employee(105, "KJ", "L20 dev"));
-		bt.insert(new Employee(120, "Bref", "Accident"));
-		bt.insert(new Employee(115, "Benitta", "Web developer"));
-		bt.insert(new Employee(130, "Yamuna", "Tester"));
-
-		levelOrderTraversal1();//n square complexity
+		levelOrderTraversal1(root);//n square complexity
 		System.out.println("\n");
-		levelOrderTraversal3();// O(n) time complexity and O(w) space complexity (max width of tree)
+		levelOrderTraversal3(root);// O(n) time complexity and O(w) space complexity (max width of tree)
 
 	}
 
 
 	//**************************************************************************************//
 
-	private static void levelOrderTraversal1() {
-		int height = HeightOfTree.heightOfTree2(bt.getRoot());
+	private static void levelOrderTraversal1(Node root) {
+		int height = HeightOfTree.heightOfTree2(root);
 		for(int i = 1; i<=height; i++){
-			printNodesAtLevel1(bt.getRoot(), i, 1);
+			printNodesAtLevel1(root, i, 1);
 			System.out.println();
 		}
 	}
@@ -49,17 +32,16 @@ public class LevelOrderTraversalLineByLineBT {
 			return;
 		}
 		if(level == currentLevel){
-			System.out.print(n.getEmployee().getEmpId() +" ");
+			System.out.print(n.data +" ");
 		}
-		printNodesAtLevel1(n.getLeftChild(), level, currentLevel+1);
-		printNodesAtLevel1(n.getRightChild(), level, currentLevel+1);
+		printNodesAtLevel1(n.left, level, currentLevel+1);
+		printNodesAtLevel1(n.right, level, currentLevel+1);
 	}
 
 	//**************************************************************************************//
 
 
-	public static void levelOrderTraversal3() {
-		Node root = bt.getRoot();
+	public static void levelOrderTraversal3(Node root) {
 		Queue<Node> q = new LinkedList<>();
 
 		q.add(root);
@@ -77,13 +59,15 @@ public class LevelOrderTraversalLineByLineBT {
 					break;
 				}
 			}
-			System.out.print(current.getEmployee().getEmpId() + " ");
-			if(current.getLeftChild() != null)
-				q.add(current.getLeftChild());
-			if(current.getRightChild()!=null)
-				q.add(current.getRightChild());
+			System.out.print(current.data + " ");
+			if(current.left != null)
+				q.add(current.left);
+			if(current.right!=null)
+				q.add(current.right);
 		}
 	}
+	
+	
 
 
 }
