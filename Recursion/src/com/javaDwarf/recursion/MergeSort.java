@@ -3,80 +3,53 @@ package com.javaDwarf.recursion;
 public class MergeSort {
 
 	public static void main(String[] args) {
-		
-		int [] inputArr;
-		
-		if(args.length > 0){
-			inputArr = new int[args.length];
-			
-			System.out.print("Input Array of Integers before sorting : ");
-			
-			try{
-			for(int count = 0 ; count < args.length ; count++){
-				inputArr[count] = Integer.parseInt(args[count]);
-				System.out.print(inputArr[count] +"  ");
-			}
-			
-			inputArr =  mergeSort(inputArr);
-			
-			System.out.print("\nInput Array of Integers after sorting : ");
-			for(int count = 0 ; count < inputArr.length ; count++){
-				System.out.print(inputArr[count] +"  ");
-			}
-			
-			}
-			catch(NumberFormatException ex){
-				System.out.println("Please enter only integers");
-			}
-			catch(Exception ex){
-				System.out.println("Exception caught : " + ex.getMessage());
-			}
+		int [] in = {6,4,3,1,2,9,5,10,8,7,11};
+		int[] out = mergeSort(in);
+		for(int i : out) {
+			System.out.print(i+" ");
 		}
-		else{
-			System.out.println("Please enter input integers to sort");
-		}
-
 	}
 
 	private static int[] mergeSort(int[] inputArr) {
-		return inputArr;
-	}
-	
-	private static int[] merge(int []a, int []b){
-		
-		int []out;
-		int i = 0;
-		int j = 0;
-		
-		if(a.length > 0 && b.length > 0){
-			out  = new int[a.length + b.length];
-			
-			for(int k=0 ; k<out.length ; k++){
-				
-				if(a[i] <= b[j]){
-					out[k] = a[i];
-					i++;
-				}
-				else if ( b[j] < a[i]){
-					out[k] = b[j];
-					j++;
-				}
-			}
-			return out;
+		int mid = inputArr.length/2;
+		if(mid<1) {
+			return inputArr;
 		}
-		else{
-			return null;
+		int[] leftarr = new int[mid];
+		int[] rightarr = new int[inputArr.length-mid];
+
+		for(int i =0; i<mid; i++) {
+			leftarr[i]= inputArr[i];
 		}
-		
+		for(int i=mid; i<inputArr.length; i++) {
+			rightarr[i-mid]= inputArr[i];
+		}
+		return merge(mergeSort(leftarr), mergeSort(rightarr));
 	}
 
+	private static int[] merge(int []a, int []b){
+		int i = 0;
+		int j = 0;
+		int []out  = new int[a.length + b.length];
+
+		for(int k=0 ; k<out.length ; k++){
+			if(j==b.length && i<a.length){
+				out[k] = a[i];
+				i++;
+			}
+			else if (i==a.length && j<b.length){
+				out[k] = b[j];
+				j++;
+			}
+			else if(a[i] <= b[j]){
+				out[k] = a[i];
+				i++;
+			}
+			else if (b[j] < a[i]){
+				out[k] = b[j];
+				j++;
+			}
+		}
+		return out;
+	}
 }
-/*
- Hi,
- Thank you for show interest in my profile. Please find my resume attached.
- Do let me know for any questions.
- 
- Thank you
- Amit Singh
- 9008173781
- */

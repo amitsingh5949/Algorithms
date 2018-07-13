@@ -47,7 +47,7 @@ public class Fibonacci {
 			return 1;
 		}
 		 */
-		// if you want sequence with initial number 0,1 like 0,1 1 2 3 5 8 13 21 ....
+		// if you want sequence with initial number 0,1,1 like 0,1 1 2 3 5 8 13 21 ....
 		if( i<=3 ){
 			return 1;
 		}
