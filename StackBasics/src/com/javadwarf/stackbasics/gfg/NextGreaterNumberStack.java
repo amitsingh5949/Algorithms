@@ -36,14 +36,8 @@ public class NextGreaterNumberStack {
 		while(!s.isEmpty()){
 			map.put(s.pop(),-1);
 		}
-		boolean flag = true;
 		for(Integer i : arr){
-			if(flag){
-				System.out.print(map.get(i));
-				flag=false;
-			}else{
-				System.out.print(" "+map.get(i));
-			}
+				System.out.print(map.get(i) + " ");
 		}
 	}
 
