@@ -1,4 +1,4 @@
-package interviewbits;
+package com.javaDwarf.interviewbits;
 
 public class ReverseList {
 

@@ -1,4 +1,4 @@
-package interviewbits;
+package com.javaDwarf.interviewbits;
 
 class ListNode {
 	     public int val;
