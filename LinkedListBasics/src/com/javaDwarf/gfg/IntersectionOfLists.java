@@ -1,16 +1,10 @@
-package com.javaDwarf.interviewbits;
-
-class ListNode {
-	     public int val;
-	     public ListNode next;
-	      ListNode(int x) { val = x; next = null; }
-	  }
+package com.javaDwarf.gfg;
 
 public class IntersectionOfLists {
 	
-	public ListNode getIntersectionNode(ListNode a, ListNode b) {
+	public Node getIntersectionNode(Node a, Node b) {
 		
-		ListNode temp = a;
+		Node temp = a;
 		int sizeA = 0;
 		while(temp!=null){
 			sizeA++;
@@ -18,7 +12,7 @@ public class IntersectionOfLists {
 			
 		}
 		
-		ListNode temp1 = b;
+		Node temp1 = b;
 		int sizeB = 0;
 		while(temp1!=null){
 			sizeB++;
