@@ -1,4 +1,4 @@
-package com.javadwarf.heap.practiceproblems;
+package com.javadwarf.heap.gfg;
 
 import com.javadwarf.heap.implementation.Heap;
 import com.javadwarf.heap.implementation.HeapEmptyException;
