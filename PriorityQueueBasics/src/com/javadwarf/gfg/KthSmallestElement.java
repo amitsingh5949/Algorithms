@@ -1,10 +1,9 @@
 package com.javadwarf.gfg;
 
-import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
-public class MergeKSortedArrays {
+public class KthSmallestElement {
 
 	public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);
@@ -18,25 +17,27 @@ public class MergeKSortedArrays {
 					matrix[x][y] = s.nextInt();
 				}
 			}
-			System.out.println(mergeKArrays(matrix, row));
+			int k = s.nextInt();
+			kthSmallest(matrix, row, k);
 		}
 		s.close();
 	}
 
-	public static ArrayList<Integer> mergeKArrays(int[][] matrix,int k){
-		ArrayList<Integer> list = new ArrayList<>();
-		PriorityQueue<Pos> pq = new PriorityQueue<>();
+	public static void kthSmallest(int[][] matrix,int n,int k){
+		int result = 0;
+		PriorityQueue<Pos> pq = new PriorityQueue<>(n);
 
-		for(int j=0; j<k; j++) {
+		for(int j=0; j<n; j++) {
 			pq.add(new Pos(j,0, matrix[j][0]));
 		}
-		while(!pq.isEmpty()) {
+		while(k>0 && !pq.isEmpty()) {
 			Pos min = pq.poll();
-			list.add(min.value);
+			result = min.value;
 			if(min.y != matrix[min.x].length-1) {
 				pq.add(new Pos(min.x, min.y+1, matrix[min.x][min.y+1]));
 			}
+			k--;
 		}
-		return list;
+		System.out.println(result);
 	}
 }
