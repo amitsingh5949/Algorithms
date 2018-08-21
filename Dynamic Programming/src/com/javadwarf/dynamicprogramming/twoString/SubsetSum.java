@@ -1,10 +1,12 @@
-package com.javadwarf.dynamicprogramming;
+package com.javadwarf.dynamicprogramming.twoString;
+
+import java.util.Scanner;
 
 public class SubsetSum {
 
 	public static void main(String[] args) {
 
-		/*Scanner in = new Scanner(System.in);
+		Scanner in = new Scanner(System.in);
 		int numOfTestCases = in.nextInt();
 
 		for(int i=0; i<numOfTestCases; i++){
@@ -14,10 +16,10 @@ public class SubsetSum {
 				coin[j] =  in.nextInt();
 			}
 			int W = in.nextInt();
-			System.out.println(coinChange(W, coin));
+			System.out.println(subSetSum(W, coin));
 		}
-		in.close();*/
-		System.out.println(subSetSum(9, new int[]{3, 34, 4, 12, 5, 2}));
+		in.close();
+		//System.out.println(subSetSum(9, new int[]{3, 34, 4, 12, 5, 2}));
 	}
 
 	public static boolean subSetSum(int W, int[] set){

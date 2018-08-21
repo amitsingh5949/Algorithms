@@ -1,4 +1,4 @@
-package com.javadwarf.dynamicprogramming;
+package com.javadwarf.dynamicprogramming.twoString;
 
 import java.util.Scanner;
 
