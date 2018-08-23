@@ -1,4 +1,4 @@
-package com.javadwarf.dynamicprogramming;
+package com.javadwarf.dynamicprogramming.singleString;
 
 import java.util.Scanner;
 

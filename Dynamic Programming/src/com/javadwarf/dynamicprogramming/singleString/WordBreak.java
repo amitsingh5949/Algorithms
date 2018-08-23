@@ -1,4 +1,4 @@
-package com.javadwarf.dynamicprogramming;
+package com.javadwarf.dynamicprogramming.singleString;
 
 import java.util.Arrays;
 import java.util.List;
@@ -44,8 +44,7 @@ public class WordBreak {
 					else{
 						boolean val = false;
 						for(int x=i; x<j; x++){
-							boolean temp = (matrix[i][x] && matrix[x+1][j]) ||
-									(isWord(a.substring(i,x+1)) && isWord(a.substring(x+1,j+1)));
+							boolean temp = (matrix[i][x] && matrix[x+1][j]);
 							if(temp) {
 								val = true;
 								break;

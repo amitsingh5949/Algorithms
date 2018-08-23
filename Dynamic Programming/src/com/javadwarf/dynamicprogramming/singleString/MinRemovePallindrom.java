@@ -1,4 +1,4 @@
-package com.javadwarf.dynamicprogramming;
+package com.javadwarf.dynamicprogramming.singleString;
 
 public class MinRemovePallindrom {
 
