@@ -1,6 +1,6 @@
 package com.javadwarf.dynamicprogramming.twoString;
 
-public class CoinChnage {
+public class CoinChange {
 
 	public static void main(String[] args) {
 
