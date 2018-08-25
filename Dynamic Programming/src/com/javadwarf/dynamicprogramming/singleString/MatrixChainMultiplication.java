@@ -37,20 +37,9 @@ public class MatrixChainMultiplication {
 					matrix[i][j] = 0;
 				}
 				else{
+					int temp = 0;
 					for(int x=i; x<j; x++){
-						int temp = 0;
-						if(matrix[i][x]==0 && matrix[x+1][j]==0){
-							temp = arr[i]*arr[j]*arr[j+1];	
-						}
-						else if(matrix[i][x]==0 && matrix[x+1][j]!=0){
-							temp = arr[i]*arr[x+1]*arr[j+1] + matrix[x+1][j];
-						}
-						else if(matrix[i][x]!=0 && matrix[x+1][j]==0){
-							temp = matrix[i][x] + arr[i]*arr[x+1]*arr[j+1];
-						}
-						else{
-							temp= matrix[i][x] + matrix[x+1][j] + arr[i]*arr[x+1]*arr[j+1];
-						}
+						temp = matrix[i][x] + matrix[x+1][j] + arr[i]*arr[x+1]*arr[j+1];
 						if(temp<min) min = temp;
 						matrix[i][j] = min;
 					}

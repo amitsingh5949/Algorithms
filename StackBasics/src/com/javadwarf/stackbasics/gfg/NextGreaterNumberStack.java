@@ -31,7 +31,7 @@ public class NextGreaterNumberStack {
 			while(!s.isEmpty() && s.peek() < i){
 				map.put(s.pop(),i);
 			}
-			s.push(i);
+			s.push(i); // instead of pushing number push index, no need to map.. think :)
 		}
 		while(!s.isEmpty()){
 			map.put(s.pop(),-1);
