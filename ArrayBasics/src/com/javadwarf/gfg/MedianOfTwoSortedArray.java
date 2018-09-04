@@ -27,7 +27,7 @@ public class MedianOfTwoSortedArray {
 		
 		
 	}
-
+//Method 1 - o(n)
 	public static int median(int[] a, int[] b) {
 		int result = -1;
 
@@ -51,4 +51,6 @@ public class MedianOfTwoSortedArray {
 		}
 		return result;
 	}
+	
+	//Method 2 - o(logn)
 }
