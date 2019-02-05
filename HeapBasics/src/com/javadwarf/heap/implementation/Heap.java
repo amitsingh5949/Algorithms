@@ -33,7 +33,6 @@ public abstract class Heap<T extends Comparable<T>> {
 	}
 	
 	public Integer getParentNodeIndex(Integer currentNodeIndex) {
-		
 		if(currentNodeIndex < 0 || currentNodeIndex > count) {
 			return -1;
 		}
@@ -58,6 +57,13 @@ public abstract class Heap<T extends Comparable<T>> {
 			return null;
 		}
 		return  this.array[index];
+	}
+	
+	public T getHighestPriorityElement() throws HeapEmptyException {
+		if(this.isEmpty()) {
+			throw new HeapEmptyException("heap is Empty");
+		}
+		return this.getElementAt(0);
 	}
 
 	public void swap(Integer index1, Integer index2) {
@@ -92,12 +98,4 @@ public abstract class Heap<T extends Comparable<T>> {
 		}
 		return highestPriorityElement;
 	}
-	
-	public T getHighestPriorityElement() throws HeapEmptyException {
-		if(this.isEmpty()) {
-			throw new HeapEmptyException("heap is Empty");
-		}
-		return this.getElementAt(0);
-	}
-	
 }

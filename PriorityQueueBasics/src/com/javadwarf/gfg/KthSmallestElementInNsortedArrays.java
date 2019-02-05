@@ -3,7 +3,7 @@ package com.javadwarf.gfg;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
-public class KthSmallestElement {
+public class KthSmallestElementInNsortedArrays {
 
 	public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);

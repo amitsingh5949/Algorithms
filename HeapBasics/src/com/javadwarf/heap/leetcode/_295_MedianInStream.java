@@ -1,10 +1,10 @@
-package com.javadwarf.gfg;
+package com.javadwarf.heap.leetcode;
 
 import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
-public class MedianInStream {
+public class _295_MedianInStream {
 
 	public static PriorityQueue<Integer> pqMin = new PriorityQueue<>();
 	public static PriorityQueue<Integer> pqMax = new PriorityQueue<>(Collections.reverseOrder());

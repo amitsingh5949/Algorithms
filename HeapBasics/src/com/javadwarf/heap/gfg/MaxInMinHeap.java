@@ -11,61 +11,61 @@ public class MaxInMinHeap {
 
 	public static void main(String[] args) throws HeapFullException,HeapEmptyException {
 		
-		Heap<Integer> maxHeap = new MinHeap<>(Integer.class);
-			maxHeap.insert(9);
-	        maxHeap.insert(4);
-	        maxHeap.insert(17);
-	        maxHeap.insert(6);
-	        maxHeap.insert(100);
-	        maxHeap.insert(20);
-	        maxHeap.insert(2);
-	        maxHeap.insert(1);
-	        maxHeap.insert(5);
-	        maxHeap.insert(3);
-	        System.out.println(maxElement(maxHeap));
+		Heap<Integer> minHeap = new MinHeap<>(Integer.class);
+			minHeap.insert(9);
+	        minHeap.insert(4);
+	        minHeap.insert(17);
+	        minHeap.insert(6);
+	        minHeap.insert(100);
+	        minHeap.insert(20);
+	        minHeap.insert(2);
+	        minHeap.insert(1);
+	        minHeap.insert(5);
+	        minHeap.insert(3);
+	        System.out.println(maxElement(minHeap));
 	        max = 0;
-	        System.out.println(max(maxHeap));
+	        System.out.println(max(minHeap));
 	        max = 0;
 	}
 	
 	// need to check only leafs for max element, first leaf comes after last parent node
-	private static Integer maxElement(Heap<Integer> maxHeap) throws HeapEmptyException {
+	private static Integer maxElement(Heap<Integer> minHeap) throws HeapEmptyException {
 		
-		max = maxHeap.getHighestPriorityElement();
+		max = minHeap.getHighestPriorityElement();
 		
-		Integer lastIndex = maxHeap.getCount() - 1;
-		Integer lastParentIndex = maxHeap.getParentNodeIndex(lastIndex);
+		Integer lastIndex = minHeap.getCount() - 1;
+		Integer lastParentIndex = minHeap.getParentNodeIndex(lastIndex);
 		
 		Integer firstLeafIndex = lastParentIndex + 1;
 		
 		for(int i = firstLeafIndex; i <= lastIndex; i++) {
-			if(max < maxHeap.getElementAt(i)) {
-				max = maxHeap.getElementAt(i);
+			if(max < minHeap.getElementAt(i)) {
+				max = minHeap.getElementAt(i);
 			}
 		}
 		return max;
 	}
 
-	public static Integer max(Heap<Integer> maxHeap ) throws HeapEmptyException {
-		max = maxHeap.getHighestPriorityElement();
-		traverse(maxHeap, 0);
+	public static Integer max(Heap<Integer> minHeap ) throws HeapEmptyException {
+		max = minHeap.getHighestPriorityElement();
+		traverse(minHeap, 0);
 		return max;
 	}
 	
-	public static void traverse(Heap<Integer> maxHeap, Integer index) {
+	public static void traverse(Heap<Integer> minHeap, Integer index) {
 		
-		if(maxHeap.getElementAt(index) > max) {
-			max = maxHeap.getElementAt(index);
+		if(minHeap.getElementAt(index) > max) {
+			max = minHeap.getElementAt(index);
 		}
 		
-		Integer leftIndex = maxHeap.getLeftNodeIndex(index);
-		Integer rightIndex = maxHeap.getRightNodeIndex(index);
+		Integer leftIndex = minHeap.getLeftNodeIndex(index);
+		Integer rightIndex = minHeap.getRightNodeIndex(index);
 		
 		if(leftIndex != -1) {
-			traverse(maxHeap, leftIndex);
+			traverse(minHeap, leftIndex);
 		}
 		if(rightIndex != -1) {
-			traverse(maxHeap, rightIndex);
+			traverse(minHeap, rightIndex);
 		}
 		
 		
