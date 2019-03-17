@@ -23,10 +23,10 @@ import java.util.PriorityQueue;
  *          
  */
 
-public class _215_KthLargestNumber {
+public class _347_TopKFrequentElements {
 
 	public static void main(String[] args) {
-		System.out.println(new _215_KthLargestNumber().findKthLargest(new int[] {3,2,3,1,2,4,5,5,6},4));
+		System.out.println(new _347_TopKFrequentElements().findKthLargest(new int[] {3,2,3,1,2,4,5,5,6},4));
 	}
 
 	//*******methhod 3

@@ -1,8 +1,8 @@
-package com.javadwarf.gfg;
+package com.javadwarf.leetcode;
 
 import java.util.Scanner;
 
-public class MedianOfTwoSortedArray {
+public class _4_MedianOfTwoSortedArray {
 
 	public static void main (String[] args){
 		/*Scanner s = new Scanner(System.in);

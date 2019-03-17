@@ -1,7 +1,8 @@
 package com.javadwarf.gfg;
 
 import java.util.Scanner;
-
+//Given an unsorted array of n integers which can contain integers from 1 to n
+// so max element in array is less than equal to the size of array 
 public class FrequencyOfArrayElements {
 
 	//Method - 1 
@@ -39,7 +40,7 @@ public class FrequencyOfArrayElements {
 
 	}
 
-	// Method 2
+	// Method 2 -- use extra array to store the count - based in counting sort O(n) O(n)
 	private static void frequency(int[] a) {
 		int[]  b = new int[a.length];
 
@@ -51,7 +52,7 @@ public class FrequencyOfArrayElements {
 		}
 	}
 
-	//method 3
+	//method 3 -- modify the original array , store the count at index position in negative form
 	private static void frequency3(int[] a) {
 		int i = 0 ;
 		while(i < a.length) {
@@ -64,14 +65,12 @@ public class FrequencyOfArrayElements {
 			int temp = a[i];
 			int x = a[temp-1] ;
 			if(x > 0) {
+				a[i] = x; 
 				a[temp-1] = -1;
-				if(x != temp) {
-					a[i] = x;
-				}
 			}
 			else {
-				a[temp-1]--;
 				a[i] = 0;
+				a[temp-1]--;
 			}
 		}
 
@@ -80,7 +79,21 @@ public class FrequencyOfArrayElements {
 		}
 	}
 
-	//method 4
+	//method 4 
+	/*
+	 * Given an unsorted array of n integers which can contain integers from 1 to n
+     *  so max element in array is less than equal to the size of array
+     *  
+     *  subtract 1 from each element
+     *  
+     *  we can get index by element as a[i] % n, this gives the a[i]'s count storage
+     *  Now at the storage index i.e a[i] % 2 we want to store both count of index and original number
+     *  a[a[i]%2] = a[a[i]%2] + n
+     *  
+     *  now if we divide this number a[a[i] % n ] by n, we get count
+     *  and a[a[i] % n ] % n will give the value stored 
+     *  
+	 */
 	private static void frequency4(int[] a) {
 		int n = a.length;
 
