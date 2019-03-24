@@ -38,4 +38,22 @@ public class KadanesAlgorithm {
 		}
 		return lastMax;
 	}
+	
+	// it works too
+	private static int maxSubSetSum1(int[] a) {
+		int lastMax = a[0];
+		int currSum = a[0];
+
+		for(int i=1; i<a.length; i++) {
+			
+			if(currSum < 0 && currSum < a[i]) {
+				currSum = a[i];
+			}
+			currSum += a[i];
+			if(currSum > lastMax) {
+				lastMax = currSum;
+			}
+		}
+		return lastMax;
+	}
 }

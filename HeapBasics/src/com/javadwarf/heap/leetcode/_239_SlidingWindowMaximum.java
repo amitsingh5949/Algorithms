@@ -17,7 +17,7 @@ public class _239_SlidingWindowMaximum {
 	 *  Create class Element to store value and index for each element in array
 	 *  Add k(window) elements from array to priority queue
 	 *  Now we want to add next elements, removing the previously added elements which are not in window
-	 *   so remove all elements from pq until i-e.index >= k 
+	 *   so remove all elements from pq until i-e.index >= k and also if nums[i] is greater than top of pq then empty the pq as no element will be max than nums[i]
 	 *   (i index of element currently being added, e is element at top)
 	 */
 	public int[] maxSlidingWindow(int[] nums, final int k) {
@@ -34,7 +34,7 @@ public class _239_SlidingWindowMaximum {
 		for(int i=k; i<nums.length; i++) {
 			Element e = pq.peek();
 			result[i-k] = e.value;
-			while( !pq.isEmpty() && i-e.index >= k ) {
+			while( !pq.isEmpty() && (i-e.index >= k || e.value < nums[i] )) {
 				pq.poll();
 				e = pq.peek();
 			}
