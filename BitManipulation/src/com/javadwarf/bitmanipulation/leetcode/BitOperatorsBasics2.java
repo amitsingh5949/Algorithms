@@ -12,6 +12,9 @@ public class BitOperatorsBasics2 {
 		String str4 = Integer.toBinaryString( 5 >> 1);
 		System.out.println(str3 + " -- " +str4);
 		
+		int num  = 4;
+		int x = 1 << 2;
+		System.out.println(Integer.toBinaryString(num) + " " + Integer.toBinaryString(x) +  " "+ (num & x));
 		
 
 	}

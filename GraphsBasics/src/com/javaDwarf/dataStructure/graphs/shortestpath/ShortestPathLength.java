@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Scanner;
 
+//Dijkstra for unweighted graph - here we do not need to use the priority queue
+//- this is better done by DP not by Dijkstra
 public class ShortestPathLength {
 
 	public static void main(String[] args) {

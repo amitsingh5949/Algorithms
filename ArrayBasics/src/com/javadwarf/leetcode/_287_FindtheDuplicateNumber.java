@@ -37,7 +37,7 @@ public class _287_FindtheDuplicateNumber {
 		return start;
 	}
 
-	// wrong, this approach assumes number occures only twice
+	// wrong, this approach assumes number occurs only twice
 	public int findDuplicate1(int[] nums) {
 		if(nums==null || nums.length==0) return 0;
 
