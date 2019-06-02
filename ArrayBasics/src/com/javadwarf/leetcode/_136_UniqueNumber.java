@@ -1,7 +1,6 @@
 package com.javadwarf.leetcode;
 
-import java.util.Scanner;
-
+//XOR
 public class _136_UniqueNumber {
 
 	public static void main (String[] args)

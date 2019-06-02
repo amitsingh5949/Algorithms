@@ -10,9 +10,6 @@ public class _561_ArrayPartition1 {
 		if(nums==null || nums.length==0) return 0;
 		
 		int result = 0;
-		
-		
-		
 		return result;
 
 	}

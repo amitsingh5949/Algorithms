@@ -1,5 +1,6 @@
 package com.javadwarf.leetcode;
 
+//Two pointer even-odd
 public class _922_SortArrayByParity2 {
 	
 	public static void main(String[] args) {

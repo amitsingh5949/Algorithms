@@ -3,6 +3,7 @@ package com.javadwarf.leetcode;
 import java.util.Arrays;
 import java.util.HashMap;
 
+//hashing and Sorting
 public class _169_MajorityElement {
 
 	public static void main(String[] args) {

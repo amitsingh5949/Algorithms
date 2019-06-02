@@ -3,6 +3,7 @@ package com.javadwarf.leetcode;
 import java.util.ArrayList;
 import java.util.List;
 
+//counting frequencies
 public class _442_Find_All_Duplicates {
 
 	public static void main(String[] args) {
@@ -30,8 +31,6 @@ public class _442_Find_All_Duplicates {
 				list.add(i+1);
 			}
 		}
-		
-		
 		
 		return list;
 

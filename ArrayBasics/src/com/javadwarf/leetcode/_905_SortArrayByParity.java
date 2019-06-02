@@ -1,5 +1,6 @@
 package com.javadwarf.leetcode;
 
+//Two pointer start-end
 public class _905_SortArrayByParity {
 	
 	public static void main(String[] args) {

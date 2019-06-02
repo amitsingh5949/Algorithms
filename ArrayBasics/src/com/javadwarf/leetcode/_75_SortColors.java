@@ -1,7 +1,5 @@
 package com.javadwarf.leetcode;
 
-import java.util.Scanner;
-
 public class _75_SortColors {
 
 	public static void main (String[] args)
@@ -47,7 +45,7 @@ public class _75_SortColors {
 	 * two pass solution
 	 * 
 	 * one for loop for moving all 0's to left
-	 * one for loop for moving all 1's to right
+	 * one for loop for moving all 2's to right
 	 * 
 	 */
 	public static void sortColors2(int[] nums) {

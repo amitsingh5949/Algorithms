@@ -1,17 +1,7 @@
 package com.javadwarf.leetcode;
 
-import java.util.Scanner;
-
+//XOR
 public class _268_MissingNumber {
-
-	public static void main (String[] args)
-	{
-
-
-
-	}
-
-
 
 	public static int missingNumber(int[] nums) {
 

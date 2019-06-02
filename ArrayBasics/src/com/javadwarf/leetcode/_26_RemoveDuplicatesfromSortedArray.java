@@ -1,5 +1,6 @@
 package com.javadwarf.leetcode;
 
+//Two Pointer
 public class _26_RemoveDuplicatesfromSortedArray {
 
 	public static void main(String[] args) {
