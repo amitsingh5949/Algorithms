@@ -63,5 +63,8 @@ public class MissingAndRepeatingNumber {
 		}
 		System.out.println(repeat + " " + miss);
 	}
+	
+	// method 3-  if we xor a and all elements from 1 ton n , we get xor of mis and rept, 
+	//it becomes the same problem as 2 unique numbers and all other numbers repeating twice, use xor logic 
 
 }

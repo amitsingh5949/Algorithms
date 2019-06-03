@@ -1,4 +1,4 @@
-package com.javadwarf.gfg;
+package com.javadwarf.greedy.gfg;
 
 import java.util.Arrays;
 import java.util.Comparator;
