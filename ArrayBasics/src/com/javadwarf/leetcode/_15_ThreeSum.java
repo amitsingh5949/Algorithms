@@ -31,26 +31,26 @@ public class _15_ThreeSum {
 		//System.out.println( 4 ^-4 ^-2 ^ 6);
 
 	}
-	
-	 public static List<List<Integer>> threeSum(int[] nums) {
-	        List<List<Integer>> result = new ArrayList<>();
-	        if(nums.length < 3) return result;
-	        Arrays.sort(nums);
-	        int i = 0;
-	        while(i < nums.length - 2) {
-	            if(nums[i] > 0) break;
-	            int j = i + 1;
-	            int k = nums.length - 1;
-	            while(j < k) {
-	                int sum = nums[i] + nums[j] + nums[k];
-	                if(sum == 0) result.add(Arrays.asList(nums[i], nums[j], nums[k]));
-	                if(sum <= 0) while(nums[j] == nums[++j] && j < k);
-	                if(sum >= 0) while(nums[k--] == nums[k] && j < k);
-	            }
-	            while(nums[i] == nums[++i] && i < nums.length - 2);
-	        }
-	        return result;
-	    }
+
+	public static List<List<Integer>> threeSum(int[] nums) {
+		List<List<Integer>> result = new ArrayList<>();
+		if(nums.length < 3) return result;
+		Arrays.sort(nums);
+		int i = 0;
+		while(i < nums.length - 2) {
+			if(nums[i] > 0) break;
+			int j = i + 1;
+			int k = nums.length - 1;
+			while(j < k) {
+				int sum = nums[i] + nums[j] + nums[k];
+				if(sum == 0) result.add(Arrays.asList(nums[i], nums[j], nums[k]));
+				if(sum <= 0) while(nums[j] == nums[++j] && j < k);
+				if(sum >= 0) while(nums[k--] == nums[k] && j < k);
+			}
+			while(nums[i] == nums[++i] && i < nums.length - 2);
+		}
+		return result;
+	}
 
 	public static List<List<Integer>> threeSum3(int[] nums) {
 		List<List<Integer>> list = new ArrayList<>();
@@ -58,7 +58,7 @@ public class _15_ThreeSum {
 		Arrays.sort(nums);
 
 		for(int i = 0; i<nums.length;i++) {
-
+			if(nums[i] > 0) break;
 			int sum = nums[i] * -1;
 
 			int start = i + 1;
@@ -76,13 +76,13 @@ public class _15_ThreeSum {
 					start++;
 					end--;
 				}
-				 if (temp < sum) {
+				if (temp < sum) {
 					start++;
 					while(start < end && nums[start]==nums[start+1]) {
 						start++;
 					}
 				}
-				 if (temp > sum)  {
+				if (temp > sum)  {
 					end--;
 					while(start < end && nums[end]==nums[end-1]) {
 						end--;
@@ -98,12 +98,16 @@ public class _15_ThreeSum {
 		return list;
 	}
 
+	// sort the array, for each number in array , find the remaining two numbers whose sum is negative of current number
+	// for finding the two numbers for particular sum, since the array is sorted we can take two pointers start and end
+	// when sum is less increment start, when sum is more decrement end
 	public static List<List<Integer>> threeSum2(int[] nums) {
 		Set<List<Integer>> list = new HashSet<>();
 
 		Arrays.sort(nums);
 
 		for(int i = 0; i<nums.length;i++) {
+			if(nums[i] > 0) break;
 			int sum = nums[i] * -1;
 
 			int start = i +1;

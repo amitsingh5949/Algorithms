@@ -1,27 +1,41 @@
 package com.javadwarf.leetcode;
 
+import java.util.Arrays;
+
 public class _31_NextPermutation {
 
 	public static void main(String[] args) {
-		int [] arr = {1,3,2};
-		//Sint [] arr1 = {3,2,1};
+		int [] arr = {2,3,1};
+		//int [] arr1 = {3,2,1};
 		//int [] arr2 = {7,1,2,3,8,4,5,6};
-		
+
 		//nextPermutation(arr1);
 		//SnextPermutation(arr2);
 		nextPermutation(arr);
-System.out.println();
+		System.out.println();
 	}
+
+	/*
+	 * case 1 : if number is in decreasing order then reverse the number
+	 * case 2 : if number is in increasing order, swap last two digits
+	 * case 3 :
+	 *   a. start from  rightmost, index arr.length-1, find a number such that arr[i] < arr[i+1]
+	 *   b. find a min number right of i-1 which is greater than arr[i-1] and is smallest among all numbers right to arr[i]
+	 *   c. swap arr[min] and arr[i-1]
+	 *   d. Sort the numbers right to arr[i-1]
+	 */
 
 	public static void nextPermutation(int[] nums) {
 
 		if(nums == null || nums.length==0 || nums.length ==1) return ;
 
+		//case 1 : if number is in decreasing order then reverse the number
 		boolean isDescreasing = true;
 		int i= 0;
-		while(i<nums.length-1) {
+		while(i < nums.length-1) {
 			if(nums[i+1] > nums[i]) {
 				isDescreasing = false;
+				break;
 			}
 			i++;
 		}
@@ -34,49 +48,54 @@ System.out.println();
 				nums[end] = temp;
 				start++;
 				end--;
-
-
 			}
 			return;
 		}
 
-		int start = -1;
-		int end   = -1;
-		
-		int j = nums.length-1;
-		while(j>0) {
-			if(nums[j-1] < nums[j]) {
-				start = j-1;
-				end = j;
+		//case 2 : if number is in increasing order, swap last two digits
+		boolean isIncreasing = true;
+		i = 0;
+		while(i < nums.length-1) {
+			if(nums[i+1] < nums[i]) {
+				isIncreasing = false;
 				break;
 			}
-			j--;
+			i++;
 		}
-		
-		j= end;
-		while(j<nums.length-1) {
-			if(nums[j] < nums[start]) {
+		if(isIncreasing) {
+			int temp = nums[nums.length-1];
+			nums[nums.length-1] = nums[nums.length-2];
+			nums[nums.length-2] = temp;
+			return;
+		}
+
+		// case 3 : 
+
+		//a. start from rightmost index arr.length-1, find a number such that arr[i-1] < arr[i]
+		int curr = nums.length-1;
+		while(curr>0) {
+			if(nums[curr-1] < nums[curr]) {
+				curr--;
 				break;
+			}
+			curr--;
+		}
+		//b. find a min number right of i which is greater than arr[i] and is smallest among all numbers right to arr[i]
+		int j = curr+2;
+		int min = curr+1;
+		while(j<nums.length) {
+			if(nums[j] < nums[min] && nums[j] > nums[curr]) {
+				min = j;
 			}
 			j++;
 		}
-		int temp = nums[start];
-		nums[start] = nums[j];
-		nums[j] = temp;
-		
-		int x = start +1 ;
-		int y = nums.length-1;
-		while(start<end) {
-			int temp1 = nums[x];
-			nums[x] = nums[y];
-			nums[y] = temp1;
-			start++;
-			end--;
+		//c. swap arr[min] and arr[i]
+		int temp = nums[curr];
+		nums[curr] = nums[min];
+		nums[min] = temp;
 
-
-		}
-
-
+		//d. Sort the numbers right to arr[i] - can we do sorting in n without using Arrays.sort(), see the same question in package gfg? because numbers right to i-1 are partially sorted
+		Arrays.sort(nums, curr+1, nums.length);
 
 	}
 

@@ -93,8 +93,8 @@ public class _75_SortColors {
 	 
 	 DUTCH NATIONAL FLAG PROBLEM
 	 
-	 when mid passes the high that means we need to terminate as all the o's and 1's have been arranged
-	 that means 2's are also arranged.
+	 when mid passes the high that means we need to terminate as all the o's and 2's have been arranged
+	 that means 1's are also arranged.
 	 
 	 */
 	public static void sortColors(int[] nums) {

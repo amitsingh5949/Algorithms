@@ -10,7 +10,7 @@ public class _287_FindtheDuplicateNumber {
 
 	//cycle detection Floyd's turtle and rabbit algorithm, fast moves two step and slow moves one step
 	// after each of their moves  if they meet that means there is a cycle
-	// Beginning of the cycle would be owuld be the duplicate number
+	// Beginning of the cycle would be the duplicate number
 	public static int findDuplicate(int[] nums) {
 		if(nums==null || nums.length==0) return 0;
 
