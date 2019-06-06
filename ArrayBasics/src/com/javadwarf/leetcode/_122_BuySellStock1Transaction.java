@@ -1,6 +1,6 @@
 package com.javadwarf.leetcode;
 
-public class _122_BuySellStockUnlimitedTransaction {
+public class _122_BuySellStock1Transaction {
 
 	public static void main(String[] args) {
 
