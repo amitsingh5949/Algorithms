@@ -35,5 +35,9 @@ public class WaveArray {
 	}
 	
 	// Method 2 - O(n)
+	/*if we make sure that all even positioned (at index 0, 2, 4, ..) elements are greater than their adjacent odd elements, we don’t need to worry about odd positioned element.
+	1) Traverse all even positioned elements of input array, and do following.
+	….a) If current element is smaller than previous odd element, swap previous and current.
+	….b) If current element is smaller than next odd element, swap next and current.*/
 
 }
