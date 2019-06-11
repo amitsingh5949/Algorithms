@@ -47,34 +47,10 @@ public class ReverseList {
 		return prev;
 	}
 
-	//recursion logic
 
-	/*	public ListNode reverseList(ListNode a){
-	ListNode temp = null;
-	if(a!=null && a.next!=null){
-		temp= reverse(a, a.next);
-		a.next=null;
-	}
-	else{
-	    temp=a;
-	}
-	return temp;
-}
 
-public  ListNode reverse(ListNode prev, ListNode nxt){
+	
 
-	if(nxt.next ==null){
-		nxt.next = prev;
-		return nxt;
-	}
-	else{
-		ListNode temp = null;
-		temp = reverse(nxt, nxt.next);
-		nxt.next = prev;
-		return temp;
-	}
-}
-
-	 */
+	 
 
 }

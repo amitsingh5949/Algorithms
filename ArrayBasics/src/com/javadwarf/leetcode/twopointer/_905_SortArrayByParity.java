@@ -1,4 +1,4 @@
-package com.javadwarf.leetcode;
+package com.javadwarf.leetcode.twopointer;
 
 //Two pointer start-end
 public class _905_SortArrayByParity {

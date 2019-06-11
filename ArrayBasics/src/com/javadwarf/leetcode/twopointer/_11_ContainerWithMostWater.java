@@ -1,4 +1,4 @@
-package com.javadwarf.leetcode;
+package com.javadwarf.leetcode.twopointer;
 
 public class _11_ContainerWithMostWater {
 

@@ -3,15 +3,10 @@ package com.javadwarf.leetcode;
 public class _31_NextPermutation {
 
 	public static void main(String[] args) {
-		int [] arr = {2,3,1};
-		int [] arr1 = {3,2,1};
-		int [] arr2 = {7,1,2,3,8,4,5,6};
-		int[]  arr3 = {2,3,1,3,3};
 
 		int[] arr4 = {2,1,3};
 		//nextPermutation(arr1);
 		System.out.println();
-		nextPermutation(arr3);
 		System.out.println();
 	//	nextPermutation(arr3);
 		System.out.println();
