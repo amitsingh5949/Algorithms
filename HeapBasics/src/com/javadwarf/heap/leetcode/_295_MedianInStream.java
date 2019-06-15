@@ -30,7 +30,7 @@ public class _295_MedianInStream {
 	 *  3. if next num > head of min heap , then move head of min heap to max heap
 	 *        and add num to min heap else add number to max heap
 	 *  4. Difference b/w Length of max heap and min heap < = 1, if increases to > 1 then we need to balance
-	 *  5. To balance , move head of max heap to min heap
+	 *  5. To balance , move head of max heap to min heap (len of max > len of min heap) or move head of min heap to max heap (len of min > len of max heap)
 	 *  
 	 *  
 	 */
