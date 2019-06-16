@@ -1,4 +1,4 @@
-package com.javadwarf.gfg;
+package com.javadwarf.sorting.gfg;
 
 import java.util.Scanner;
 
