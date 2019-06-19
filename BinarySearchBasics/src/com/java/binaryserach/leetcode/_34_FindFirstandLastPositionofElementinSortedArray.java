@@ -4,31 +4,18 @@ public class _34_FindFirstandLastPositionofElementinSortedArray {
 
 	public static void main(String[] args) {
 		int[] arr = searchRange(new int[] {5,7,7,8,8,10}, 8);
-		
+
 		//int[] arr = searchRange(new int[] {1}, 1);
 		System.out.println(arr[0] +" "+ arr[1]);
 	}
+
+
 	
+
+	/**********************************************************************************************************************************************/
+	// Below approach also works in o(logn) , try reading the code
+
 	public static int[] searchRange(int[] nums, int target) {
-		int[] result = new int[2];
-		result[0] = -1;
-		result[1] = -1;
-		
-		for(int i=0; i<nums.length; i++) {
-			if(nums[i]==target) {
-				result[0]  = i;
-				result[1]  = i;
-				while(i<nums.length && nums[i]==target) {
-					result[1]  = i;
-					i++;
-				}
-				break;
-			}
-		}
-		return result;
-	}
-	
-	public static int[] searchRange1(int[] nums, int target) {
 
 		int[] result = new int[2];
 		result[0] = -1;
@@ -59,6 +46,7 @@ public class _34_FindFirstandLastPositionofElementinSortedArray {
 
 	}
 
+	// first occurrence will be found when arr[start] == target
 	public static int findStart(int[] nums, int start, int end, int target) {
 		int result = end;
 
@@ -74,7 +62,6 @@ public class _34_FindFirstandLastPositionofElementinSortedArray {
 			}
 
 			if(nums[mid] == target) {
-				result = mid;
 				end = mid -1;
 			}
 			else if(target > nums[mid]) {
@@ -86,6 +73,7 @@ public class _34_FindFirstandLastPositionofElementinSortedArray {
 
 	}
 
+	// first occurrence will be found when arr[start] == target
 	public static int findEnd(int[] nums, int start, int end, int target) {
 		int result = start;
 
@@ -101,7 +89,6 @@ public class _34_FindFirstandLastPositionofElementinSortedArray {
 			}
 
 			if(nums[mid] == target) {
-				result = mid;
 				start = mid+1;
 			}
 			else if(target < nums[mid]) {
@@ -109,6 +96,28 @@ public class _34_FindFirstandLastPositionofElementinSortedArray {
 			}
 		}
 
+		return result;
+	}
+
+	/**********************************************************************************************************************************************/
+	//Linear scan aaproach :  O(n)
+
+	public static int[] search(int[] nums, int target) {
+		int[] result = new int[2];
+		result[0] = -1;
+		result[1] = -1;
+
+		for(int i=0; i<nums.length; i++) {
+			if(nums[i]==target) {
+				result[0]  = i;
+				result[1]  = i;
+				while(i<nums.length && nums[i]==target) {
+					result[1]  = i;
+					i++;
+				}
+				break;
+			}
+		}
 		return result;
 	}
 }

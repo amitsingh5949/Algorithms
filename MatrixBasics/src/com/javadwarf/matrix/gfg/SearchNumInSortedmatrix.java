@@ -1,4 +1,4 @@
-package com.javadwarf.sorting.gfg;
+package com.javadwarf.matrix.gfg;
 
 import java.util.Scanner;
 

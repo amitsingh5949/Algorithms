@@ -1,4 +1,4 @@
-package com.javadwarf.sorting.leetcode;
+package com.javadwarf.matrix.leetcode;
 
 public class _832_FlippinganImage {
 
