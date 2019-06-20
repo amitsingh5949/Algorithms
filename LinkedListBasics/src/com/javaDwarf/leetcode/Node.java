@@ -9,6 +9,10 @@ public class Node {
 	public Node child;
 
 	public Node() {}
+	
+	public Node(int _val) {
+		val = _val;
+	}
 
 	public Node(int _val,Node _prev,Node _next,Node _child) {
 		val = _val;
