@@ -18,11 +18,10 @@ public class _25_ReverseNodesinKGroup {
 		System.out.println(temp);
 	}
 
-	// Reversing the linkedlist is iterative solution but Reversing the linkedlist in group is iterative + recursive solution
+	// Reversing the linkedlist is iterative or recursive solution but Reversing the linkedlist in group is iterative + recursive solution
 	public static ListNode reverseKGroup(ListNode head, int k) {
 
 		ListNode curr = head, prev = null, next = null;
-		int count = 0;
 
 		int c = k;
 		while(curr!=null && c !=0) {
@@ -34,8 +33,8 @@ public class _25_ReverseNodesinKGroup {
 		}
 
 		curr = head;
-		while(curr != null && count < k)
-		{
+		int count = 0;
+		while(curr != null && count < k){
 			next = curr.next;
 			curr.next = prev;
 			prev = curr;

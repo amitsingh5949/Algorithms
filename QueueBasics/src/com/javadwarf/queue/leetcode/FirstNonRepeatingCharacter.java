@@ -1,4 +1,4 @@
-package com.javaDwarf.gfg;
+package com.javadwarf.queue.leetcode;
 
 import java.util.LinkedList;
 import java.util.Queue;

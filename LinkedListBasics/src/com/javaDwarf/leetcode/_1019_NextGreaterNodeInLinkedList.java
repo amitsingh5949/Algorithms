@@ -8,6 +8,7 @@ public class _1019_NextGreaterNodeInLinkedList {
 
 	}
 
+	////*********** below logic is to find  immediate first next max element on right
 	public int[] nextLargerNodes(ListNode head) {
 
 		if(head == null) return new int[0];
