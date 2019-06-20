@@ -1,5 +1,10 @@
 package com.javaDwarf.leetcode;
 
+/*
+ *we can do this question by recursion as well,
+ *take one global pointer head and go in recursion , when you reach tail compare head and tail,
+ *come back in recursion for previous tail and increase head and then compare again
+ */
 public class _234_PalindromeLinkedList {
 	
 	public static void main(String[] args) {

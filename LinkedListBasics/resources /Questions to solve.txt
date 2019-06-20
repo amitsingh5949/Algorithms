@@ -1,0 +1,9 @@
+430. Flatten a Multilevel Doubly Linked List
+
+Max palindrome length in linked list - solved in gfg package
+
+All the locked questions in linked list
+
+All attempted but unsolved questions in linkedlist
+
+ 
