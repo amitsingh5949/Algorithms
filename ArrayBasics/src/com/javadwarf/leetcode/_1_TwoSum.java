@@ -26,7 +26,7 @@ public class _1_TwoSum {
 		
 		for(int x=0; x<nums.length; x++) {
 			Integer val = map.get(target-nums[x]);
-			if(val !=null && x != val) {
+			if(val !=null) {
 				return new int[] {x,val};
 			}
 			map.put(nums[x],x);

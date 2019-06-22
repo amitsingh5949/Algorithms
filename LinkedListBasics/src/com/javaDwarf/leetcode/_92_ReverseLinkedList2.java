@@ -14,11 +14,44 @@ public class _92_ReverseLinkedList2 {
 		n3.next =n4;
 		n4.next =n5;
 
-		reverseBetween(n1,1,1);
+		reverseBetween(n1,2,5);
 		System.out.println(n1);
 	}
 
 	public static ListNode reverseBetween(ListNode head, int m, int n) {
+		if(head == null || head.next==null) return head;
+
+		ListNode l1Head = new ListNode(0);
+		ListNode l1Tail = l1Head;
+
+		int diff = n-m;
+		while(m>1) {
+			l1Tail.next = head;
+			l1Tail = l1Tail.next;
+			head = head.next;
+			m--;
+		}
+
+		ListNode prev = l1Tail;
+		ListNode curr = head;
+		ListNode next = curr.next;
+
+		while(curr!=null && diff>=0) {
+
+			curr.next =prev;
+			prev =curr;
+			curr = next;
+			if(next != null) {
+				next = next.next;
+			}
+			diff--;
+		}
+		head.next = curr;
+		l1Tail.next = prev;
+		return l1Head.next;
+	}
+
+	public static ListNode reverseBetween1(ListNode head, int m, int n) {
 
 		if(head == null || head.next==null) return head;
 

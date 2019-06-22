@@ -56,7 +56,7 @@ class SpecialStackImpl{
 			int temp = s.pop();
 			if(temp < min(s)) {
 				int currentMin = min(s);
-				int previousMin = 2*currentMin + temp;
+				int previousMin = 2*currentMin - temp;
 				minEle = previousMin;
 				return currentMin;
 			}

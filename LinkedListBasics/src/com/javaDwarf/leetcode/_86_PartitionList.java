@@ -7,43 +7,34 @@ public class _86_PartitionList {
 	}
 
 	public ListNode partition(ListNode head, int x) {
-		
+
 		if(head == null || head.next == null) return head;
-		
-		ListNode frontHead = null;
-		ListNode frontTail = null;
-		
-		ListNode rearHead = null;
-		ListNode rearTail = null;
-		
-		if(head.val < x) {
-			frontHead = head;
-			frontTail = head;
-		}
-		else {
-			rearHead = head;
-			rearTail = head;
-		}
-		
-		ListNode temp = head;
-		
-		while(temp!=null) {
-			
-			if(temp.next != null) {
-				if(temp.next.val < x) {
-					if(frontHead == null) {
-						frontHead = temp.next;
-						temp.next = null;
-					}
-				}
+
+		ListNode l1Head = new ListNode(0);
+		ListNode l1Tail = l1Head;
+
+		ListNode l2Head = new ListNode(0);
+		ListNode l2Tail = l2Head;
+
+		while(head != null) {
+			if(head.val < x) {
+				l1Tail.next = head;
+				l1Tail = l1Tail.next;
+				head = head.next;
+				l1Tail.next =null;
+
 			}
-			temp = temp.next;
+			else if(head.val >= x) {
+				l2Tail.next = head;
+				l2Tail = l2Tail.next;
+				head = head.next;
+				l2Tail.next =null;
+			}
 		}
-		
-		
-		
-		
-		return head;
+
+		l1Tail.next = l2Head.next;
+
+		return l1Head.next;
 
 	}
 

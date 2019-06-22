@@ -3,10 +3,12 @@ package com.javadwarf.stackbasics.gfg;
 import java.util.Scanner;
 import java.util.Stack;
 
+import com.javadwarf.stackbasics.leetcode._84_LargestRectangleinHistogram;
+
 public class MaxRectangularAreaInHistogramOn1 {
 
 	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in); 
+		/*Scanner in = new Scanner(System.in); 
 		int numOfTestCases = in.nextInt();
 		for(int i=0; i<numOfTestCases; i++){
 			int size = in.nextInt();
@@ -16,7 +18,9 @@ public class MaxRectangularAreaInHistogramOn1 {
 			}
 			System.out.println(maxRecAreaHisto(arr));
 		}
-		in.close();
+		in.close();*/
+		
+		System.out.println(new MaxRectangularAreaInHistogramOn1().maxRecAreaHisto(new int[] {6,2,5,4,5,1,6}));
 	}
 
 	private static int maxRecAreaHisto(int[] arr) {

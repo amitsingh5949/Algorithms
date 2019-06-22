@@ -1,0 +1,5 @@
+infix to pre/postfix conversion
+evaluation of pre/postfix
+stock span
+
+How to efficiently implement k stacks in a single array

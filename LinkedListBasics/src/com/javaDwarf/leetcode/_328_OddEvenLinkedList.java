@@ -7,9 +7,45 @@ public class _328_OddEvenLinkedList {
 	}
 	// One pass solution will require evenhead and eventail pointer, remove even index nodes and start adding 
 	// it at even head and even tail and at end add enhead to odd tail
+	public ListNode oddEvenList(ListNode head) {
+		
+		if(head == null || head.next==null || head.next.next==null) return head;
+		
+		ListNode l1Head = new ListNode(0);
+		ListNode l1Tail = l1Head;
+
+		ListNode l2Head = new ListNode(0);
+		ListNode l2Tail = l2Head;
+		
+		boolean flag = true;
+
+		while(head != null) {
+			if(flag) {
+				l1Tail.next = head;
+				l1Tail = l1Tail.next;
+				head = head.next;
+				l1Tail.next =null;
+				flag = false;
+
+			}
+			else {
+				l2Tail.next = head;
+				l2Tail = l2Tail.next;
+				head = head.next;
+				l2Tail.next =null;
+				flag = true;
+			}
+		}
+
+		l1Tail.next = l2Head.next;
+
+		return l1Head.next;
+		
+	}
+	
 	
 	// below solution is two pass solution where we calculate size first and add even nodes at tail of list
-	public ListNode oddEvenList(ListNode head) {
+	public ListNode oddEvenList1(ListNode head) {
 
 		if(head == null || head.next==null || head.next.next==null) return head;
 
