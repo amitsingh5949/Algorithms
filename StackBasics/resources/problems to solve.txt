@@ -1,5 +1,12 @@
 infix to pre/postfix conversion
 evaluation of pre/postfix
-stock span
+224. Basic Calculator https://leetcode.com/problems/basic-calculator/
+and all other Basic Calculator 2,3&4
+https://leetcode.com/problems/evaluate-reverse-polish-notation/
 
 How to efficiently implement k stacks in a single array
+
+Maximum of minimum for every window size
+https://www.geeksforgeeks.org/find-the-maximum-of-minimums-for-every-window-size-in-a-given-array/
+
+
