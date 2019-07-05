@@ -1,4 +1,6 @@
-package com.javaDwarf.binaryTrees.leetcode;
+package com.javaDwarf.binaryTrees.leetcode.dfs;
+
+import com.javaDwarf.binaryTrees.TreeNode;
 
 public class _100_SameTree {
 
