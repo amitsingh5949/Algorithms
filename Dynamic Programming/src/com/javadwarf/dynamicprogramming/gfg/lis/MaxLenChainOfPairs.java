@@ -1,4 +1,4 @@
-package com.javadwarf.dynamicprogramming.lis;
+package com.javadwarf.dynamicprogramming.gfg.lis;
 
 import java.util.Arrays;
 

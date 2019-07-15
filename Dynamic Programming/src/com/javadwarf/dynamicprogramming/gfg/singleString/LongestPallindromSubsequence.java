@@ -1,4 +1,4 @@
-package com.javadwarf.dynamicprogramming.singleString;
+package com.javadwarf.dynamicprogramming.gfg.singleString;
 
 public class LongestPallindromSubsequence {
 

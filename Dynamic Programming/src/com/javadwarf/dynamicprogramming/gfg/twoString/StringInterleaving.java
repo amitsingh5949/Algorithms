@@ -1,4 +1,4 @@
-package com.javadwarf.dynamicprogramming.twoString;
+package com.javadwarf.dynamicprogramming.gfg.twoString;
 
 public class StringInterleaving {
 

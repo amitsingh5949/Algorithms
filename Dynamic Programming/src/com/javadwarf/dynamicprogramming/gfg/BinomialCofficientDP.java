@@ -1,4 +1,4 @@
-package com.javadwarf.dynamicprogramming;
+package com.javadwarf.dynamicprogramming.gfg;
 
 import java.util.Map;
 import java.util.Scanner;
