@@ -1,9 +1,9 @@
 package com.javaDwarf.graphs.leetcode.dfs;
 
-public class _130_SurroundedRegions {
+public class _130_SurroundedRegions2 {
 
 	public static void main(String[] args) {
-		char[][] board = {{'X','X','X','X'},{'X','O','O','X'},{'X','O','X','X'},{'X','O','X','X'}};
+		char[][] board = {{'X','X','X','X'},{'X','O','O','X'},{'X','X','O','X'},{'X','O','X','X'}};
 		char[][] board1 = {{'X','O','X'},{'X','O','X'},{'X','O','X'}};
 		new _130_SurroundedRegions().solve(board1);
 		System.out.println(new String(board1[1]));
