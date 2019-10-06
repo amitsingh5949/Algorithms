@@ -1,11 +1,11 @@
-package gs;
+package gs.vinay;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class problem1 {
+public class problem2 {
 
 	public static void main(String[] args) {
 		
