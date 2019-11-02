@@ -67,7 +67,7 @@ public class Trie {
 
 
 
-	/********************* Insert, search, prefixSearch - Iterative approach *********************/
+	/********************* Insert, search, prefixSearch - Recursive approach *********************/
 
 
 	public void insertRec(String word) {

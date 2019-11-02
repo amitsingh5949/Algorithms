@@ -5,6 +5,8 @@ import java.util.Scanner;
 public class FirstNonRepeatingCharacterStream {
 
 	public static boolean[] visited = null;
+	
+	
 
 	public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);
@@ -50,6 +52,8 @@ public class FirstNonRepeatingCharacterStream {
 				}
 			}
 		}
+		
+		
 		s.close();
 	}
 
