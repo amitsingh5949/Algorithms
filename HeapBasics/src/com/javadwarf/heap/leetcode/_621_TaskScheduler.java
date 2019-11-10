@@ -1,4 +1,4 @@
-package com.javadwarf.queue.leetcode;
+package com.javadwarf.heap.leetcode;
 
 import java.util.LinkedList;
 import java.util.PriorityQueue;
