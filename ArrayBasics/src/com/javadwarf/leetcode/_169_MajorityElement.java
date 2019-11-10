@@ -18,7 +18,24 @@ public class _169_MajorityElement {
 	 * if next element is same as candidate then increment the candidate count or else decrement
 	 * if candidate count ==0 then set current array element as new candidate 
 	 */
-	public static  int majorityElement(int[] nums) {
+	
+	public static  int majorityElement(int[] A) {
+		
+		int majority = A[0];
+		int count = 1;
+		
+		for(int i=1; i<A.length; i++) {
+			count = (A[i]== majority) ? count+1 : count-1; 
+			if(count == 0) {
+				majority =A[i];
+				count =1;
+			}
+		}
+		return majority;
+	}
+	
+	//same logic as above but above code is much cleaner
+	public static  int majorityElement1(int[] nums) {
 
 		int result = -1;
 		int candidate = nums[0];
@@ -90,7 +107,7 @@ public class _169_MajorityElement {
 	}
 
 	// using hash map - works but stupid 
-	public int majorityElement1(int[] nums) {
+	public int majorityElement3(int[] nums) {
 		int result = Integer.MIN_VALUE;
 		int val = Integer.MIN_VALUE;
 
