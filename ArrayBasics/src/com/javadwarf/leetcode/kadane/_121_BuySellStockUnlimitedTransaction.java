@@ -1,16 +1,18 @@
-package com.javadwarf.leetcode;
+package com.javadwarf.leetcode.kadane;
 
 public class _121_BuySellStockUnlimitedTransaction {
 
 	public static void main(String[] args) {
 
-		System.out.println(maxProfit(new int[] {7,1,5,3,6,4}));
+		//System.out.println(maxProfit(new int[] {7,1,5,3,6,4}));
 
-		System.out.println(maxProfit(new int[] {2,4,1}));
+		//System.out.println(maxProfit(new int[] {2,4,1}));
 
-		System.out.println(maxProfit(new int[] {1,2,3,4,5}));
+		//System.out.println(maxProfit(new int[] {1,2,3,4,5}));
 
-		System.out.println(maxProfit(new int[] {7,6,4,3,1}));
+		//System.out.println(maxProfit(new int[] {7,6,4,3,1}));
+		
+		System.out.println(maxProfit(new int[] {3,2,6,5,0,3}));
 
 	}
 

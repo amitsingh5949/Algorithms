@@ -1,4 +1,4 @@
-package com.javadwarf.leetcode;
+package com.javadwarf.leetcode.kadane;
 
 public class _643_MaximumAverageSubarrayI {
 

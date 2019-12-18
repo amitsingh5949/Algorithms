@@ -1,4 +1,4 @@
-package com.javadwarf.leetcode;
+package com.javadwarf.leetcode.kadane;
 
 import java.util.Scanner;
 
