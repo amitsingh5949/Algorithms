@@ -12,10 +12,13 @@ public class _121_BuySellStockUnlimitedTransaction {
 
 		//System.out.println(maxProfit(new int[] {7,6,4,3,1}));
 		
-		System.out.println(maxProfit(new int[] {3,2,6,5,0,3}));
+		//System.out.println(maxProfit(new int[] {3,2,6,5,0,3}));
+		
+		System.out.println(maxProfit(new int[] {1,3,9,10}));
 
 	}
 
+	// Peak and valley method
 	public static int maxProfit(int[] a) {
 
 		if(a == null ||  a.length<2) return 0;
@@ -27,7 +30,7 @@ public class _121_BuySellStockUnlimitedTransaction {
 		int start  = 0 ;
 
 		int end = -1;
-
+		
 		for(int i=1; i<a.length; i++){
 
 			if(a[start] < a[i] && a[i] - a[start] > currProfit) {
@@ -45,6 +48,20 @@ public class _121_BuySellStockUnlimitedTransaction {
 			}
 		}
 		totalProfit += currProfit;
+		return totalProfit;
+	}
+	
+	public static int maxProfitOptimized(int[] prices) {
+
+		if(prices == null ||  prices.length<2) return 0;
+
+		int totalProfit = 0 ;
+
+		for(int i=1; i<prices.length; i++){
+			if(prices[i] > prices[i-1]) {
+				totalProfit += (prices[i] - prices[i-1]);
+			}
+		}
 		return totalProfit;
 	}
 

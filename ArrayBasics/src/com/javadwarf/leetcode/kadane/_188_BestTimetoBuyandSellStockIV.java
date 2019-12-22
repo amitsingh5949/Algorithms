@@ -4,6 +4,9 @@ import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
+// For more optimized solution
+//https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/discuss/135704/Detail-explanation-of-DP-solution
+
 public class _188_BestTimetoBuyandSellStockIV {
 
 	public static void main(String[] args) {
