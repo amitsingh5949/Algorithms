@@ -40,7 +40,6 @@ public class _114_FlattenBinaryTreetoLinkedList {
 
 		if(curr == null) return;
 		
-		
 	    flattenRec(curr.left);
 		flattenRec(curr.right);
 		
