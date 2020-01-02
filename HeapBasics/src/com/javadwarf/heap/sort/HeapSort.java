@@ -31,7 +31,7 @@ public class HeapSort {
 	}
 
 	public static void heapify(Integer endIndex) {
-		Integer parentIndex = getParentIndex(endIndex, endIndex);
+		Integer parentIndex = getParentIndex(endIndex);
 		while(parentIndex >= 0) {
 			percolateDown(parentIndex, endIndex);
 			parentIndex--;
@@ -55,10 +55,9 @@ public class HeapSort {
 		}
 	}
 
-	public static Integer getParentIndex(Integer index, Integer endIndex) {
-
-		Integer parentIndex = (index-1)/2;
-		if(parentIndex < 0 || parentIndex > endIndex) {
+	public static Integer getParentIndex(Integer endIndex) {
+		Integer parentIndex = (endIndex-1)/2;
+		if(parentIndex < 0) {
 			return -1;
 		}
 		return parentIndex;
