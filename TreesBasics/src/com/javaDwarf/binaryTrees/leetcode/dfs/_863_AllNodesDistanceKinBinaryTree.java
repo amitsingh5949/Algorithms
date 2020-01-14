@@ -19,6 +19,11 @@ public class _863_AllNodesDistanceKinBinaryTree {
 		t3.left = t5;
 		System.out.println(new _863_AllNodesDistanceKinBinaryTree().distanceK(t1, t2, 0));
 	}
+	
+	/*
+	 * From root, say the target node is at depth 3 in the left branch. 
+	 * It means that any nodes that are distance K - 3 in the right branch should be added to the answer.
+	 */
 
 	List<Integer> res = null;
 	int distance = 0;
