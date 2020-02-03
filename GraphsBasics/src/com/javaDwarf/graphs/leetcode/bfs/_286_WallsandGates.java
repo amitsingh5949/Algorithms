@@ -13,7 +13,62 @@ public class _286_WallsandGates {
 		}
 	}
 
+	public static void main(String[] args) {
+
+
+
+	}
+
 	public void wallsAndGates(int[][] rooms) {
+
+		boolean[][] visited = new boolean [rooms.length][rooms[0].length];
+
+		int[] xArr = {0,-1,1,0};
+		int[] yArr = {-1,0,0,1};
+
+		Queue<Pos> q = new LinkedList<>();
+
+		for(int i =0;i<rooms.length; i++) {
+			for(int j=0; j<rooms[0].length;j++) {
+				if(rooms[i][j] == 0) {
+					q.add(new Pos(i,j));
+					visited[i][j] = true;
+				}
+			}
+		}
+		q.add(null);
+
+		int count = 0;
+
+		while(q.size() > 1) {
+
+			Pos p = q.poll();
+
+			if(p == null) {
+				q.add(null);
+				count++;
+				continue;
+			}
+
+			for(int i=0; i<xArr.length; i++) {
+
+				int xNew = p.x + xArr[i];
+				int yNew = p.y + yArr[i];
+
+				if(  xNew >= 0 && xNew < rooms.length && yNew>=0 && yNew<rooms[0].length && 
+						rooms[xNew][yNew] ==  Integer.MAX_VALUE && !visited[xNew][yNew]) {
+					visited[xNew][yNew] = true;
+					rooms[xNew][yNew] = count;
+					q.add(new Pos(xNew,yNew));
+				}
+			}
+		}
+
+	}
+
+
+	// time limit exceeded- instead putting empty room and going to gate put gate in queue and go to empty room
+	public void wallsAndGates1(int[][] rooms) {
 
 		boolean[][] visited = new boolean [rooms.length][rooms[0].length];
 
@@ -46,7 +101,7 @@ public class _286_WallsandGates {
 
 			}
 		}
-		
+
 		return count;
 
 
