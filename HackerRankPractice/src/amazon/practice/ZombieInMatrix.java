@@ -12,26 +12,46 @@ public class ZombieInMatrix {
 				 {0, 0, 0, 0, 1},
 				 {0, 1, 0, 0, 0}};
 		
-		System.out.println(new ZombieInMatrix().minDays(grid));
+		int[][] grid1 = {{0, 0, 0, 0, 0},
+				 {0, 0, 0, 0, 0},
+				 {0, 0, 0, 0, 0},
+				 {0, 0, 0, 0, 0}};
+		
+		int[][] grid2 = {{1, 1, 1, 1, 1},
+				{1, 1, 1, 1, 1},
+				{1, 1, 1, 1, 1}};
+		
+		int[][] grid4 = {{1,1,1,1}};
+		
+		int[][] grid5 = {{1,0,0,1}};
+		
+		System.out.println(new ZombieInMatrix().minDays(grid5));
 
 	}
 
 	public int minDays(int[][] grid) {
 
 		int count = 0;
+		
+		if(grid == null || grid.length ==0 ) return 0;
 
 		Queue<Cell> q = new LinkedList<>();
 
 		boolean[][] visited = new boolean[grid.length][grid[0].length];
+		
+		boolean allZeros =  true;
 
 		for(int i=0; i<grid.length; i++) {
 			for(int j=0; j<grid[0].length; j++) {
 				if(grid[i][j] == 1) {
 					q.add(new Cell(i,j));
 					visited[i][j] = true;
+					allZeros = false;
 				}
 			}
 		}
+		
+		if(allZeros) return -1;
 
 		q.add(null);
 

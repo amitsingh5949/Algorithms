@@ -20,6 +20,8 @@ public class _286_WallsandGates {
 	}
 
 	public void wallsAndGates(int[][] rooms) {
+		
+		if(rooms== null || rooms.length==0) return ;
 
 		boolean[][] visited = new boolean [rooms.length][rooms[0].length];
 

@@ -33,7 +33,13 @@ public class RemoveUnnesessaryParenthesis {
 				"(2 + 5) / 4",
 				"2 + 3 + (-5)",
 				"(1 + ((2 * 4) * 9 + 7) * 9)",
-			    "x+(y+z)+(t+(v+w))"
+			    "x+(y+z)+(t+(v+w))",
+			    "4 - (4 - 2 + 1)",
+			    "4 - (4 - 2) * 9",
+			    "4 - (4 - 2) / 2",
+			    "2 * (4 - (4 - 2))",
+			    "8/(4/2)",
+			    "(8/4)/2" // Failure
 		};
 
 
@@ -225,7 +231,16 @@ public class RemoveUnnesessaryParenthesis {
 			if(previousToken == null || nextToken == null) {
 				return true;
 			}
-			else if( PRECEDENCE.get(previousToken.charAt(0)) <= PRECEDENCE.get(nextToken.charAt(0))) {
+			else if( PRECEDENCE.get(previousToken.charAt(0)) == PRECEDENCE.get(nextToken.charAt(0))) {
+				if(PRECEDENCE.get(previousToken.charAt(0)) % 2 == 0 && PRECEDENCE.get(nextToken.charAt(0)) % 2 == 0) {
+					return true;
+				}
+				else {
+					return false;
+				}
+				
+			}
+			else if( PRECEDENCE.get(previousToken.charAt(0)) < PRECEDENCE.get(nextToken.charAt(0))) {
 				return true;
 			}
 			else if( PRECEDENCE.get(previousToken.charAt(0)) > PRECEDENCE.get(nextToken.charAt(0))) {
@@ -235,6 +250,9 @@ public class RemoveUnnesessaryParenthesis {
 		}
 		else if(tokenList.get(bracketIndex).charAt(0) == BRACKETS.get(1) ) {
 			if(previousToken == null || nextToken == null) {
+				return true;
+			}
+			else if( PRECEDENCE.get(previousToken.charAt(0)) == PRECEDENCE.get(nextToken.charAt(0))) {
 				return true;
 			}
 			else if( PRECEDENCE.get(previousToken.charAt(0)) < PRECEDENCE.get(nextToken.charAt(0))) {

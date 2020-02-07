@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
-
+//works only with directed graph 
 public class KosarajuSCC {
 	
 	public static void main(String[] args) {
