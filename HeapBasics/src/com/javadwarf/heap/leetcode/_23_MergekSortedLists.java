@@ -5,38 +5,36 @@ import java.util.PriorityQueue;
 import java.util.Scanner;
 
 public class _23_MergekSortedLists {
+	
+	// Add the head of all the lists in pq
+	// poll element. add it to result list and and add next element to pq.
 
 	public ListNode mergeKLists(ListNode[] lists) {
-		
+
 		if(lists == null || lists.length==0)
 			return null;
-		
+
 		ListNode lnHead = null;
-		ListNode lnTail = null;
+		ListNode dummy = new ListNode(0);
+		lnHead = dummy;
 
 		PriorityQueue<ListNode> pq = new PriorityQueue<>((l1, l2) -> Integer.compare(l1.val, l2.val));
 		for(int i=0; i<lists.length; i++) {
 			if(lists[i]!=null)
-			pq.add(lists[i]);
+				pq.add(lists[i]);
 		}
 
 		while(!pq.isEmpty()) {
 			ListNode l = pq.poll();
 			ListNode temp = l.next;
-			if(lnHead == null) {
-				lnHead = l;
-				lnTail = l;
-			}
-			else {
-				lnTail.next = l;
-				lnTail = lnTail.next ;
-			}
+			dummy.next = l;
+			dummy = dummy.next;
 			l.next = null;
 			if(temp != null) {
 				pq.add(temp);
 			}
 		}
-		return lnHead;
+		return lnHead.next;
 
 	}
 }
@@ -55,22 +53,8 @@ class ListNode {
  */
 class MergeKSortedArrays {
 
-	public static void main(String[] args) {
-		Scanner s = new Scanner(System.in);
-		int testCases = s.nextInt();
-		for(int i =0; i<testCases; i++) {
-			int row = s.nextInt();
-			int col = row;
-			int[][] matrix = new int[row][col];
-			for(int x=0; x<row; x++) {
-				for(int y=0; y<col; y++) {
-					matrix[x][y] = s.nextInt();
-				}
-			}
-			System.out.println(mergeKArrays(matrix, row));
-		}
-		s.close();
-	}
+	// Add the first row of matrix in pq
+	// poll element. add it to result list and and add next cell element from currently polled cell to pq.
 
 	public static ArrayList<Integer> mergeKArrays(int[][] matrix,int k){
 		ArrayList<Integer> list = new ArrayList<>();

@@ -1,5 +1,4 @@
 package mediaalpha;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +20,6 @@ public class RemoveUnnesessaryParenthesis {
 
 	public static void main(String[] args) {
 
-
 		String[] arr = {
 				"1*(2+(3*(4+5)))",
 				"2 + (3 / -5)",
@@ -34,12 +32,23 @@ public class RemoveUnnesessaryParenthesis {
 				"2 + 3 + (-5)",
 				"(1 + ((2 * 4) * 9 + 7) * 9)",
 			    "x+(y+z)+(t+(v+w))",
+			    "1+(2+3)+4",
 			    "4 - (4 - 2 + 1)",
 			    "4 - (4 - 2) * 9",
 			    "4 - (4 - 2) / 2",
 			    "2 * (4 - (4 - 2))",
+			    "6-(4-2)",
 			    "8/(4/2)",
-			    "(8/4)/2" // Failure
+			    "(8/4)/2",
+			    "(-1)+1",
+			    "1+(-1)",
+			    "34*(-1)",
+			    "34/(-1)",
+			    "(-1)/2",
+			    "1*(1-(2*(-1)))",
+			    "1*(1-(2/(-1)))",
+				"(-1)/2",
+				"-1/(+2)"
 		};
 
 
@@ -76,10 +85,10 @@ public class RemoveUnnesessaryParenthesis {
 		PRECEDENCE.put(Character.valueOf('+'),1);
 		PRECEDENCE.put(Character.valueOf('-'),1);
 
-		OPERATOR.add(Character.valueOf('*'));
-		OPERATOR.add(Character.valueOf('/'));
 		OPERATOR.add(Character.valueOf('+'));
 		OPERATOR.add(Character.valueOf('-'));
+		OPERATOR.add(Character.valueOf('*'));
+		OPERATOR.add(Character.valueOf('/'));
 
 		BRACKETS.add(Character.valueOf('('));
 		BRACKETS.add(Character.valueOf(')'));
@@ -94,8 +103,8 @@ public class RemoveUnnesessaryParenthesis {
 
 		List<String> tokenList = new ArrayList<String>();
 
-		int indexOfLastDigit = -1;
-		int indexOfLastOperator = -1;
+		int indexOfLastDigit = -2;
+		int indexOfLastOperator = -2;
 
 		boolean mergeOperators = false;
 
@@ -104,8 +113,9 @@ public class RemoveUnnesessaryParenthesis {
 
 		if(OPERATOR.contains(firstCharacter)) {
 			indexOfLastOperator = 0;
+			mergeOperators = true;
 		}
-		else if(Character.isDigit(firstCharacter) && !BRACKETS.contains(firstCharacter)) {
+		else if((Character.isLetter(firstCharacter) || Character.isDigit(firstCharacter)) && !BRACKETS.contains(firstCharacter)) {
 			indexOfLastDigit = 0;
 		}
 
@@ -118,12 +128,15 @@ public class RemoveUnnesessaryParenthesis {
 			}
 			else if(OPERATOR.contains(currChar)) {
 				tokenList.add(Character.valueOf(currChar).toString());
-				if((index - indexOfLastOperator) == 1) {
+				if((index - indexOfLastOperator) == 1 || indexOfLastDigit == -2 || expression.charAt(index-1) == BRACKETS.get(0)) {
 					mergeOperators = true;
 				}
 				indexOfLastOperator = index;
 			}
 			else if(Character.isDigit(currChar) || Character.isLetter(currChar)) {
+				//.out.println(index);
+				//System.out.println(indexOfLastDigit);
+				//System.out.println(mergeOperators);
 				if((index - indexOfLastDigit) == 1) {
 					String lastToken = tokenList.remove(tokenList.size()-1);
 					tokenList.add(lastToken + currChar); 
@@ -136,12 +149,14 @@ public class RemoveUnnesessaryParenthesis {
 				else {
 					tokenList.add(Character.valueOf(currChar).toString());
 				}
+				indexOfLastDigit = index;
 			}
 			else {
 				tokenList.add(Character.valueOf(currChar).toString());
 			}
 
 		}
+		//System.out.println(tokenList.toString());
 		return tokenList;
 	}
 
@@ -154,8 +169,11 @@ public class RemoveUnnesessaryParenthesis {
 			if(currToken.charAt(0) == BRACKETS.get(0)) {
 				int openingBracketIndex = index;
 				int closingBarcketIndex = getMatchingClosingBracketIndex(openingBracketIndex, tokenList);
-
-				if(isRedundantBracket(openingBracketIndex, tokenList) && isRedundantBracket(closingBarcketIndex, tokenList)) {
+				boolean removeLeftBracket = isRedundantBracket(openingBracketIndex, tokenList);
+				boolean removeRightBracket = isRedundantBracket(closingBarcketIndex, tokenList);
+				//System.out.println("removeLeftBracket : " + removeLeftBracket);
+				//System.out.println("removeRightBracket : " + removeRightBracket);
+				if(removeLeftBracket && removeRightBracket) {
 					tokenList.set(openingBracketIndex, ";");
 					tokenList.set(closingBarcketIndex, ";");
 				}
@@ -184,6 +202,14 @@ public class RemoveUnnesessaryParenthesis {
 		return index-1;
 	}
 
+	public static boolean isNumeric(String str) { 
+		try {  
+		  Integer.parseInt(str);  
+		  return true;
+		} catch(NumberFormatException e){  
+		  return false;  
+		}  
+	  }
 
 	public static boolean isRedundantBracket(int bracketIndex,  List<String> tokenList) {
 
@@ -225,20 +251,25 @@ public class RemoveUnnesessaryParenthesis {
 				token = tokenList.get(index);
 			}
 		}
-
+		//.out.println("previousToken : " + previousToken);
+		//System.out.println("nextToken : "  + nextToken);
+		if(isNumeric(previousToken) || isNumeric(nextToken)){
+			return true;
+		}
 		if(tokenList.get(bracketIndex).charAt(0) == BRACKETS.get(0) ) {
 
 			if(previousToken == null || nextToken == null) {
 				return true;
 			}
 			else if( PRECEDENCE.get(previousToken.charAt(0)) == PRECEDENCE.get(nextToken.charAt(0))) {
-				if(PRECEDENCE.get(previousToken.charAt(0)) % 2 == 0 && PRECEDENCE.get(nextToken.charAt(0)) % 2 == 0) {
+				//System.out.println(PRECEDENCE.get(previousToken.charAt(0)) % 2);
+				if(OPERATOR.indexOf(previousToken.charAt(0)) % 2 == 0 && OPERATOR.indexOf(nextToken.charAt(0)) % 2 == 0) {
 					return true;
 				}
 				else {
 					return false;
 				}
-				
+					
 			}
 			else if( PRECEDENCE.get(previousToken.charAt(0)) < PRECEDENCE.get(nextToken.charAt(0))) {
 				return true;
@@ -248,6 +279,7 @@ public class RemoveUnnesessaryParenthesis {
 			}
 
 		}
+		
 		else if(tokenList.get(bracketIndex).charAt(0) == BRACKETS.get(1) ) {
 			if(previousToken == null || nextToken == null) {
 				return true;
@@ -281,7 +313,7 @@ public class RemoveUnnesessaryParenthesis {
 		try {
 			resultOriginal = (Number)engine.eval(original);
 			resultCompressed = (Number)engine.eval(compressed);
-			return resultOriginal.intValue() == resultCompressed.intValue();
+			assert resultOriginal.intValue() == resultCompressed.intValue();
 		} catch (ScriptException e) {
 			//e.printStackTrace();
 		}
