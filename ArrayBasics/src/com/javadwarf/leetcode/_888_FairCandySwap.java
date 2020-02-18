@@ -51,11 +51,12 @@ public class _888_FairCandySwap {
 		int sumA = 0;
 		int sumB = 0;
 
-		Set<Integer> s = new HashSet<>();
+		
 		for(int i = 0; i<A.length; i++) {
 			sumA += A[i];
 		}
-
+		
+		Set<Integer> s = new HashSet<>();
 		for(int i = 0; i<B.length; i++) {
 			sumB += B[i];
 			s.add(B[i]);

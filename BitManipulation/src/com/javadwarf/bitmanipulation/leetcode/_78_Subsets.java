@@ -17,23 +17,21 @@ public class _78_Subsets {
 
 		if(nums == null || nums.length == 0) return list;
 
-		int count = (int)Math.pow(2.0, nums.length*1.0) -1;
+		int count = (int)Math.pow(2.0, nums.length*1.0);
 
-		for(int i=0; i<=count; i++) {
+		for(int i=0; i<count; i++) {
 
 			List<Integer> l = new ArrayList<Integer>();
 
 			for(int j=0; j<nums.length; j++) {
 
-				if((i & (1 << j)) !=0) {
+				if((i & (1 << j)) != 0){
 					l.add(nums[j]); 
 				}
 			}
 			list.add(l);
 		}
-
 		return list;
-
 	}
 
 }

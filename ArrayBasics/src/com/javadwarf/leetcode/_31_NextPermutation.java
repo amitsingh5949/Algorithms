@@ -49,7 +49,7 @@ public class _31_NextPermutation {
 			return;
 		}
 
-		/* case 2 condtions are handled in case 3
+		/* case 2 conditions are handled in case 3
 		 //case 2 : if number is in increasing order, swap last two digits
 		boolean isIncreasing = true;
 		i = 0;
@@ -92,7 +92,8 @@ public class _31_NextPermutation {
 		nums[curr] = nums[min];
 		nums[min] = temp;
 
-		//d. Sort the numbers right to arr[i] - can we do sorting in n without using Arrays.sort(), see the same question in package gfg? because numbers right to i-1 are partially sorted
+		//d. Sort the numbers right to arr[i] - can we do sorting in n without using Arrays.sort(), 
+		//see the same question in package gfg? because numbers right to i-1 are partially sorted
 		//Arrays.sort(nums, curr+1, nums.length);
 		
 		//d. reverse the remaining elements right to i 
@@ -106,7 +107,7 @@ public class _31_NextPermutation {
 			j--;
 		}
 		
-		for(int  x= 0 ; x<nums.length; x++) {
+		for(int x= 0 ; x<nums.length; x++) {
 			System.out.print(nums[x] + " ");
 		}
 		

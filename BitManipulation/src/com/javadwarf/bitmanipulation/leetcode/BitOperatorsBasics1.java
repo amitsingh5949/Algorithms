@@ -13,6 +13,10 @@ public class BitOperatorsBasics1 {
 		System.out.println(Integer.toBinaryString(13).equalsIgnoreCase(toBinaryString(13)));
 
 		System.out.println(Integer.toBinaryString(24).equalsIgnoreCase(toBinaryString(24)));
+		
+		System.out.println(Integer.toBinaryString(78).equalsIgnoreCase(toBinaryString(78)));
+		
+		System.out.println(Integer.toBinaryString(-78).equalsIgnoreCase(toBinaryString(-78)));
 
 		System.out.println(Integer.toBinaryString(177).equalsIgnoreCase(toBinaryString(177)));
 

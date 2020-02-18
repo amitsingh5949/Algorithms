@@ -3,8 +3,8 @@ package com.javadwarf.bitmanipulation.leetcode;
 public class _338_CountingBits {
 
 	public static void main(String[] args) {
-System.out.println(0b11001000);
-System.out.println(0b11000111);
+		System.out.println(0b11001000);
+		System.out.println(0b11000111);
 	}
 
 	public int[] countBits(int num) {
@@ -24,7 +24,6 @@ System.out.println(0b11000111);
 			n = n & (n-1);
 			count ++;
 		}
-
 		return count;
 
 	}

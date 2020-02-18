@@ -10,6 +10,14 @@ public class UniqueElementWhereOtherElemntsKTimes {
 		System.out.println(findUnique(new int[] {4,4,4,3}, 3));
 
 	}
+	
+	/*
+	   Create an array count[] of size equal to number of bits in binary representations of numbers.
+	   Fill count array such that count[i] stores count of array elements with i-th bit set.
+	   If we take mode x of count[] array, then numbers which repeats k time their ith bit will be zero 
+	    and remainder we get distinct number.
+	   Form the number by result  += Math.pow(2, k)
+	 */
 
 	public static int findUnique(int[] a, int x){
 		int result = 0;

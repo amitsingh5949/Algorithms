@@ -2,6 +2,9 @@ package com.javadwarf.bitmanipulation.leetcode;
 
 public class _260_UniqueElement {
 	/*
+	    Given an array of numbers nums, in which exactly two elements appear only once and all the other elements appear exactly twice. 
+	    Find the two elements that appear only once.
+	  
 	    The two numbers that appear only once must differ at some bit, this is how we can distinguish between them.
 	    Otherwise, they will be one of the duplicate numbers.
 
@@ -29,7 +32,6 @@ public class _260_UniqueElement {
 		for(int i=0; i<nums.length; i++) {
 			xorAll ^= nums[i]; 
 		}
-
 		int diffBit = -1;
 		for(int i = 0; i<32; i++) {
 			if((xorAll & (1<<i)) != 0) {
@@ -37,7 +39,6 @@ public class _260_UniqueElement {
 				break;
 			}
 		}
-
 		int xorGroup1 = 0;
 		int xorGroup2 = 0;
 
@@ -50,7 +51,6 @@ public class _260_UniqueElement {
 			}
 		}
 		return new int[] {xorGroup1, xorGroup2};
-
 	}
 
 }
