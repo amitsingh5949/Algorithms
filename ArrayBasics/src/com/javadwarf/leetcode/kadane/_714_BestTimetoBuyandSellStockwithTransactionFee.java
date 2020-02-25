@@ -7,11 +7,13 @@ public class _714_BestTimetoBuyandSellStockwithTransactionFee {
 	}
 
 	public int maxProfit(int[] prices, int fee) {
-		
-		int totalProfit = 0;
-		
-		return totalProfit;
-		
+		int cash = 0;
+		int hold = -1*prices[0];
+		for(int i=1; i<prices.length; i++) {
+			cash = Math.max(cash,  hold + prices[i] -fee);
+			hold = Math.max(hold, cash - prices[i]);
+		}
+		return cash;
 	}
 	
 	// wrong approach 

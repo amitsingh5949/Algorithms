@@ -23,7 +23,6 @@ public class _11_ContainerWithMostWater {
 		}
 		return result;
 	}
-
 	
 	// Two pointer approach : O(n)
 	// left at 0 and right at arr.length-1
@@ -51,5 +50,4 @@ public class _11_ContainerWithMostWater {
 		}
 		return result;
 	}
-
 }

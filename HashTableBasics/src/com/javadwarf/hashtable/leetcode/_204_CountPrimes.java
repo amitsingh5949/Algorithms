@@ -44,7 +44,7 @@ public class _204_CountPrimes {
 		arr[1] = 0;
 
 		for(int i=2; i<=Math.sqrt(n); i++) { // this line run o(sqrt(n)
-			for(int j=2 ; j*i<n; j++) { // for every numeber it runs as n/2 + n/3 + n/5 + n/7 .... n/lastprimenumber
+			for(int j=2 ; j*i<n; j++) { // for every number it runs as n/2 + n/3 + n/5 + n/7 .... n/lastprimenumber
 				arr[j*i] = 0;
 			}
 		}

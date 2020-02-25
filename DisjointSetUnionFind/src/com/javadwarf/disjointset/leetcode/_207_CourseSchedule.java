@@ -5,10 +5,10 @@ public class _207_CourseSchedule {
 	public static void main(String[] args) {
 		//int[][] matrix  = {{2,0},{1,0},{3,1},{3,2},{1,3}};
 		//int[][] matrix  = {{0,1},{0,2},{1,2}};
-		int[][] matrix  = {{0,1},{1,0}};
-		System.out.println(canFinish(2, matrix));
+		int[][] matrix  = {{1,0},{2,0},{3,1},{3,2}};
+		System.out.println(canFinish(4, matrix));
 	}
-
+// wont work with disjoint sets {{1,0},{2,0},{3,1},{3,2}}; giving false
 	public static boolean canFinish(int numCourses, int[][] prerequisites) {
 		DisjointSet ds = new DisjointSet();
 		for(int i=0; i<numCourses; i++) {

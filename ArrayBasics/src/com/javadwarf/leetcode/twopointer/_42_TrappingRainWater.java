@@ -1,4 +1,4 @@
-package com.javadwarf.leetcode.twopointer;
+	package com.javadwarf.leetcode.twopointer;
 
 import java.util.Scanner;
 
@@ -83,7 +83,7 @@ public class _42_TrappingRainWater {
 		return result;
 	}
 	
-	    // approach - O(n) time and O(1) space - Two pointer approach
+// Trapping Rain Water : approach - O(n) time and O(1) space - Two pointer approach
 	/*
 	  Initialize 
    			left pointer to 0 and right pointer to size-1 and leftMax = 0, rightMax = 0
@@ -128,13 +128,10 @@ public class _42_TrappingRainWater {
 						result += rightMax - height[right];
 					}
 					right--;
-					
 				}
 				
 			}
-			
 			return result;
-			
 		}
 	
 	

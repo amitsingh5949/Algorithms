@@ -1,26 +1,43 @@
 package com.javadwarf.dynamicprogramming.leetcode.singlestring;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-// This question can be solved by using Trie as well, below is the DP solution
-public class _139_WordBreak {
-	
+public class _472_ConcatenatedWords {
+
 	public static void main(String[] args) {
-		List<String >wordDict = Arrays.asList( new String[]{"leet", "code"});
-		System.out.println(new _139_WordBreak().wordBreak("leet", wordDict));
+
 	}
 
-	public boolean wordBreak(String s, List<String> wordDict) {
+	public List<String> findAllConcatenatedWordsInADict(String[] words) {
 
-		Set<String> set = new HashSet<>(wordDict);
+		List<String> res = new ArrayList<String>();
+
+		Set<String> set = new HashSet<>();
+
+		for(String word: words) {
+			set.add(word);
+		}
+
+		for(String word : words) {
+			set.remove(word);
+			if(wordBreak(word, set)) {
+				res.add(word);
+			}
+			set.add(word);
+		}
+		return res;
+	}
+
+	public boolean wordBreak(String s, Set<String> set) {
 
 		boolean[][] matrix = new boolean[s.length()][s.length()];
 
 		for(int k=0; k<s.length();k++) {
 			for(int i=0,j=k;j<s.length();i++,j++) {
+
 				if(set.contains(s.substring(i,j+1))) {
 					matrix[i][j] = true;
 				}
@@ -35,4 +52,5 @@ public class _139_WordBreak {
 		}
 		return matrix[0][s.length()-1];
 	}
+
 }

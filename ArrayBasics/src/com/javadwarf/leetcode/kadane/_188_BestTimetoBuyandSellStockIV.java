@@ -42,9 +42,7 @@ public class _188_BestTimetoBuyandSellStockIV {
 				}
 			}
 		}
-
 		return matrix[matrix.length-1][matrix[0].length-1];
-
 	}
 
 	// optimized approach , we don't need to look back at all the values of m from 0 to j-1
@@ -76,9 +74,7 @@ public class _188_BestTimetoBuyandSellStockIV {
 				}
 			}
 		}
-
 		return matrix[matrix.length-1][matrix[0].length-1];
-
 	}
 
 	public int maxProfit11(int k, int[] prices) {

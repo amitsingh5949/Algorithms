@@ -78,5 +78,46 @@ public class _94_BinaryTreeInorderTraversalWithoutRecursion  {
 	}
 
 	//Morris inorder tree traversal without using stacks or recursion - TODO
-
+	
+	public List<Integer> inorderTraversal2(TreeNode root) {
+		
+		List<Integer> l = new ArrayList<>();
+		
+		TreeNode curr = root; 
+		
+		while(curr != null) {
+			
+			if(curr.left == null) {
+				l.add(curr.val);
+				curr = curr.right;
+			}
+			else {
+				
+				TreeNode predecessor = findPredecessor(curr);
+				
+				if(predecessor.right == null) {
+					predecessor.right = curr;
+					curr = curr.left;
+				}
+				else {
+					predecessor.right = null;
+					l.add(curr.val);
+					curr = curr.right;
+				}
+			}
+		}
+		return l;
+	}
+	
+	public TreeNode findPredecessor(TreeNode curr) {
+		TreeNode temp = curr;
+		temp = temp.left;
+		while(temp.right != null ) {
+			if(temp.right == curr) {
+				return temp;
+			}
+			temp = temp.right;
+		}
+		return temp;
+	}
 }
