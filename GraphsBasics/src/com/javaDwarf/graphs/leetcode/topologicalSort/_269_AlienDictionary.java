@@ -105,9 +105,6 @@ public class _269_AlienDictionary {
 			neighbors.add(dest);
 			graph.put(src, neighbors);
 
-			Integer degreeCountSrc = degree.getOrDefault(src, 0);
-			degree.put(src, degreeCountSrc);
-
 			Integer degreeCountDest = degree.getOrDefault(dest, 0);
 			degree.put(dest, degreeCountDest+1);
 		}

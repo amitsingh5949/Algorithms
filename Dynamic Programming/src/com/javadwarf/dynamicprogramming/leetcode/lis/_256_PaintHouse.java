@@ -6,7 +6,7 @@ public class _256_PaintHouse {
 
 	}
 
-	// idea is to find cost of painting at ith house with a specific color i.e if i wnat to paint the 3rd house by red color t
+	// idea is to find cost of painting at ith house with a specific color i.e if i want to paint the 3rd house by red color t
 	// then cost of painting 3rd house with red would be c =  cost of red for 3rd house + Math.min( cost of painting 2nd house by yellow, cost of painting 2nd house by green)
 
 

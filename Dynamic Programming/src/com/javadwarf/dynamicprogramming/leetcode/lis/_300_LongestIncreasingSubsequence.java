@@ -4,9 +4,12 @@ public class _300_LongestIncreasingSubsequence {
 
 	public static void main(String[] args) {
 		//System.out.println(new _300_LongestIncreasingSubsequence().lengthOfLISBS(new int[] {1,3,6,7,9,4,10,5,6}));
+		System.out.println(new _300_LongestIncreasingSubsequence().lengthOfLIS(new int[] {3,5,6,2,5,4,19,5,6,7,12}));
 		System.out.println(new _300_LongestIncreasingSubsequence().lengthOfLISBS(new int[] {3,5,6,2,5,4,19,5,6,7,12}));
 	}
 
+
+	
 	// DP based solution - O(n^2) and O(n)
 	public int lengthOfLIS(int[] nums) {
 
@@ -50,13 +53,13 @@ public class _300_LongestIncreasingSubsequence {
 				int start = 0;
 				int end = last;
 				int mid = (start + end)/2;
-				 
+
 				while(start <= end) {
 					mid = (start + end)/2;
-                    if(output[mid] == nums[i]){
-                    	start = mid;
-                        break ;
-                    }
+					if(output[mid] == nums[i]){
+						start = mid;
+						break ;
+					}
 					else if(output[mid] > nums[i]) {
 						end = mid-1;
 					}
@@ -68,5 +71,30 @@ public class _300_LongestIncreasingSubsequence {
 			}
 		}
 		return last+1;
+	}
+	
+	// This won't work as what if we select a bigger number and there are less bigger number that wjat already selected
+	// 3,19,4, 5 answer should be 3
+	public int lengthOfLIS1(int[] nums) {
+
+		int max = 1;
+		int count = 1;
+		int val = 0;
+
+		for(int i=0; i<nums.length; i++) {
+
+			count = 1;
+			val = nums[i];
+
+			for(int j=i+1; j<nums.length; j++) {
+
+				if(nums[j] >= val) {
+					val = nums[j];
+					count++;
+				}
+			}
+			max = Integer.max(max, count);
+		}
+		return max;
 	}
 }

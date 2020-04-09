@@ -1,5 +1,7 @@
 package com.javadwarf.dynamicprogramming.leetcode.lis;
 
+import java.util.Arrays;
+
 public class _673_NumberofLongestIncreasingSubsequence {
 
 	public static void main(String[] args) {
@@ -14,14 +16,17 @@ public class _673_NumberofLongestIncreasingSubsequence {
 
 		if(nums == null || nums.length ==0 ) return 0;
 
-		int[] count = new int[nums.length+1];
+		int[] count = new int[nums.length];
+		Arrays.fill(count, 1);
 		int[] output = new int[nums.length];
 
 		for(int i=0; i<nums.length; i++) {
 			output[i] = 1;
 			for(int j=i-1; j>=0; j--) {
 				if(nums[j] < nums[i]) {
-					output[i] = Integer.max(output[i], output[j] + 1);
+					if(output[i] < output[j] + 1) {
+						
+					}
 				}
 			}
 		}

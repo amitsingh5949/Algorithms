@@ -10,7 +10,7 @@ public class _621_TaskScheduler {
 		char[] arr = {'A','A','A','A','A','A','B','C','D','E','F','G'};
 		//char[] arr = {'A','B','A'};
 		//char[] arr = {'A','A','A','B','B','B'};
-
+         // A-B-ideal - A-B idea if k =2
 		System.out.println(new _621_TaskScheduler().leastInterval(arr, 2));
 
 	}
