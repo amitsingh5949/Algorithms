@@ -3,8 +3,62 @@ package com.javadwarf.stackbasics.leetcode;
 import java.util.Stack;
 
 public class _155_MinStack {
+	
+	// space complexity O(n)
+		// Time complexity 
+		//push , getmin and top, pop() and peek() - O(1)
+	
+	class MinStack {
 
-	public _155_MinStack() {
+	    /** initialize your data structure here. */
+	    
+	    Stack<Integer> stack ;
+	    int min = 0;
+	    
+	    public MinStack() {
+	        stack = new Stack<>();
+	        min = Integer.MAX_VALUE;
+	    }
+	    
+	    public void push(int x) {
+	        if(x <= min){
+	            stack.push(min);
+	            min = x;
+	        }
+	        stack.push(x);
+	    }
+	    
+	    public void pop() {
+	        if(min == stack.pop()){
+	            min = stack.pop();
+	        }
+	    }
+	    
+	    public int top() {
+	        return stack.peek();
+	    }
+	    
+	    public int getMin() {
+	        return min;
+	    }
+	}
+
+	/**
+	 * Your MinStack object will be instantiated and called as such:
+	 * MinStack obj = new MinStack();
+	 * obj.push(x);
+	 * obj.pop();
+	 * int param_3 = obj.top();
+	 * int param_4 = obj.getMin();
+	 */
+	
+	// below is also one approach which uses the formulae 2*y-minEle
+	
+	// space complexity O(n)
+			// Time complexity 
+			//push , getmin and top, pop() and peek() - O(1)
+
+	/*public _155_MinStack() {
 
 	}
 	
@@ -45,6 +99,6 @@ public class _155_MinStack {
 
 	public int getMin() {
 		return Long.valueOf(minEle).intValue();
-	}
+	}*/
 
 }

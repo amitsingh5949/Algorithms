@@ -15,27 +15,14 @@ public class _49_GroupAnagrams {
 
 // o(n*k)
 	public List<List<String>> groupAnagrams(String[] strs) {
-
 		Map<String,List<String>> map = new HashMap<>();
-
 		for(String str : strs) {
 			String code = getCode(str);
-			if(map.containsKey(code)) {
-				map.get(code).add(str);
-			}
-			else {
-				List<String> l = new ArrayList<String>();
-				l.add(str);
-				map.put(code,l);
-			}
+			List<String> l = map.getOrDefault(code, new ArrayList<String>());
+            l.add(str);
+            map.put(code,l);
 		}
-
-		List<List<String>> l = new ArrayList<List<String>>();
-		Collection<List<String>> a = map.values();
-		for(List<String> temp : a) {
-			l.add(temp);
-		}
-		return l;
+		return new ArrayList<List<String>>(map.values());
 	}
 
 

@@ -18,7 +18,40 @@ public class _33_Search_in_Rotated_Sorted_Array {
 
 			System.out.println(search(arr, s.nextInt()));
 		}
-		
+
+	}
+
+	/*
+	go to left if (left half is sorted and target lies in left half ) or (left is not sorted and element also does not lie in right half) else go right
+	space complexity - o(1)
+	time - o(log(n))
+	 */
+	
+	public static int search(int[] nums, int target) {	
+		int begin = 0;
+		int end = nums.length-1;
+
+		int mid = begin + (end-begin)/2;
+
+		while(begin<=end){
+
+			mid = begin + (end-begin)/2;
+
+			if(nums[mid] == target){
+				return mid;
+			}
+			if((nums[begin] <= nums[mid] && target >= nums[begin] && target < nums[mid] )
+					|| (nums[begin] > nums[mid] && !(target > nums[mid] && target <= nums[end])) ){
+				end = mid - 1;
+			} 
+			else {
+				begin = mid + 1;
+			}
+
+
+		}
+
+		return -1;
 	}
 
 	/*public static int search(int[] nums, int target) {
@@ -33,7 +66,7 @@ public class _33_Search_in_Rotated_Sorted_Array {
 				break;
 			}
 		}
-		
+
 		if(pivot == -1) {
 			result = binarySearch(nums, target,  0, nums.length-1);
 		}
@@ -45,14 +78,14 @@ public class _33_Search_in_Rotated_Sorted_Array {
 		}
 		return result;
 	}*/
-	
-	public static int search(int[] nums, int target) {
+
+	public static int search1(int[] nums, int target) {
 
 		if(nums.length==0) return -1;
 		int result = -1;
 
 		int pivot = findPivot(nums);
-		
+
 		if(pivot == -1) {
 			result = binarySearch(nums, target,  0, nums.length-1);
 		}
@@ -64,11 +97,11 @@ public class _33_Search_in_Rotated_Sorted_Array {
 		}
 		return result;
 	}
-	
+
 	public static int findPivot(int[] nums) {
-		
+
 		if(nums[0]<=nums[nums.length-1]) return 0;
-		
+
 		int result = 0;
 		int start = 0;
 		int end = nums.length-1;

@@ -8,14 +8,83 @@ public class _34_FindFirstandLastPositionofElementinSortedArray {
 		//int[] arr = searchRange(new int[] {1}, 1);
 		System.out.println(arr[0] +" "+ arr[1]);
 	}
-
-
 	
+	//Time Olog(n)) 
+	//Space O(1)
 
-	/**********************************************************************************************************************************************/
-	// Below approach also works in o(logn) , try reading the code
+	//
 
 	public static int[] searchRange(int[] nums, int target) {
+
+		int[] arr = {-1,-1};
+
+		arr[0] = findStartingPosition(nums, target);
+		arr[1] = findEndingPosition(nums, target);
+
+		return arr;
+
+	}
+
+	// idea is to move end to the first occurrence of the target from right to left
+	//exact same binary search, if target found just store the location mid before moving end to mid-1 so that we don't loose the last found start.
+	
+	public static int findStartingPosition(int[] nums, int target){
+		
+		int targetStartingIndex = -1;
+
+		int begin = 0;
+		int end = nums.length-1;
+		int mid = begin +(end-begin)/2;
+
+		while(begin<=end){
+			mid = begin +(end-begin)/2;
+			if(nums[mid] == target){
+				targetStartingIndex = mid;
+				end = mid -1;
+
+			}
+			else if(nums[mid] < target){
+				begin = mid+1;
+			}
+			else{
+				end = mid-1;
+			}
+		}
+		
+		return targetStartingIndex;
+
+	}
+
+	// idea is to move begin to the last occurrence of the target
+	public static int findEndingPosition(int[] nums, int target){
+		
+		int targetEndigIndex = -1;
+
+		int begin = 0;
+		int end = nums.length-1;
+		int mid = begin +(end-begin)/2;
+
+		while(begin<=end){
+			mid = begin +(end-begin)/2;
+			if(nums[mid] == target){
+				targetEndigIndex = mid;
+				begin = begin +1;
+			}
+			else if(nums[mid] < target){
+				begin = mid+1;
+			}
+			else{
+				end = mid-1;
+			}
+		}
+		return targetEndigIndex;
+	}
+	
+	
+	/**********************************************************************************************************************************************/
+	// Below approach also works in o(logn) 
+
+	public static int[] searchRange1(int[] nums, int target) {
 
 		int[] result = new int[2];
 		result[0] = -1;
