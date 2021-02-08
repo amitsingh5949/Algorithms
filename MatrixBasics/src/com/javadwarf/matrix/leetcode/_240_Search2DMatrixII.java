@@ -7,6 +7,8 @@ public class _240_Search2DMatrixII {
 	}
 
 	
+	//time (max(m,n)) and space o(1)
+	
 	// Idea is to start from top-left or bottom-left
 	// lets start from bottom-left if current < k then go right else up
 	

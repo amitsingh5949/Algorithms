@@ -97,6 +97,7 @@ public class _75_SortColors {
 	 that means 1's are also arranged.
 	 
 	 */
+	// time o(n) and space o(1)
 	public static void sortColors(int[] nums) {
 		
 		if(nums.length==0) return;
@@ -106,7 +107,7 @@ public class _75_SortColors {
 		int mid = 0;
 		
 		while(mid<=high) {
-			if(nums[mid] == 0) {
+			if(nums[mid] == 0) {// if we swap mid with left, we will be surly swapping 0 from mid and 1 from left, so thats why move both left and mid
 				int temp = nums[mid];
 				nums[mid]= nums[low];
 				nums[low] = temp;
@@ -114,13 +115,13 @@ public class _75_SortColors {
 				mid++;
 			}
 			else if(nums[mid]==1) {
-				mid++;
+				mid++;// mid will always like to have 1 so 1 is encountered just move as 1 is in its right place of being in middle
 			}
 			else if(nums[mid]==2) {
 				int temp = nums[mid];
 				nums[mid]= nums[high];
 				nums[high] = temp;
-				high--; // we are not doing mid++ as we want to compare the newly swapped number with low also before moving it
+				high--; // if we swap mid with right, we might be swapping 2 from mid with either 0 or 1 from right, so thats why move right--, we are not doing mid++ as we want to compare the newly swapped number with low also before moving it
 			}
 		}
 		for(int x : nums) {

@@ -13,6 +13,7 @@ public class _199_BinaryTreeRightSideView {
 
 	}
 
+	//Iterative solution : time and space o(n) and o(n)
 	public List<Integer> rightSideView(TreeNode root) {
 
 		List<Integer> l = new ArrayList<>();
@@ -45,5 +46,22 @@ public class _199_BinaryTreeRightSideView {
 		return l;
 
 	}
+	
+	// recursive solution , idea is same as traversing the tree level order using recursion and adding the last element at every level
+	//time and space o(n) and o(n)
+    List<Integer> result = null;
+    public List<Integer> rightSideView1(TreeNode root) {
+        result = new ArrayList<>();
+        helper(root,0);
+        return result;
+    }
+    
+    private void helper(TreeNode root, int level){
+        if(root == null) return;
+        Object o = (result.size() == level) ? result.add(root.val) : result.set(level,root.val);
+        helper(root.left, level+1);
+        helper(root.right, level+1);
+    }
+
 
 }

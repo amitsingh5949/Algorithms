@@ -28,24 +28,24 @@ public class _560_SubarraySumEqualsK {
 		Further, for every sum encountered, we also determine the number of times the sum sum−k has occurred already, 
 		since it will determine the number of times a subarray with sum k has occurred upto the current index. We increment the count by the same amount.
 	 */
+	
+	
 	public int subarraySum(int[] nums, int k) {
+	       int count = 0 ;
 
-		int count = 0 ;
-
-		Map<Integer, Integer> map = new HashMap<>();
-		map.put(0, 1);
-
-		int currCummulativeSum = 0;
-
-		for(int i=0; i<nums.length; i++) {
-			currCummulativeSum += nums[i];
-			int currCummulativeSumCount = map.getOrDefault(currCummulativeSum, 0);
-			count += map.getOrDefault(currCummulativeSum-k, 0) ;
-			map.put(currCummulativeSum, currCummulativeSumCount +1);
-		}
-
-		return count;
-	}
+			Map<Integer, Integer> map = new HashMap<>();
+	        map.put(0,1);
+	        
+	        int sum = 0;
+	        
+	        for(int i=0;i<nums.length; i++){
+	            sum += nums[i];
+	            count += map.getOrDefault(sum-k,0);
+	            map.put(sum,map.getOrDefault(sum,0)+1);
+	        }
+	        
+			return count;
+	    }
 
 	// brute force - o(n^2)
 	public int subarraySum2(int[] nums, int k) {

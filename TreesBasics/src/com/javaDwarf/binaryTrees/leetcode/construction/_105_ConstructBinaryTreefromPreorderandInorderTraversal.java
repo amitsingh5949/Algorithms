@@ -13,6 +13,8 @@ public class _105_ConstructBinaryTreefromPreorderandInorderTraversal {
 		TreeNode  x = new _105_ConstructBinaryTreefromPreorderandInorderTraversal().buildTree(pre, in);
 		System.out.println(x);
 	}
+	
+	//Time and space o(n)
 
 	public static int current = 0;
 	public TreeNode buildTree(int[] preorder, int[] inorder) {

@@ -1,5 +1,8 @@
 package com.javaDwarf.binaryTrees.leetcode.dfs;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 import com.javaDwarf.binaryTrees.leetcode.TreeNode;
 
 
@@ -24,11 +27,11 @@ public class _993_CousinsinBinaryTree {
 		}
 		return false;
 	}
-	
+
 	public void findDepthAndParent(TreeNode root, int x, int y, int currDepth) {
-		
+
 		if( root == null) return;
-		
+
 		if( (root.left != null && root.left.val == x ) || (root.right != null && root.right.val == x) ){
 			this.d1 = currDepth +1;
 			p1 = root.val;
@@ -39,5 +42,49 @@ public class _993_CousinsinBinaryTree {
 		}
 		findDepthAndParent(root.left, x, y, currDepth+1);
 		findDepthAndParent(root.right, x, y, currDepth+1);
+	}
+
+	//using BFS	-- 
+	public boolean isCousins2(TreeNode root, int x, int y) {
+
+		if(root == null) return false;
+
+		Queue<TreeNode> q = new LinkedList<>();
+		q.add(root);
+		
+		int lx = -1;
+		int ly = -2;
+		int px = -1;
+		int py = -1;
+		
+		int level = 1;
+
+		while(!q.isEmpty()){
+
+			int size = q.size();
+
+
+			for(int i= 0; i<size; i++){
+				TreeNode curr = q.poll();
+				if( (curr.left != null && curr.left.val == x) || (curr.right != null && curr.right.val == x)){
+					px = curr.val;
+					lx = level + 1;
+				}
+				if( (curr.left != null && curr.left.val == y) || (curr.right != null && curr.right.val == y)){
+					px = curr.val;
+					ly = level + 1 ;
+				}
+				
+				if(curr.left != null)
+					q.add(curr.left);
+				if(curr.right != null)
+					q.add(curr.right);
+			}
+			level++;
+		}
+		
+		return (lx == ly) && (px != py) ;
+
+
 	}
 }

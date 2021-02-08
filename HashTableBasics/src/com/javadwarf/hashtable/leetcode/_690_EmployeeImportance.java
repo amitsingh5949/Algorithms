@@ -1,15 +1,42 @@
 package com.javadwarf.hashtable.leetcode;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
 public class _690_EmployeeImportance {
 
 	public static void main(String[] args) {
 
 	}
+	
+	public int getImportancebfs(List<Employee> employees, int id) {
+        Map<Integer, Employee> map = new HashMap<>();
+		for(Employee employee : employees) {
+			map.put(employee.id, employee);
+		}
+         
+        Queue<Integer> q = new LinkedList<>();
+        q.add(id);
+        int sum = 0;
+        while(!q.isEmpty()){
+            int size = q.size();
+            for(int i=0; i<size;i++){
+                Employee curr = map.get(q.poll());
+                sum += curr.importance;
+                for(int subordinate : curr.subordinates){
+                    q.add(subordinate);
+                }
+            }
+        }
+        return sum;
+        
+    }
 
+	
+	//dfs
 	public int getImportance(List<Employee> employees, int id) {
 		
 		Map<Integer, Employee> map = new HashMap<>();

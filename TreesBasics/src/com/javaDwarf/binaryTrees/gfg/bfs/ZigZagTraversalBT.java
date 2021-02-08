@@ -1,12 +1,16 @@
 package com.javaDwarf.binaryTrees.gfg.bfs;
 
+import java.util.ArrayList;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
+
+import com.javaDwarf.binaryTrees.leetcode.TreeNode;
 
 
 public class ZigZagTraversalBT {
@@ -164,4 +168,40 @@ public class ZigZagTraversalBT {
 		}
 
 	}
+	/****technique 4 using 1 Queue and Using linkedlist in the resultant List which we need to return*/
+	public List<List<Integer>> zigzagLevelOrder4(TreeNode root) {
+	       
+        List<List<Integer>> res = new ArrayList<>();
+        if(root == null) return res;
+        
+        boolean flag = true;
+        
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        
+        while(!q.isEmpty()){
+            
+            int size = q.size();
+            LinkedList<Integer> temp = new LinkedList<>();
+            
+            for(int i=0; i<size; i++){
+                TreeNode curr = q.poll();
+                
+                if(curr.left != null)
+                        q.add(curr.left);
+                if(curr.right != null)
+                        q.add(curr.right);
+                if(flag){
+                    temp.add(curr.val);
+                }
+                else{
+                    temp.addFirst(curr.val);
+                }
+                
+            }
+            flag = !flag;
+            res.add(temp);
+        }
+        return res;
+    }
 }

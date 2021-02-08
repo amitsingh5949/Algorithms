@@ -23,7 +23,7 @@ public class _11_ContainerWithMostWater {
 		}
 		return result;
 	}
-	
+
 	// Two pointer approach : O(n)
 	// left at 0 and right at arr.length-1
 	//  the minimum(arr[left], arr[right])*(right-left) will used to calculate result 
@@ -34,9 +34,9 @@ public class _11_ContainerWithMostWater {
 		int result = 0;
 		int left  = 0 ;
 		int right = height.length-1;
-		
+
 		while(left < right) {
-			
+
 			if(height[left] < height[right]) {
 				int temp = height[left]*(right-left);
 				result = Integer.max(temp,result);
@@ -50,4 +50,23 @@ public class _11_ContainerWithMostWater {
 		}
 		return result;
 	}
+
+	//same logic as above , consice code
+	public int maxArea2(int[] height) {
+
+		if(height == null || height.length <2) return 0;
+
+		int left = 0 ;
+		int right = height.length-1;
+		int area = Integer.MIN_VALUE;
+
+		while(left < right){
+			area = Math.max(area, Math.min(height[left], height[right])*(right-left));
+			if(height[left]< height[right]) left++;
+			else right--;
+		}
+
+		return area;
+	}
+
 }

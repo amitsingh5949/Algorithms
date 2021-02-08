@@ -6,6 +6,27 @@ public class _189_RotateArray {
 		rotate2(new int[] {1,2,3,4,5,6,7}, 3);
 	}
 
+	//cleaner code than below
+	public void rotate(int[] nums, int k) {
+
+		k = k % nums.length;
+
+		reverse(nums, 0, nums.length-1);
+		reverse(nums, 0, k-1);
+		reverse(nums, k, nums.length-1);
+
+	}
+
+	private void reverse(int[] nums, int start, int end){
+		while(start<end){
+			int temp = nums[start];
+			nums[start] = nums[end];
+			nums[end] = temp;
+			start++;
+			end--;
+		}
+	}
+
 	//complekity O(n)
 	public static void rotate2(int[] nums, int k) {
 
@@ -46,7 +67,7 @@ public class _189_RotateArray {
 	public static void rotate1(int[] nums, int k) {
 
 		if(nums == null || nums.length <= 1) return;
-		
+
 		if(k > nums.length) {
 			k %= nums.length;
 		}

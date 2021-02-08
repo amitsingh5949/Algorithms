@@ -14,6 +14,54 @@ public class _994_RottingOranges {
 
 	}
 	
+	public int orangesRotting1(int[][] grid) {
+	       
+	       int count = 0;
+	       int[][] dir = {{0,-1},{-1,0},{1,0},{0,1}};
+	       
+	       Queue<int[]> q = new LinkedList<>();
+	       
+	       for(int i=0; i<grid.length; i++){
+	           for(int j =0; j<grid[i].length; j++){
+	               if(grid[i][j] == 2){
+	                   q.add(new int[]{i,j});
+	               }
+	           }
+	       }
+	       
+	       
+	       while(!q.isEmpty()){
+	           int size = q.size();
+	           
+	           for(int a= 0; a<size; a++){
+	               int[] cell = q.poll();
+	               
+	               for(int i=0;i<dir.length; i++){
+	                   int xNew = cell[0] + dir[i][0];
+	                   int yNew = cell[1] + dir[i][1];
+	                   
+	                   if(xNew>=0 && xNew<grid.length && yNew >=0 && yNew<grid[0].length 
+	                       && grid[xNew][yNew] == 1){
+	                       grid[xNew][yNew] = 2;
+	                       q.add(new int[]{xNew,yNew});
+	                   }
+	               }
+	               
+	           }
+	           count++;
+	       }
+	       
+	       for(int i=0; i<grid.length; i++){
+	           for(int j =0; j<grid[i].length; j++){
+	               if(grid[i][j] == 1){
+	                   return -1;
+	               }
+	           }
+	       }
+	       
+	       return count == 0 ? 0 : count-1; // count-1 is because for last level we do not need to increment count
+	}
+	
 	public int orangesRotting(int[][] grid) {
 		
 		int count = 0;
