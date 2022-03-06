@@ -1,3 +1,5 @@
+package walmart;
+
 class Solution{
   
   public static void main (String [] ar){

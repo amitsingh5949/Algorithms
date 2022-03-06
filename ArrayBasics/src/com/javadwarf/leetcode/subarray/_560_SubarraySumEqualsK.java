@@ -17,7 +17,7 @@ public class _560_SubarraySumEqualsK {
 	}
 
 	//o(n) and o(n)
-	
+
 	/*
 	 *  If the cumulative sum(represented by sum[i] for sum upto ith index) upto two indices is the same, the sum of the elements lying in between those indices is zero. 
 	 *  Extending the same thought further, if the cumulative sum upto two indices, say i and j is at a difference of k i.e. if sum[i] - sum[j]=k, the sum of elements lying between indices i and j is k.
@@ -28,24 +28,42 @@ public class _560_SubarraySumEqualsK {
 		Further, for every sum encountered, we also determine the number of times the sum sum−k has occurred already, 
 		since it will determine the number of times a subarray with sum k has occurred upto the current index. We increment the count by the same amount.
 	 */
-	
-	
-	public int subarraySum(int[] nums, int k) {
-	       int count = 0 ;
 
-			Map<Integer, Integer> map = new HashMap<>();
-	        map.put(0,1);
-	        
-	        int sum = 0;
-	        
-	        for(int i=0;i<nums.length; i++){
-	            sum += nums[i];
-	            count += map.getOrDefault(sum-k,0);
-	            map.put(sum,map.getOrDefault(sum,0)+1);
-	        }
-	        
-			return count;
-	    }
+
+	public int subarraySum(int[] nums, int k) {
+		int count = 0 ;
+
+		Map<Integer, Integer> map = new HashMap<>();
+		map.put(0,1);
+
+		int sum = 0;
+
+		for(int i=0;i<nums.length; i++){
+			sum += nums[i];
+			count += map.getOrDefault(sum-k,0);
+			map.put(sum,map.getOrDefault(sum,0)+1);
+		}
+
+		return count;
+	}
+
+	//Same as above , easy to understand code
+	public int subarraySumEasy(int[] nums, int k) {
+		Map<Integer, Integer> map = new HashMap<>();
+		map.put(0,1);
+
+		int count  = 0;
+		int sum = 0;
+		for(int i = 0; i<nums.length; i++){
+			sum += nums[i];
+			if(map.containsKey(sum-k)){
+				count = count + map.get(sum-k) ;
+			}
+			int sumCount = map.getOrDefault(sum, 0);
+			map.put(sum,  sumCount+1);
+		}
+		return count;
+	}
 
 	// brute force - o(n^2)
 	public int subarraySum2(int[] nums, int k) {
@@ -67,7 +85,7 @@ public class _560_SubarraySumEqualsK {
 	}
 
 
-	//tried sliding window wont work 
+	//tried sliding window wont work , 'cause of negative numbers
 	public int subarraySum_SW(int[] nums, int k) {
 
 		int start = 0;

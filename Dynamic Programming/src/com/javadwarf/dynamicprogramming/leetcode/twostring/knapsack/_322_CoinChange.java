@@ -11,7 +11,32 @@ public class _322_CoinChange {
 		
 		System.out.println(new _322_CoinChange().minimumCoinBottomUp(11, new int[]{1,2,5}));
 	}
+	
+	//top to down approach, using recursion and memoization
+	int[][] dp;
+    public int coinChangeTopDown(int[] coins, int amount) {
+        dp = new int[coins.length][amount+1];
+        if(amount == 0) return 0;
+        if(coins == null || coins.length ==0) return -1;
+        int res =  coinChange(coins, amount, 0);
+        return  (res == Integer.MAX_VALUE-1) ? -1 : res;
+    }
+    
+    public int coinChange(int[] coins, int amount, int index) {
+        
+        if(amount == 0) return 0;
+        if(amount < 0 ) return Integer.MAX_VALUE-1;
+        if(index >= coins.length) return Integer.MAX_VALUE-1;    
+        if(dp[index][amount] != 0) return dp[index][amount];
+        
+        int excludeCurrCoin =  coinChange(coins, amount, index+1);
+        int includeCurrCoin =  1 + coinChange(coins, amount-coins[index], index);
+    
+        dp[index][amount] = Math.min(excludeCurrCoin,includeCurrCoin);
+        return  dp[index][amount];
+    }
 
+    // bottom up approach using iteration and memoization
 	public int coinChange(int[] coins, int amount) {
 		
 		if(amount < 1) return 0;
@@ -23,7 +48,7 @@ public class _322_CoinChange {
 			for(int j=0; j<matrix[i].length; j++) {
 
 				if(i==0 || j==0) {
-					matrix[i][j] = amount+1;
+					matrix[i][j] = Integer.MAX_VALUE-1; // have to subtract 1 so to avoid integer overflow
 				}
 				else if(coins[i-1] == j ) {
 					matrix[i][j] = 1;
@@ -36,9 +61,10 @@ public class _322_CoinChange {
 				}
 			}
 		}
-		return matrix[coins.length][amount] == amount+1 ? -1 : matrix[coins.length][amount];
+		return matrix[coins.length][amount] == Integer.MAX_VALUE-1 ? -1 : matrix[coins.length][amount];
 	}
-	
+
+	//***** Advance bottom up
 	
 	public int minimumCoinBottomUp(int total, int coins[]){
         int T[] = new int[total + 1];

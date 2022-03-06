@@ -57,6 +57,7 @@ public class _140_WordBreakII {
 	public List<String> wordBreak1(String s, List<String> wordDict) {
 
 		Set<String> dict = new HashSet<>(wordDict);
+		return null;
 	}
 
 }

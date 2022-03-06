@@ -12,7 +12,12 @@ public class _162_FindPeakElement {
 	/*
 	 * Interesting thing about finding any peak(number which is greater than its neighbors ) is that we only
 	 * need to check the number with its right neighbor if(nums[i] > nums[i+1])
-	 * we do not need to check it with its left neighbor i.e (nums[i] > nums[i -1]) is not required. Why? becuase we want last element of any increasing slop or 
+	 * we do not need to check it with its left neighbor i.e (nums[i] > nums[i -1]) is not required. Why? 
+	 * 
+	 * To determine the slope is increasing or decreasing you need to compare either with left or right neighbor , comparing with one neighbor is enough
+	 * So why don't we compare with left neighbor to find slop?
+	 * 
+	 * Because we want last element of any increasing slop or 
 	 * first element of any slope
 	 * 
 	 * 
@@ -44,9 +49,64 @@ public class _162_FindPeakElement {
 			}
 
 		}
-		return end;// return start; anything is find
+		return end;// return start; anything is fine
 
 	}
+	
+//same solution as above with more verbose language and conditions, in this we are comparing with both left and right
+//( in case we forgot the above condition to check only right)
+	
+public int findPeakElement11(int[] nums) {
+        
+        if( nums == null || nums.length == 0) return -1;
+        if(nums.length == 1) return 0;
+        
+        int start = 0;
+        int end = nums.length-1;
+        int mid = start + (end- start)/2;
+        
+        while(start <= end){
+            
+            mid = start + (end- start)/2;
+            
+            if(mid == 0){
+                 if(nums[mid] > nums[mid+1]){
+                     return mid;
+                 }
+                else{
+                    start = mid+1;
+                }
+            }
+            else if( mid == nums.length -1){
+                if(nums[mid] > nums[mid-1]){
+                     return mid;
+                 }
+                else{
+                    end = mid-1;
+                }
+            }
+            else{
+                 if( nums[mid-1]< nums[mid] && nums[mid] > nums[mid+1]){
+                     return mid;
+                 }
+                else if( nums[mid-1]< nums[mid] && nums[mid] < nums[mid+1]){
+                     start = mid +1;
+                 }
+                else if( nums[mid-1]> nums[mid] && nums[mid] > nums[mid+1]){
+                    end = mid-1;
+                }
+                else if( nums[mid-1]> nums[mid] && nums[mid] < nums[mid+1]){
+                    end = mid-1;
+                }
+                
+            }
+            
+        }
+        
+        return -1;
+        
+        
+    }
 
 	// time : O(n)
 

@@ -17,69 +17,57 @@ public class _153_FindMinimuminRotatedSortedArray {
 	}
 	
 	public int findMin(int[] nums) {
+        
+        int start = 0;
+        int end = nums.length -1;
+        int mid = start + (end- start)/2;
+        
+        while(start < end){
+             
+            mid = start + (end - start)/2;
+            
+            if(start == mid) return Integer.min(nums[start], nums[end]);
+            
+            if( nums[mid] < nums[end]){
+                end = mid;
+            }
+            else{
+                start = mid;
+            }    
+        }
+        return nums[start];     
+    }
 
-		if(nums==null || nums.length==0) return 0;
-		if(nums.length==1) return nums[0];
 
-		int start = 0 ;
-		int end = nums.length-1;
-		int mid = start + (end- start)/2;
+    //same as above with extra condition
+public int findMinAgain(int[] nums) {
+        
+        if(nums==null || nums.length==0) return 0;
 
-		while(nums[start] > nums[end]) {
+		if(nums[0]<=nums[nums.length-1]) return nums[0];
+        
+        int start = 0;
+        int end = nums.length -1;
+        int mid = (start+end)/2;
+        
+        while(start < end){
+            
+            mid = (start+end)/2;
 
-			mid = start + (end- start)/2;
-			
-			if ( (mid ==0 && nums[mid] < nums[mid+1]) ||
-				 (mid == nums.length-1 && nums[mid] < nums[mid-1]) ||	
-			     ( mid !=0 && mid != nums.length-1 && nums[mid] < nums[mid-1] && nums[mid] < nums[mid+1]) ){
-				return nums[mid];
-			}
-
-			if(nums[start] > nums[mid]) {
-				end = mid-1;
-			}
-			else {
-				start = mid+1;
-			}
-		}
-		return nums[start];
-
-	}
+            if(start == mid) return nums[end];
+            
+            if(nums[start] > nums[mid] && nums[mid] < nums[end]){
+                end = mid;
+            }
+            
+            if(nums[start] < nums[mid] && nums[mid] > nums[end]){
+                start = mid;
+            }        
+        }
+        return nums[start];     
+    }
 	
-	
-	
-	
 
-
-	public int findMin3(int[] nums) {
-
-		if(nums==null || nums.length==0) return 0;
-		if(nums.length==1) return nums[0];
-
-		int start = 0 ;
-		int end = nums.length-1;
-		int mid = start + (end- start)/2;
-
-		while(start < end) {
-
-			mid = start + (end- start)/2;
-			
-			if ( (mid ==0 && nums[mid] < nums[mid+1]) ||
-				 (mid == nums.length-1 && nums[mid] < nums[mid-1]) ||	
-			     ( mid !=0 && mid != nums.length-1 && nums[mid] < nums[mid-1] && nums[mid] < nums[mid+1]) ){
-				return nums[mid];
-			}
-
-			if(nums[start] > nums[mid]) {
-				end = mid-1;
-			}
-			else {
-				start = mid+1;
-			}
-		}
-		return nums[start];
-
-	}
 
 
 
@@ -117,7 +105,7 @@ public class _153_FindMinimuminRotatedSortedArray {
 
 
 
-	//Below approach works but is stupid 
+	//Below approaches works but are stupid, not possible to remember the condition 
 
 
 	// idea is to compare mid with start(we consider start as smallest , hence call it result) and 
@@ -151,6 +139,67 @@ public class _153_FindMinimuminRotatedSortedArray {
 			}
 		}
 		return nums[result];
+	}
+	
+	public int findMin32(int[] nums) {
+
+		if(nums==null || nums.length==0) return 0;
+		if(nums.length==1) return nums[0];
+
+		int start = 0 ;
+		int end = nums.length-1;
+		int mid = start + (end- start)/2;
+
+		while(nums[start] > nums[end]) {
+
+			mid = start + (end- start)/2;
+			
+			if ( (mid ==0 && nums[mid] < nums[mid+1]) ||
+				 (mid == nums.length-1 && nums[mid] < nums[mid-1]) ||	
+			     ( mid !=0 && mid != nums.length-1 && nums[mid] < nums[mid-1] && nums[mid] < nums[mid+1]) ){
+				return nums[mid];
+			}
+
+			if(nums[start] > nums[mid]) {
+				end = mid-1;
+			}
+			else {
+				start = mid+1;
+			}
+		}
+		return nums[start];
+
+	}
+	
+	
+	public int findMin3(int[] nums) {
+
+		if(nums==null || nums.length==0) return 0;
+		if(nums.length==1) return nums[0];
+
+		int start = 0 ;
+		int end = nums.length-1;
+		int mid = start + (end- start)/2;
+
+		while(start < end) {
+
+			mid = start + (end- start)/2;
+			
+			if ( (mid ==0 && nums[mid] < nums[mid+1]) ||
+				 (mid == nums.length-1 && nums[mid] < nums[mid-1]) ||	
+			     ( mid !=0 && mid != nums.length-1 && nums[mid] < nums[mid-1] && nums[mid] < nums[mid+1]) ){
+				return nums[mid];
+			}
+
+			if(nums[start] > nums[mid]) {
+				end = mid-1;
+			}
+			else {
+				start = mid+1;
+			}
+		}
+		return nums[start];
+
 	}
 
 }

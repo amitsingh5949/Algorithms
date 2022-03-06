@@ -36,6 +36,27 @@ public class _287_FindtheDuplicateNumber {
 		
 		return start;
 	}
+	
+	// negative marking approach
+	public int findDuplicate11(int[] nums) {
+        
+	    int start  = 0;
+	    
+	    while(start < nums.length){
+	        int val = Math.abs(nums[start]);
+	        if(nums[val-1] < 0) return val;
+	        nums[val-1] *= -1;
+	        start++;
+	    }
+	    // restore array now
+	    for(int i =0; i<nums.length; i++) {
+	    	nums[i] = Math.abs(nums[i]);
+		}
+	        
+	    return -1;
+	        
+	    }
+	
 
 	// wrong, this approach assumes number occurs only twice
 	public int findDuplicate1(int[] nums) {

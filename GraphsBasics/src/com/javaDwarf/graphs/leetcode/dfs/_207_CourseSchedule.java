@@ -10,6 +10,10 @@ public class _207_CourseSchedule {
 		int[][] matrix  = {{0,1},{1,0}};
 		System.out.println(canFinish(2, matrix));
 	}
+	
+	
+	// the below code will give TLE if comment line if(!result) break; 
+	/*******************************************************************/
 
 	public static boolean result = true;
 

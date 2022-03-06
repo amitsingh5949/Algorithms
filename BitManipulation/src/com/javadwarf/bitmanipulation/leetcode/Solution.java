@@ -1,65 +1,32 @@
 package com.javadwarf.bitmanipulation.leetcode;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
-@SuppressWarnings({ "rawtypes", "unchecked" })
+
 public class Solution {
 
 
 	public static void main(String[] args) {
-		Object obj = initialise(); 
-		String company = helper(obj);
-		System.out.println(company);
-
+		List<Integer> arr = Arrays.asList(4,8,7);
+		List<Integer> low = Arrays.asList(2,4);
+		List<Integer> high = Arrays.asList(8,4);
+		System.out.println(countBetween(arr, low, high));
 	}
-
-	private static String helper(Object obj) {
-		
-		LinkedHashMap data = (LinkedHashMap) obj;
-		data = (LinkedHashMap)data.get("Data");
-		ArrayList companies = (ArrayList)data.get("companies");
-		
-		for(int i =0 ; i<companies.size(); i++) {
-			LinkedHashMap company = (LinkedHashMap) companies.get(i);
-			LinkedHashMap stat = (LinkedHashMap)company.get("stat");
-			if(!stat.containsKey("open")) {
-				return company.get("name").toString();
+	
+	public static List<Integer> countBetween(List<Integer> arr, List<Integer> low, List<Integer> high){
+		Collections.sort(arr);
+		int[] out = new int[low.size()];
+		for(int num : arr) {
+			for(int i=0; i<low.size(); i++) {
+				if(num>=low.get(i) && num<=high.get(i)) { 
+					out[i] += 1;
+				    break;
+				}
 			}
 		}
-		return "";
-
-	}
-
-	private static LinkedHashMap initialise() {
-
-		LinkedHashMap data = new LinkedHashMap<>();
-		LinkedHashMap companies = new LinkedHashMap<>();
-		ArrayList comp = new ArrayList();
-
-		LinkedHashMap company1 =  new LinkedHashMap();
-		company1.put("name", "google");
-		LinkedHashMap stat1 =  new LinkedHashMap();
-		stat1.put("high", 12.2);
-		stat1.put("low", 12.2);
-		stat1.put("open", 45.33);
-		stat1.put("close", 45.33);
-		company1.put("stat", stat1);
-
-		LinkedHashMap company2 =  new LinkedHashMap();
-		company2.put("name", "apple");
-		LinkedHashMap stat2 =  new LinkedHashMap();
-		stat2.put("high", 12.2);
-		stat2.put("low", 12.2);
-		stat2.put("close", 45.33);
-		company2.put("stat", stat2);
-
-		comp.add(company1);
-		comp.add(company2);
-		companies.put("companies", comp);
-		data.put("Data", companies);
-
-		return data;
-
+		return Arrays.stream(out).boxed().collect(Collectors.toList());
 	}
 }
