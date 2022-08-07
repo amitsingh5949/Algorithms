@@ -2,6 +2,7 @@ package com.javadwarf.heap.leetcode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -14,7 +15,7 @@ public class _1057_CampusBikes {
 
 		int[][] arr1 = {{0,0},{1,1},{2,0}};
 		int[][] arr2 ={{1,0},{2,2},{2,1}};
-		System.out.println(new _1057_CampusBikes().assignBikes(arr1, arr2));
+		System.out.println(new _1057_CampusBikes().assignBikes12(arr1, arr2));
 	}
 
 	// using counting sort as max coordinate of any bike or worker is less than 1000, 
@@ -125,6 +126,99 @@ public class _1057_CampusBikes {
 		}
 		return res;
 	}
+	
+	
+	public int[] assignBikes12(int[][] workers, int[][] bikes) {
+        
+PriorityQueue<int[]>[] workerBikePreference = new PriorityQueue[workers.length];
+        
+        for(int i=0; i<workers.length; i++){
+            
+            PriorityQueue<int[]> pq = new PriorityQueue<int[]>((a,b) -> {
+            	 int worker1x = workers[a[0]][0];
+                 int worker1y = workers[a[0]][1];
+                 int bike1x = bikes[a[1]][0];
+                 int bike1y = bikes[a[1] ][1];
+
+                 int d1 = Math.abs(worker1x-bike1x) + Math.abs(worker1y-bike1y);
+
+                 int worker2x = workers[b[0]][0];
+                 int worker2y = workers[b[0]][1];
+                 int bike2x = bikes[b[1]][0];
+                 int bike2y = bikes[b[1]][1];
+
+                 int d2 = Math.abs(worker2x-bike2x) + Math.abs(worker2y-bike2y);
+
+                 if(d1 == d2){
+                     if(a[0] == b[0]){
+                         return a[0]-b[0];
+                     }
+                     return a[1]-b[1];
+                 }
+                 return d1-d2;
+            });
+            
+            workerBikePreference[i] = pq;
+            
+            for(int j=0; j<bikes.length; j++){
+                pq.add(new int[]{i,j});
+            }
+        }
+        
+        int[] res = new int[workers.length];
+        Arrays.fill(res, -1);
+        boolean[] avialbleBikes = new boolean[bikes.length];
+        Arrays.fill(avialbleBikes,true);
+        
+        PriorityQueue<int[]> pq = new PriorityQueue<int[]>((a,b) -> {
+       	 int worker1x = workers[a[0]][0];
+            int worker1y = workers[a[0]][1];
+            int bike1x = bikes[a[1]][0];
+            int bike1y = bikes[a[1] ][1];
+
+            int d1 = Math.abs(worker1x-bike1x) + Math.abs(worker1y-bike1y);
+
+            int worker2x = workers[b[0]][0];
+            int worker2y = workers[b[0]][1];
+            int bike2x = bikes[b[1]][0];
+            int bike2y = bikes[b[1]][1];
+
+            int d2 = Math.abs(worker2x-bike2x) + Math.abs(worker2y-bike2y);
+
+            if(d1 == d2){
+                if(a[0] == b[0]){
+                    return a[0]-b[0];
+                }
+                return a[1]-b[1];
+            }
+            return d1-d2;
+       });
+        
+        for(int i=0; i<workers.length; i++){
+             pq.add(workerBikePreference[i].poll());
+        }
+        
+        int count = 0;               
+        
+        while(count < workers.length && !pq.isEmpty()){
+            
+            int[] curr = pq.poll();
+            int worker = curr[0];
+            int bike = curr[1];
+            
+            if(avialbleBikes[bike]) {
+                avialbleBikes[bike] = false;
+                res[worker] = bike;
+                count++;
+            }
+            else{
+                pq.add(workerBikePreference[worker].poll());
+            }
+        }
+        
+        return res;
+	        
+	    }
 
 } 
 class Chettinad implements Comparable<Chettinad>{
@@ -161,6 +255,11 @@ class Chettinad implements Comparable<Chettinad>{
 		}
 		return res;
 	}
+	
+	
+	//Now correct pq
+	
+	
 
 
 }

@@ -1,7 +1,5 @@
 package com.javaDwarf.binaryTrees.leetcode.dfs;
 
-import com.javaDwarf.binaryTrees.leetcode.dfs._117_PopulatingNextRightPointersinEachNodeII.Node;
-
 public class _116_PopulatingNextRightPointersinEachNode {
 	class Node {
 		public int val;
@@ -52,6 +50,36 @@ public class _116_PopulatingNextRightPointersinEachNode {
 			nextChildLevelStartNode.next= null;
 		}
 		return root;
+	}
+	
+	/************************ Preorder solution by maintaining parent pointer***************/
+	class Solution {
+	    public Node connect(Node root) {
+	        preorder(root, null);
+	        return root;
+	    }
+	    
+	    public void preorder(Node root, Node parent){
+	        
+	        if(root == null) return;
+	        
+	        Node temp = parent;
+	        while(temp != null){
+	                 
+	            if(temp.left != parent.left && temp.left != null){
+	                root.next = temp.left;
+	                break;
+	            }
+	            else if(root != temp.right && temp.right != null){
+	                root.next = temp.right;
+	                break;
+	            }
+	            temp = temp.next;
+	        }
+	        
+	        preorder(root.left, root);
+	        preorder(root.right, root);
+	    }
 	}
 
 }
