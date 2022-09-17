@@ -47,9 +47,9 @@ public class _74_Search2DMatrix {
 	
 	// space complexity - o(n*m)
 	//time - o(log(n*m))
-  //Ran on leeetcode successfully : Yes
+  //Ran on leetcode successfully : Yes
   // Problem faced  : No
-	//Approach : since it is sorted in spiral way, we ca think of this 2 array as 1D array (row place one after the other)
+	//Approach : since it is sorted in spiral way, we can think of this 2 array as 1D array (row place one after the other)
     // once we find the mid we need to get to the cell by using (int x = mid/m int y = mid%m; ).
 	public boolean searchMatrixOptimal(int[][] matrix, int target) {
 

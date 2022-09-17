@@ -17,6 +17,10 @@ public class _153_FindMinimuminRotatedSortedArray {
 	}
 	
 	public int findMin(int[] nums) {
+		
+		if(nums == null || nums.length == 0) return -1;
+        if(nums.length == 1) return nums[0];
+        if(nums[0] < nums[nums.length-1]) return nums[0];
         
         int start = 0;
         int end = nums.length -1;
@@ -26,6 +30,7 @@ public class _153_FindMinimuminRotatedSortedArray {
              
             mid = start + (end - start)/2;
             
+            //if(end - start <= 1){ same as start == mid
             if(start == mid) return Integer.min(nums[start], nums[end]);
             
             if( nums[mid] < nums[end]){

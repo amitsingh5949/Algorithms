@@ -35,6 +35,35 @@ public class _322_CoinChange {
         dp[index][amount] = Math.min(excludeCurrCoin,includeCurrCoin);
         return  dp[index][amount];
     }
+    
+    //optimized top down where we do not choose or unchoose a coin, logic is to choose all the coins one by one
+    class Solution {
+        
+        int[] dp;
+        
+        public int coinChange(int[] coins, int amount) {
+            dp = new int[amount+1];
+            dp[amount] = helper(coins,amount);
+            return  dp[amount] == Integer.MAX_VALUE ? -1:   dp[amount];
+        }
+        
+        public int helper(int[] coins, int amount){
+            
+            if( amount == 0 ) return 0;
+            if(amount < 0) return Integer.MAX_VALUE;
+            if(dp[amount] != 0) return dp[amount];
+            
+            int min = Integer.MAX_VALUE;
+            for(int i=0;i<coins.length; i++){
+                int temp = helper(coins, amount-coins[i]);
+                if(temp != Integer.MAX_VALUE)
+                    min = Integer.min(min, 1+temp);
+            }
+            
+            dp[amount] = min;
+            return dp[amount];
+        }
+    }
 
     // bottom up approach using iteration and memoization
 	public int coinChange(int[] coins, int amount) {

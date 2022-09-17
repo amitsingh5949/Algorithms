@@ -1,5 +1,7 @@
 package com.javadwarf.dynamicprogramming.leetcode.lis;
 
+import java.util.Arrays;
+
 public class _198_HouseRobber {
 
 	public static void main(String[] args) {
@@ -121,7 +123,42 @@ public class _198_HouseRobber {
 		return Integer.max(currMax, prevMax);
 	}
 
-
+// top down - memoization
+	int[] money;
+    public int rob23(int[] nums) {
+        money = new int[nums.length];
+        Arrays.fill(money, -1);
+        return rob23(nums,0);
+    }
+    
+    public int rob23(int[] nums, int i) {
+        if(i >= nums.length) return 0;
+        if(money[i] != -1) return money[i];
+        int choose = nums[i] + rob23(nums, i+2);
+        int notChoose = rob23(nums, i+1);
+        money[i]= Integer.max(choose, notChoose);
+        return money[i];
+    }
+    
+    //Bottom up - tabulation
+    public int rob54(int[] nums) {
+        int[] money = new int[nums.length];
+        
+        for(int i=nums.length-1; i>=0; i--){
+            if(i == nums.length-1){
+                money[i] = nums[i];
+            }
+            else if(i == nums.length-2){
+                money[i] = Integer.max(nums[i], money[i+1] );
+            }
+            else{
+               money[i] = Integer.max(nums[i]+money[i+2], money[i+1] ); 
+            }
+        }
+        
+        return money[0];
+        
+    }
 
 
 
