@@ -1,12 +1,40 @@
 package com.javadwarf.dynamicprogramming.leetcode.twostring.knapsack;
 
+import java.util.Arrays;
+
 public class _518_CoinChange2 {
 
 	public static void main(String[] args) {
 		System.out.println(new _518_CoinChange2().change(5, new int[]{1,2,5}));
 	}
+	//Top-down
+	
+	int[][] dp;
+    
+    public int change(int amount, int[] coins) {
+        dp = new int[coins.length][amount+1];
+        for(int[] arr : dp){
+            Arrays.fill(arr, -1);
+        }
+        return helper(coins, amount, 0);
+    }
+    
+    public int helper(int[] coins, int amount, int index){
+        if(amount == 0 ) return 1;
+        if(amount < 0 || index == coins.length) return 0;
+        if(dp[index][amount] != -1) return dp[index][amount];
+        
+        int choose = helper(coins, amount - coins[index], index);
+        int notChoose = helper(coins, amount, index+1);
+        
+        dp[index][amount] = choose + notChoose;
+        return dp[index][amount];
+    }
+    
+    
+    //	//bottom up
 
-	public int change(int amount, int[] coins) {
+	public int changeBottomUp(int amount, int[] coins) {
 		
 		if(amount == 0) return 1;
 		
@@ -32,4 +60,6 @@ public class _518_CoinChange2 {
 		}
 		return matrix[coins.length][amount];
 	}
+	
+	
 }

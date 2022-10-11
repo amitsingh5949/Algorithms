@@ -1,26 +1,24 @@
-	package demo;
+	package gs.amit;
 
 import java.io.IOException;
 
-public class Solution5 {
+public class Solution4 {
 
 
-	static int shaktimaan(int[] power) {
+	static int maximalDifference(int[] a) {
 
-		int sum =0;
-		int currpower = 0;
-		for(int i=0; i<power.length;i++){
-			if(currpower+power[i]<1){
-				sum += Math.abs(currpower + power[i]) +1;
-				currpower=sum;
-				currpower = Math.abs(currpower+power[i]) ;
-			}
-			else{
-				currpower += power[i];
+		int result = -1;
+		
+		for(int i=0; i<a.length;i++){
+			for(int j=i+1; j<a.length;j++){
+				
+				if(a[i] < a[j] && ((a[j] - a[i]) > result)){
+					result = (a[j] - a[i]);
+				}
+				
 			}
 		}
-		
-		return sum;
+		return result;
     }
 
 
@@ -46,8 +44,8 @@ public class Solution5 {
 
 		res =  findNumber(_arr, _k);
 		 */
-		int arr[] = {-5,4,-2,3,1,-1,-6,-1,0,5};
-		System.out.println(shaktimaan(arr));
+		int arr[] = {5,4,3,2,1};
+		System.out.println(maximalDifference(arr));
 		/*bw.write(res);
 		bw.newLine();
 

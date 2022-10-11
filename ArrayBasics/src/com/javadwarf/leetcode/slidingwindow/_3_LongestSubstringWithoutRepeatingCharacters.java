@@ -1,8 +1,10 @@
 package com.javadwarf.leetcode.slidingwindow;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 public class _3_LongestSubstringWithoutRepeatingCharacters {
 
@@ -49,4 +51,31 @@ public class _3_LongestSubstringWithoutRepeatingCharacters {
 		}
 		return result;
 	}
+	
+	//same as above , instead of using map use set, more cleaner
+	public int lengthOfLongestSubstringUsingSet(String s) {
+        int max = 0;
+        Set<Character> set = new HashSet<>();
+        int start=0;
+        int end = 0;
+
+        while(end < s.length()){
+            char ch = s.charAt(end);
+            if(!set.contains(ch)){
+                set.add(ch);
+                max = Math.max(max, end-start+1);
+            }
+            else{
+                while( start < end && s.charAt(start) != ch){
+                    set.remove(s.charAt(start));
+                    start++;
+                }
+                start++;
+            }
+            end++;
+        }    
+
+        return max;
+    }
+	
 }

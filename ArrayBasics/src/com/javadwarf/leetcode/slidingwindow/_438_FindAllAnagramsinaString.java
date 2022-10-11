@@ -1,5 +1,6 @@
 package com.javadwarf.leetcode.slidingwindow;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -80,4 +81,55 @@ public class _438_FindAllAnagramsinaString {
 		}
 		return l;
 	}
+	
+//very beautiful, hash solution	
+public List<Integer> findAnagramsHashSolution(String s, String p) {
+        
+        List<Integer> l = new ArrayList<>();
+        if(s.length() < p.length()) return l;
+        
+        int[] pHash = getHash(p, 0, p.length());
+        int[] sSubStrHash = getHash(s, 0, p.length());
+        
+        for(int i=0; i< s.length() - p.length(); i++){
+            
+            if(isEqual(pHash, sSubStrHash)){
+                l.add(i);
+            }
+            
+            sSubStrHash[s.charAt(i) - 'a'] -= 1;
+            sSubStrHash[s.charAt(i + p.length()) -'a'] += 1;
+            
+        }
+        
+        if(isEqual(pHash, sSubStrHash)){
+            l.add(s.length() - p.length());
+        }
+        
+        return l;
+        
+    }
+    
+    public int[] getHash(String curr, int start, int end){
+        
+        int[] map = new int[26];
+        
+        for(int i=start; i<end; i++){
+            map[curr.charAt(i) - 'a'] += 1;
+        }
+        
+        return map;
+        
+    }
+    
+    public boolean isEqual( int[] pHash,int[] subStrHash ){
+        
+        for(int i=0; i< pHash.length ; i++){
+            if(pHash[i] != subStrHash[i]){
+                return false;
+            }
+        }
+        
+        return true;
+    }
 }

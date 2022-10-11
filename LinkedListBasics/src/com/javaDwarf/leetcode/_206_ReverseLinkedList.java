@@ -52,5 +52,33 @@ public class _206_ReverseLinkedList {
 		nxt.next = curr;
 		return temp;
 	}
+	
+	//iterative : cleaner code than above
+	public ListNode reverseList23(ListNode head) {
+	    ListNode prev = null;
+	    while(head != null){
+	        ListNode next = head.next;
+	        head.next = prev;
+	        prev = head;
+	        head = next;
+	    }
+	    return prev;
+	}
+	
+	//tail recursion , same logic as above
+	class Solution {
+	    public ListNode reverseList(ListNode head) {
+	        return helper(null, head);
+	    }
+	    
+	    public ListNode helper(ListNode prev, ListNode head){
+	        if(head == null) return prev;
+	        ListNode next = head.next;
+	        head.next = prev;
+	        prev = head;
+	        head = next;
+	        return helper(prev, head);
+	    }
+	}
 
 }

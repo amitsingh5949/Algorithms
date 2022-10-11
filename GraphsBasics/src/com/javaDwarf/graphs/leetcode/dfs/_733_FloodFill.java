@@ -34,5 +34,28 @@ public class _733_FloodFill {
 			}
 		}
 	}
+	
+	// same as above without using visited
+	public int[][] floodFillDFS(int[][] image, int sr, int sc, int color) {
+        if(image[sr][sc] == color) return image;
+        dfs(image,sr,sc,image[sr][sc], color); 
+        return image; 
+    }
+    
+    int[] xArr = {-1,1,0,0};
+    int[] yArr = {0,0,-1,1};
+    
+    public void dfs(int[][] image, int sr, int sc, int original, int color ){
+        image[sr][sc] = color;
+        for(int i=0; i<xArr.length; i++){
+            int newX = sr + xArr[i];
+            int newY = sc + yArr[i];
+            if( newX>=0 && newX<image.length && newY>=0 && newY<image[0].length 
+               &&  image[newX][newY] == original){
+                dfs(image, newX, newY, original, color);
+            }
+        }
+    }
 
 }
+

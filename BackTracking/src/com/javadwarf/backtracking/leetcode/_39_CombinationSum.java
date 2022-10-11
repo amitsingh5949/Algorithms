@@ -40,4 +40,58 @@ public class _39_CombinationSum {
 			currSum -= x;
 		}
 	}
+	
+	//same as above but more cleaner
+	
+	 List<List<Integer>> res;
+	    public List<List<Integer>> combinationSumCleaner(int[] candidates, int target) {
+	        res = new ArrayList<>();
+	        helper(candidates, target, 0, new ArrayList<>());
+	        return res;
+	    }
+	    
+	    public void helper(int[] candidates, int target, int index, List<Integer> l){
+	        if(target < 0) return;
+	        if(target == 0){
+	            res.add(new ArrayList<>(l));
+	            return;
+	        }
+	        
+	        for(int i=index; i<candidates.length; i++){
+	            l.add(candidates[i]);
+	            helper(candidates, target-candidates[i], i, l);
+	            l.remove(l.size()-1);
+	        }
+	    }
+	
+	// choose not choose method
+	class Solution {
+	    List<List<Integer>> res;
+	    
+	    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+	        res = new ArrayList<>();
+	        helper(candidates, target, 0, new ArrayList<>());
+	        return res;
+	    }
+	    
+	    public void helper(int[] candidates, int target, int index, List<Integer> l){
+	        if(target<0 || index >= candidates.length) return;
+	        
+	        if(target == 0){
+	         res.add(new ArrayList<>(l));
+	         return;
+	        }
+	        
+	        
+	        helper(candidates, target, index+1, l);
+	        
+	        l.add(candidates[index]);
+	        helper(candidates, target-candidates[index], index, l);
+	        l.remove(l.size()-1);
+	        
+	    }
+	}
+	
 }
+
+

@@ -1,4 +1,4 @@
-package demo;
+package gs.amit;
 
 import java.util.LinkedList;
 import java.util.Queue;

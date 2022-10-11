@@ -61,3 +61,49 @@ public class _912_SortArray {
 
 
 }
+
+//Same as above but different helper function
+
+class Solution {
+    public int[] sortArray(int[] nums) {
+        return quicksort(nums, 0, nums.length-1);
+    }
+
+    public int[] quicksort(int[] nums, int start, int end){
+        if(start >= end) return nums;
+        //int pivot = start + (end-start)/2;
+        int pivot = (int)(Math.random() * (end-start+1)) + start; 
+        swap(nums, pivot, end);
+        int pos = helper(nums, start, end);
+        quicksort(nums, start, pos-1);
+        quicksort(nums, pos+1, end);
+        return nums;
+    }
+    
+    // move left if left smaller or equal than pivot 
+    //  else swap left and right and move right
+    public int helper(int[] nums, int start, int end){
+        int pivot = end;
+        int left = start;
+        int right = end-1;
+
+        while(left <= right){
+            if(nums[left] < nums[pivot]){
+                left++;
+            }
+            else{
+                swap(nums, left, right);
+                right--;
+            }
+        }
+        swap(nums, left, pivot);
+        return left;
+    }
+
+    public void swap(int[] nums, int i, int j){
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+}

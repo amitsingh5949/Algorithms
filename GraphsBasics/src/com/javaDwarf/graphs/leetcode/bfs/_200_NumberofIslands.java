@@ -3,6 +3,8 @@ package com.javaDwarf.graphs.leetcode.bfs;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import javafx.util.Pair;
+
 public class _200_NumberofIslands {
 
 	public static void main(String[] args) {
@@ -72,5 +74,41 @@ public class _200_NumberofIslands {
 			}
 		}
 	}
+	// same as above , no visited matrix
+	
+	public int numIslandsNoVisited(char[][] grid) {
+        int count = 0;
+        for(int i=0;i<grid.length; i++){
+            for(int j=0;j<grid[0].length; j++){
+                if(grid[i][j] == '1'){
+                    bfs(grid,i,j);
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+    
+    int[] xArr = {-1,1,0,0};
+    int[] yArr = {0,0,-1,1};
+    
+    public void bfs(char[][] grid, int x, int y ){
+        Queue<Pair<Integer,Integer>> q = new LinkedList<>();
+        q.add(new Pair<>(x,y));
+        
+        while(!q.isEmpty()){
+            Pair<Integer,Integer> curr = q.poll();
+            int m = curr.getKey(); 
+            int n = curr.getValue();
+            grid[x][y] = '0';
+            for(int i=0;i<xArr.length; i++){
+                int xNew = m + xArr[i];
+                int yNew = n + yArr[i];
+                if(xNew>=0 && xNew< grid.length && yNew>=0 && yNew<grid[0].length && grid[xNew][yNew] == '1'){
+                    bfs(grid, xNew, yNew);
+                }
+            }
+        }
+    }
 
 }

@@ -27,4 +27,30 @@ public class _78_Subsets {
 			temp.remove(temp.size()-1);
 		}
 	}
+	
+	//choose , not choose method
+	class Solution {
+	    List<List<Integer>>  res;
+	    public List<List<Integer>> subsets(int[] nums) {
+	        res = new ArrayList<>();
+	        res.add(new ArrayList<>());
+	        helper(nums,0, new ArrayList<>());
+	        return res;
+	    }
+	    
+	    public void helper(int[] nums, int index, List<Integer> l){
+	        if(index >= nums.length) return;
+	        
+	        // choose case
+	        l.add(nums[index]);
+	        res.add(new ArrayList<>(l));
+	        helper(nums, index+1, l);
+	        l.remove(l.size()-1);
+	        
+	        //not choose case
+	        helper(nums, index+1, l);
+	        
+	    }
+	    
+	}
 }

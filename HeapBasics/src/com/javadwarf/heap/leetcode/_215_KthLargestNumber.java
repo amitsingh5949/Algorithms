@@ -19,7 +19,7 @@ import java.util.PriorityQueue;
  *       is not will not affect that.
  *    c. If number is greater than arr[0], then replace arr[0] with new number and percolatedown(0)
  *    
- *  3. There is Avg. O(n) time efficient solution available using quick sort, not implemented yet
+ *  3. There is Avg. O(n) time efficient solution available using quick sort, see implementation in quick sort folder
  *          
  */
 

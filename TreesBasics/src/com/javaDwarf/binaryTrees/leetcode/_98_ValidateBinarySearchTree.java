@@ -1,5 +1,7 @@
 package com.javaDwarf.binaryTrees.leetcode;
 
+import java.util.Stack;
+
 public class _98_ValidateBinarySearchTree {
 
 
@@ -47,6 +49,54 @@ public class _98_ValidateBinarySearchTree {
 		prev = root;
 		inorder(root.right);
 	}
+	
+	//Same logic as above but inorder traversal without using recursion
+	
+	public boolean isValidBSTWithoutRecursion(TreeNode root) {
+        Long prev = Long.MIN_VALUE;
+        Stack<TreeNode> s = new Stack<>();
+        
+        while(root != null){
+           s.push(root);
+           root = root.left;
+        }
+        
+        while(!s.isEmpty()){
+            TreeNode top = s.pop();
+            if(prev >= top.val) {
+                return false;
+            }
+            else {
+                prev = (long)top.val;
+            }
+            if(top.right != null){
+                s.push( top.right);
+                while(s.peek().left != null ){
+                 s.push(s.peek().left);   
+                }
+            }
+        }
+        return true;
+    }
+	
+	
+	//Range logic
+	
+	class Solution {
+	    public boolean isValidBST(TreeNode root) {
+	        return preorder(root, Long.MIN_VALUE, Long.MAX_VALUE);
+	    }
+	    
+	    public boolean preorder(TreeNode root, long min, long max){
+	        if(root == null) return true;
+	        if(min >= root.val || max <= root.val) return false;
+	        boolean left = preorder(root.left, min, root.val);  
+	        boolean right = preorder(root.right, root.val, max);
+	        return left && right;
+	    }
+	}
+	
+	
 	
 	// Logic wont work
 	public  boolean isValidBST1(TreeNode root) {

@@ -48,5 +48,33 @@ public class _200_NumberofIslands {
 			}
 		}
 	}
+	
+	// without visited
+	public int numIslandsNoVisitedMatrix(char[][] grid) {
+        int count = 0;
+        for(int i=0;i<grid.length; i++){
+            for(int j=0;j<grid[0].length; j++){
+                if(grid[i][j] == '1'){
+                    dfs(grid,i,j);
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+    
+    int[] xArr = {-1,1,0,0};
+    int[] yArr = {0,0,-1,1};
+    
+    public void dfs(char[][] grid, int x, int y){
+        grid[x][y] = '0';
+        for(int i=0;i<xArr.length; i++){
+            int xNew = x + xArr[i];
+            int yNew = y + yArr[i];
+            if(xNew>=0 && xNew< grid.length && yNew>=0 && yNew<grid[0].length && grid[xNew][yNew] == '1'){
+                dfs(grid, xNew, yNew);
+            }
+        }
+    }
 
 }
