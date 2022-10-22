@@ -1,6 +1,6 @@
 package wealthfront;
 
-import demo.Solution;
+import vmware.Solution;
 
 public class Problem2 {
 

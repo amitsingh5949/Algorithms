@@ -1,12 +1,12 @@
-package demo;
+package vmware;
 
 import java.util.*;
 
 
-class TestClass2 {
+class TestClass {
     public static void main(String args[] ) throws Exception {
         
-       /* Scanner s = new Scanner(System.in);
+        Scanner s = new Scanner(System.in);
         int N = s.nextInt();
         for (int i = 0; i < N; i++) {
            
@@ -27,20 +27,6 @@ class TestClass2 {
             
             }
         }
-        s.close();*/
-    	
-    	System.out.println(swap("amit", 0, 1));
-    	//System.out.println("amit".substring(0,0));
+        s.close();
     }
-    
-    public static String swap(String s , int src, int dest) {
-    	if( src == dest) return s;
-    	StringBuffer sb = new StringBuffer(s);
-    	String srcChar = s.charAt(src) + "" ;
-    	String destChar = s.charAt(dest) + "" ;
-    	sb.replace(src, src+1, destChar);
-    	sb.replace(dest, dest+1, srcChar);
-    	return sb.toString();
-
-	}
 }
