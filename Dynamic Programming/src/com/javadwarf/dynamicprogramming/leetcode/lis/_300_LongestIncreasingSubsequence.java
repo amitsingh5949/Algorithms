@@ -1,5 +1,8 @@
 package com.javadwarf.dynamicprogramming.leetcode.lis;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class _300_LongestIncreasingSubsequence {
 
 	public static void main(String[] args) {
@@ -32,6 +35,25 @@ public class _300_LongestIncreasingSubsequence {
 		}
 		return result;
 	}
+	//same as above but different style of writing  - O(n^2) and O(n)
+	public int lengthOfLISAgainWithDP(int[] nums) {
+        int res = 1;
+        int[] dp = new int[nums.length];
+        dp[0] = 1;
+        
+        for( int i=1; i<nums.length;i++){
+            int temp = 0;
+            for(int j =0; j<i; j++){
+                if(nums[j] < nums[i]){
+                    temp = Math.max(temp, dp[j]);    
+                }
+            }
+            dp[i] = 1 + temp;
+            res = Math.max(res, dp[i]);
+        }
+        
+        return res;
+    }
 
 
 	// Binary Search based solution - O(nlogn) and o(n)
@@ -72,6 +94,42 @@ public class _300_LongestIncreasingSubsequence {
 		}
 		return last+1;
 	}
+	
+	// Same binary search solution as above but bit modular
+	
+	public int lengthOfLISBModular(int[] nums) {
+        List<Integer> lis = new ArrayList<>();
+        lis.add(nums[0]);
+        
+        for( int i=1; i<nums.length; i++){
+            if(nums[i] > lis.get(lis.size()-1)){
+                lis.add(nums[i]);
+            }            
+            else{
+                int index = binarySearch(lis, nums[i], 0, lis.size()-1);
+                lis.set(index, nums[i]);
+            }
+        }
+        return lis.size();
+    }
+    
+    public int binarySearch(List<Integer> lis, int num, int start, int end){
+        while(start < end){
+            int mid = start + (end - start)/2;
+            
+            if(start == mid){
+                return lis.get(mid) >= num ? start : end;
+            }
+            
+            if(lis.get(mid) < num){
+                start = mid+1;
+            }
+            else if(lis.get(mid) >= num){
+                end = mid;
+            }
+        }
+        return start;
+    }
 	
 	// This won't work as what if we select a bigger number and there are less bigger number that wjat already selected
 	// 3,19,4, 5 answer should be 3

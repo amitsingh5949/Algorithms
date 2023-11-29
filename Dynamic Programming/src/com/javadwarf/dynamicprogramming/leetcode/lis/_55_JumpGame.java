@@ -156,6 +156,9 @@ public class _55_JumpGame {
 		return true;
 	}
 
+
+	//Greedy Method : o(n) and o(1)
+	// idea is move to a index which will take you closed to the end i.e an index which has nums[i] - (n-i) greater .i.e power - distance from end
 	public boolean canJump12(int[] nums) {
 
 		int n = nums.length-1;
@@ -183,5 +186,16 @@ public class _55_JumpGame {
 		}
 
 		return true;
+	}
+
+	//Greedy
+	// try to reach lastPos, if you can reach lastPos from i , your i becomes lastPos, see if you can reach 0
+	public boolean canJumpbestSolution(int[] nums) {
+		int lastPos = nums.length-1;
+		for(int i=nums.length-2; i>=0; i--){
+			if(i+nums[i] >= lastPos) 
+				lastPos = i;
+		}    
+		return lastPos == 0;
 	}
 }

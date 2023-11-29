@@ -10,10 +10,61 @@ public class _621_TaskScheduler {
 		char[] arr = {'A','A','A','A','A','A','B','C','D','E','F','G'};
 		//char[] arr = {'A','B','A'};
 		//char[] arr = {'A','A','A','B','B','B'};
-         // A-B-ideal - A-B idea if k =2
+		// A-B-ideal - A-B idea if k =2
 		System.out.println(new _621_TaskScheduler().leastInterval(arr, 2));
 
 	}
+
+	int sum = 0;
+	public int leastIntervalOptimized(char[] tasks, int n) {
+
+		int[] arr = new int[26];
+		for(char ch : tasks){
+			arr[ch-'A'] += 1;
+		}
+
+		int numTasks = 0;
+		Queue<int[]> pq = new PriorityQueue<>((a,b) -> b[1]-a[1]);
+		for(int i=0; i<26; i++){
+			if(arr[i] != 0){
+				pq.add(new int[]{i, arr[i]});
+				numTasks++;
+			}
+		}
+
+		int sum = 0;
+		Queue<int[]> q = new LinkedList<>();
+
+		while(numTasks > 0){
+
+			if(q.size() > n){
+				int[] next = q.poll();
+				if(next != null){
+					pq.add(next);
+				}
+			}
+
+			if(pq.isEmpty()){
+				sum++;
+				q.add(null);
+			}
+			else{
+				int[] curr = pq.poll();
+				sum++;
+				curr[1] -= 1;
+				if(curr[1] != 0 ){
+					q.add(curr);
+				}
+				else{
+					q.add(null);
+					numTasks--;   
+				}
+			}
+		}
+		return sum;
+	}
+
+	//Same as above but lengthy
 
 	public int leastInterval(char[] tasks, int n) {
 
@@ -62,7 +113,7 @@ public class _621_TaskScheduler {
 				}
 			}
 		}
-		
+
 		while(res.charAt(res.length()-1) == '*') {
 			res.deleteCharAt(res.length()-1);
 		}

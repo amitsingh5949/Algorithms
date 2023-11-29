@@ -1,5 +1,6 @@
 package com.javaDwarf.graphs.leetcode.bfs;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -9,8 +10,31 @@ import java.util.Queue;
 import java.util.Set;
 
 public class _133_CloneGraph {
+	
+	public Node cloneGraphOptimized(Node node) {
+        if(node == null) return null;
+        Map<Integer, Node> map = new HashMap<>();
+        
+        Queue<Node> q = new LinkedList<>();
+        q.add(node);
+        map.put(node.val, new Node(node.val, new ArrayList<>()));
+        
+        while(!q.isEmpty()){
+            Node curr = q.poll();
+            Node currCopy = map.get(curr.val);
+            for(Node neighbor : curr.neighbors){
+                if(!map.containsKey(neighbor.val)){
+                   Node neighborCopy = new Node(neighbor.val, new ArrayList<>());
+                    q.add(neighbor);
+                    map.put(neighbor.val, neighborCopy);
+                }
+                currCopy.neighbors.add(map.get(neighbor.val));
+            }
+        }
+        return map.get(node.val);
+    }
 
-
+// visited is not required , see above solution
 	public Node cloneGraph(Node node) {
 
 		Map<Integer, Node> map = new HashMap<>();

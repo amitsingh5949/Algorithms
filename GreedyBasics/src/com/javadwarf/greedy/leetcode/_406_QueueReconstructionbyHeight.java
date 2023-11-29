@@ -27,6 +27,8 @@ public class _406_QueueReconstructionbyHeight {
 			}
 			return x;
 		});
+		// above or
+		//Arrays.sort(people, (a,b) -> a[0]==b[0]?a[1]-b[1]:b[0]-a[0]);
 		
 		List<int[]> ll = new LinkedList<>();
 		

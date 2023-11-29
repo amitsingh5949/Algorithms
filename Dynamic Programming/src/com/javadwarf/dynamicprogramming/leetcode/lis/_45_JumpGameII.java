@@ -33,16 +33,16 @@ public class _45_JumpGameII {
 	}
 
 	// Greedy - o(n) solution
-	
+
 	// take two variables and initialize  them with arr[0]
 	// decrement both
 	// b would be max(b,arr[i])
 	// when a==0 copy b to a
 
 	public int jump(int[] nums) {
-		
+
 		if(nums== null || nums.length <=1) return 0;
-		
+
 		int count = 1;
 		int a = nums[0];
 		int b = nums[0];
@@ -59,5 +59,36 @@ public class _45_JumpGameII {
 			}
 		}
 		return count;
+	}
+	//Greedy Method : o(n) and o(1)
+		// idea is move to a index which will take you closed to the end i.e an index which has nums[i] - (n-i) greater .i.e power - distance from end
+
+	public int jumpOptimized(int[] nums) {
+
+		int count = 0;
+		int i = 0;
+
+		while( i < nums.length-1){
+
+			int sum = nums[i];
+
+			int pi = 0;
+			int ps = Integer.MIN_VALUE;
+
+			for(int j = 1; j<= sum ; j++){
+
+				if(i+j == nums.length-1) return count+1;
+
+				int temp =  nums[i+j] - (nums.length -1 - i- j);
+				if(temp >= ps){
+					ps = temp;
+					pi = i+j;
+				}
+			}
+			i = pi;
+			count++;
+		}
+
+		return count;  
 	}
 }

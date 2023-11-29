@@ -37,4 +37,34 @@ public class _763_PartitionLabels {
 		return res;
 	}
 
+	//no need to store start position
+	public List<Integer> partitionLabelsOptimized(String s) {
+
+		List<Integer> l = new ArrayList<>();
+
+		int[] arr = new int[26];
+		for( int i=0; i<s.length(); i++){
+			arr[s.charAt(i)-'a'] = i;
+		}
+
+		int start = 0;
+		int end = 0;
+
+		for(int i=0; i<s.length(); i++){
+
+			int last = arr[s.charAt(i)-'a']; 
+
+			if( last > end){
+				end = last;
+			}
+			if( end == i ){
+				l.add(i-start+1);
+				start = i+1;
+			}
+		}
+
+		return l;
+
+	}
+
 }

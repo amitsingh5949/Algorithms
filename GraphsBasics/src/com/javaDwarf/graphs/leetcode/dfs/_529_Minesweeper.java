@@ -12,8 +12,8 @@ public class _529_Minesweeper {
 				{'E','E','E','E','E','E','E','E'},
 				{'E','E','E','E','E','E','E','E'},
 				{'E','E','M','M','E','E','E','E'}
-				};
-		
+		};
+
 		System.out.println(new _529_Minesweeper().updateBoard(board, new int[] {0,0}));
 
 	}
@@ -78,6 +78,63 @@ public class _529_Minesweeper {
 		else{
 			board[x][y] = Integer.toString(numOfMines).charAt(0);
 		}
+	}
+
+
+	//same as above but little simple
+
+	public char[][] updateBoardSimple(char[][] board, int[] click) {
+
+		char ch = board[click[0]][click[1]];
+
+		if(ch == 'M'){
+			board[click[0]][click[1]] = 'X';
+		}
+		else if(ch == 'E'){
+			visitNeighbors(board, click);
+		}
+		return board;
+	}
+
+
+
+	public void visitNeighbors(char[][] board, int[] click){
+
+		int count = getMines(board, click);
+
+		if(count == 0){
+
+			board[click[0]][click[1]] = 'B';
+
+			for(int i=0; i<xArr.length; i++){
+
+				int xn = click[0] + xArr[i];
+				int yn = click[1] + yArr[i];
+
+				if(xn>=0 && xn<board.length && yn>=0 && yn<board[0].length && board[xn][yn] == 'E'){
+					visitNeighbors(board, new int[]{xn,yn}) ;
+				}
+			}
+		}
+		else{
+			board[click[0]][click[1]] = ((char)( count + '0'));           
+		}
+	}
+
+	public int getMines(char[][] board, int[] click){
+
+		int count = 0;
+
+		for(int i=0; i<xArr.length; i++){
+
+			int xn = click[0] + xArr[i];
+			int yn = click[1] + yArr[i];
+
+			if(xn>=0 && xn<board.length && yn>=0 && yn<board[0].length && board[xn][yn] == 'M'){
+				count++; 
+			}
+		}
+		return count;
 	}
 
 }

@@ -1,6 +1,8 @@
 package com.javadwarf.dynamicprogramming.leetcode.lis;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class _354_RussianDollEnvelopes {
 
@@ -8,7 +10,7 @@ public class _354_RussianDollEnvelopes {
 
 	}
 
-	//Sort the array. Ascend on width and descend on height if width are same.
+	//Sort the array. Ascend on width and descend on height(to avoid same width envelop issue).
 	//Find the LIS based on height.
 	public int maxEnvelopes(int[][] envelopes) {
 		
@@ -54,4 +56,53 @@ public class _354_RussianDollEnvelopes {
 		}
 		return last+1;
 	}
+	
+	//	// Same binary search solution as above but bit modular  o(nlogn) and o(n)
+	
+	//Sort the array. Ascend on width and descend on height(to avoid same width envelop issue).
+		//Find the LIS based on height.
+public int maxEnvelopesBSO(int[][] envelopes) {
+        
+        Arrays.sort(envelopes, (a,b) -> {
+            int x = a[0] - b[0];
+            if(x == 0){
+                return b[1]-a[1];
+            }
+            return x;
+        });
+        
+        List<Integer> lis = new ArrayList<>();
+        lis.add(envelopes[0][1]);
+        
+        for(int i=1; i< envelopes.length; i++){
+            
+            if(envelopes[i][1] > lis.get(lis.size()-1)){
+                lis.add(envelopes[i][1]);
+            }
+            else{
+                int index = binarySearch(lis,envelopes[i][1], 0, lis.size()-1);
+                lis.set(index,envelopes[i][1]);
+            }
+        }
+        return lis.size();
+        
+    }
+    
+    public int binarySearch(List<Integer> lis, int num, int start, int end){
+        while(start < end){
+            int mid = start + (end - start)/2;
+            
+            if(start == mid){
+                return lis.get(mid) >= num ? start : end;
+            }
+            
+            if(lis.get(mid) < num){
+                start = mid+1;
+            }
+            else if(lis.get(mid) >= num){
+                end = mid;
+            }
+        }
+        return start;
+    }
 }
