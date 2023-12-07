@@ -10,10 +10,27 @@ public class _572_SubtreeofAnotherTree {
 	}
 
 	// One solution is to calculate preorder of both trees and store them string and see if s contains(t)
-	// need to separate left null an dright null 
+	// need to separate left null and right null 
 	
-	    //[3,4,5,1,2] == 3 # 4 # 1 # lnull # rull # 2 # lnull # rnull # 5 # lnull # rnull			
+	//[3,4,5,1,2] == 3 # 4 # 1 # lnull # rull # 2 # lnull # rnull # 5 # lnull # rnull	
 	
+	public boolean isSubtreeUsingPreorder(TreeNode root, TreeNode subRoot) {
+        String s1 = preorder(root, new StringBuilder()).toString();
+        String s2 = preorder(subRoot, new StringBuilder()).toString();
+        System.out.println(s1+"***************"+s2);
+        return s1.contains(s2);
+    }
+    
+    public StringBuilder preorder(TreeNode root, StringBuilder sb){
+        if( root == null){
+            sb.append("NULL");        
+            return sb;  
+        }
+        sb.append("val"+root.val);// adding val to handle test case [12] [2]
+        preorder(root.left,sb);
+        preorder(root.right,sb);
+        return sb;
+    }
 	
 	// below is o(n^2) approach to check for same tree for every node
 	public boolean isSubtree(TreeNode s, TreeNode t) {

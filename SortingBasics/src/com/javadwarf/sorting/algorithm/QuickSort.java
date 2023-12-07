@@ -45,6 +45,28 @@ class QuickSort {
 		}
 		return i;
 	}
+	
+	//above partition can be implemented below, same logic but without using for loop
+	// once we move pivot to end, we have array of size (start, end-1) , end is pivot fixed, would swap in end when its true position is determined
+	// two pointer approach, end -1 pointer will swap with start pointer for all smaller elements in the process, bigger elements will directly come to end
+	
+	public int findPivotPosition(int[] nums, int b, int e){
+        int p = (int)Math.random()*((e-b)+1)+b;
+        swap(nums, p,e);
+        
+        int i=b, j=e-1;
+        while(i <= j){
+            if(nums[j] <= nums[e]) {
+                swap(nums, i,j);
+                i++;
+            }
+            else j--;
+        }
+        
+        swap(nums, i, e);
+        return i;
+    }
+	
 
 	void swap(int arr[],int i,int j){
 		int temp = arr[i];

@@ -20,7 +20,7 @@ import java.util.PriorityQueue;
  *    c. If number is greater than arr[0], then replace arr[0] with new number and percolatedown(0)
  *    
  *  3. There is Avg. O(n) time efficient solution available using quick sort, not implemented yet
- *          
+ *  Idea is to create a frequency array with obj(element, freq), now use quick select to find the pivot position of the element with kth frequency 
  */
 
 public class _347_TopKFrequentElements {

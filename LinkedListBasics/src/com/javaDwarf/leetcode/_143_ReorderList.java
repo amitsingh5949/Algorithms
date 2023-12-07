@@ -78,5 +78,62 @@ public class _143_ReorderList {
 		}
 		return prev; 
 	}
+	
+	/*******Long but cleaner code below******/
+	public void reorderList1(ListNode head) {
+        if(head == null) return;
+        ListNode lastHalfNode = getLastHalfNode(head);
+        ListNode list2 = lastHalfNode.next;
+        lastHalfNode.next = null;
+        list2 = reverse(list2);
+        head = merge(head,list2); 
+    }
+    
+    public ListNode getLastHalfNode(ListNode head){
+        ListNode slow=head, fast = head.next;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+    
+    public ListNode merge(ListNode list1, ListNode list2){
+        ListNode dummy = new ListNode(-1);
+        ListNode curr = dummy;
+        
+        while(list1 != null && list2 != null){
+            
+            ListNode next1 = list1.next;
+            list1.next = null;
+            curr.next = list1;
+            curr = curr.next;
+            list1 = next1;
+                
+            ListNode next2 = list2.next;
+            list2.next = null;
+            curr.next = list2;
+            curr = curr.next;
+            list2 = next2;    
+
+        }
+
+        if(list1 == null) curr.next = list2;
+        else if(list2 == null) curr.next = list1;
+        
+        
+        return dummy.next;
+    } 
+    
+    public ListNode reverse(ListNode head){
+        ListNode prev = null;
+        while(head!=null){
+            ListNode next = head.next;
+            head.next = prev;
+            prev = head;
+            head = next;
+        }
+        return prev;    
+    }
 
 }

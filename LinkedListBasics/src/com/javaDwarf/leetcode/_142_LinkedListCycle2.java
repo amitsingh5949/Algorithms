@@ -79,4 +79,30 @@ public class _142_LinkedListCycle2 {
 		}
 		return null;
 	}
+	
+	//little neater
+	
+	//note : 1). if you start slow and fast at head then n1!=n2 for intersection condition
+		//	 2.) if you start slow = head and fast = head.next at head then n1!=n2.next for intersection condition	
+	public ListNode detectCycle2(ListNode head) {
+        ListNode loopNode = getLoopNode(head);
+        if(loopNode == null) return null;
+        ListNode n1 = head, n2 = loopNode;
+        while(n1 != n2.next){
+            n1 = n1.next;
+            n2 = n2.next;
+        }
+        return n1;
+    }
+    
+    public ListNode getLoopNode(ListNode head){
+        if(head == null) return null;
+        ListNode slow= head, fast = head.next;
+        while(slow != fast){
+            slow = slow.next;
+            if(fast!=null &&fast.next != null) fast= fast.next.next;
+            else return null;
+        }
+        return slow;
+    }
 }

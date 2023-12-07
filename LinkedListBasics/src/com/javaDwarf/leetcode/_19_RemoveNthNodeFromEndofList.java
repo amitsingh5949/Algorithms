@@ -16,7 +16,25 @@ public class _19_RemoveNthNodeFromEndofList {
 		
 
 	}
-	public static ListNode removeNthFromEnd(ListNode head, int k) {
+	
+	 public ListNode removeNthFromEnd(ListNode head, int n) {
+	        ListNode dummy = new ListNode(-1);
+	        dummy.next = head;
+	        ListNode l1=dummy, l2 = dummy;
+	        while(n>0){
+	            l1 = l1.next;
+	            n--;
+	        }
+	        while(l1!=null && l1.next != null){
+	            l1 = l1.next;
+	            l2 = l2.next;
+	        }
+	        if(l2.next != null)
+	            l2.next = l2.next.next;
+	        return dummy.next;
+	    }
+	 // Above is better with dummy pointer
+	public static ListNode removeNthFromEnd1(ListNode head, int k) {
 
 		ListNode temp1 = head;
 		ListNode temp2 = head;
@@ -42,3 +60,21 @@ public class _19_RemoveNthNodeFromEndofList {
 	}
 
 }
+
+/*
+ * Alex Xu
+Arpit Bhayani
+Arslan Ahmad
+Saurav Prateek
+Aashish Gupta
+Sahn Lam
+Neo K.
+Ashutosh Maheshwari
+Dinesh Varyani
+Ashish Pratap Singh 
+Nikki Siapno
+Saurabh Dashora
+Gaurav Sen
+Ricardo A. M.
+Arpit Adlakha
+*/

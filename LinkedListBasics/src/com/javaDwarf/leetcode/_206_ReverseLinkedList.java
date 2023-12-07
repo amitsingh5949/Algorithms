@@ -53,7 +53,7 @@ public class _206_ReverseLinkedList {
 		return temp;
 	}
 	
-	//iterative : cleaner code than above
+	//iterative : cleaner code than above, no need of next and curr variables
 	public ListNode reverseList23(ListNode head) {
 	    ListNode prev = null;
 	    while(head != null){

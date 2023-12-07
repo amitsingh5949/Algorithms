@@ -31,42 +31,73 @@ public class _15_ThreeSum {
 		//System.out.println( 4 ^-4 ^-2 ^ 6);
 
 	}
+	
+	/*********************************************/
+
 
 	//time :  o(n^2), space o(1) 
-	
-public static List<List<Integer>> threeSum(int[] nums) {
-        
-        List<List<Integer>> result = new ArrayList<>();
-        
-        if(nums == null || nums.length < 3) return result;
-        
-        Arrays.sort(nums);
-        
-        for(int curr = 0; curr<nums.length-1; curr++){
-            
-            if(nums[curr]>0) return result;
-            if(curr != 0 && nums[curr -1] == nums[curr])continue; // to avoid duplicates same curr will result in the same set being formed.
-            
-            int left = curr+1;
-            int right = nums.length-1;
-            
-            while(left<right){
-                int sum = nums[left] + nums[right] + nums[curr];
-                if(sum ==0 ) {
-                    result.add(Arrays.asList(nums[left], nums[right], nums[curr]));
-                    left++;
-                    right--;
-                    //once triplet is found, to avoid duplicates move left and right pointer while adjacent elements to either left or right pointer are not duplicates.
-                    while(left<right && nums[left-1] == nums[left]) left++;
-                    while(left<right && nums[right] == nums[right+1]) right--;
-                }
-                else if(sum<0) left++;
-                else right--;
-            }             
-        }        
-        return result;
-        
-    }
+
+	public static List<List<Integer>> threeSum(int[] nums) {
+
+		List<List<Integer>> result = new ArrayList<>();
+
+		if(nums == null || nums.length < 3) return result;
+
+		Arrays.sort(nums);
+
+		for(int curr = 0; curr<nums.length-1; curr++){
+
+			if(nums[curr]>0) return result;
+			if(curr != 0 && nums[curr -1] == nums[curr])continue; // to avoid duplicates same curr will result in the same set being formed.
+
+			int left = curr+1;
+			int right = nums.length-1;
+
+			while(left<right){
+				int sum = nums[left] + nums[right] + nums[curr];
+				if(sum ==0 ) {
+					result.add(Arrays.asList(nums[left], nums[right], nums[curr]));
+					left++;
+					right--;
+					//once triplet is found, to avoid duplicates move left and right pointer while adjacent elements to either left or right pointer are not duplicates.
+					while(left<right && nums[left-1] == nums[left]) left++;
+					while(left<right && nums[right] == nums[right+1]) right--;
+				}
+				else if(sum<0) left++;
+				else right--;
+			}             
+		}        
+		return result;
+
+	}
+
+	/*********************************************/
+
+	// Exactly same as above, but avoiding the while lopps to move pointer from same element
+	public List<List<Integer>> threeSumAgain(int[] nums) {
+		List<List<Integer>> res = new ArrayList<>();
+		Arrays.sort(nums);
+		for(int i=0;i<nums.length; i++) {
+			if( i == 0 || nums[i] != nums[i-1])
+				twoSumAgain(nums, i, res);
+		}
+		return res;
+	}
+
+	public void twoSumAgain(int[] nums, int index,List<List<Integer>> res){
+		int i=index+1, j=nums.length-1;
+		while( i<j ){
+			if(i != index +1 && nums[i] == nums[i-1]) i++;
+			else if(j != nums.length-1 && nums[j] == nums[j+1]) j--;
+			else if(nums[index]+nums[i]+nums[j] == 0) res.add(Arrays.asList(new Integer[]{nums[index],nums[i++],nums[j--]}));
+			else if(nums[index]+nums[i]+nums[j] < 0) i++;
+			else j--;
+		}
+	}
+	/*********************************************/
+
+
+
 
 	public static List<List<Integer>> threeSum3(int[] nums) {
 		List<List<Integer>> list = new ArrayList<>();
@@ -236,4 +267,7 @@ public static List<List<Integer>> threeSum(int[] nums) {
 		return list;
 	}
 
+
+
 }
+

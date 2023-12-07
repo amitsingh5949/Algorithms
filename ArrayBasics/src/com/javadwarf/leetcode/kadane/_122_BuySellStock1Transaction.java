@@ -53,4 +53,14 @@ public class _122_BuySellStock1Transaction {
 		}
 		return profit;
 	}
+	
+	//exactly same as above with less LOC
+	public int maxProfit2(int[] prices) {
+        int price=prices[0], profit=0;
+        for(int i=1;i<prices.length;i++){
+            if(prices[i]<price) price = prices[i];
+            else profit = Math.max(profit, prices[i]-price);
+        }
+        return profit;
+    }
 }

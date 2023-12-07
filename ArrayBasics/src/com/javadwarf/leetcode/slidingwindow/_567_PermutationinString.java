@@ -80,4 +80,39 @@ public class _567_PermutationinString {
 
 	}
 
+	//same logic as above but less LOC
+	public boolean checkInclusion2(String s1, String s2) {
+		int[] arr1 = new int[26];
+		int[] arr2 = new int[26];
+		for(int i=0;i<s1.length();i++){
+			arr1[s1.charAt(i)-'a']++;
+		}
+
+		int b=0,e=0;
+		while(e < s2.length()){
+			arr2[s2.charAt(e)-'a']++;
+			e++;
+			if(isEqualWindow(arr1,arr2) )return true;
+			while(b<e && !isValidWindow(arr1,arr2)){
+				arr2[s2.charAt(b)-'a']--;
+				b++;  
+			}
+		}
+		return false;
+	}
+
+	public boolean isValidWindow(int[] arr1, int[] arr2){
+		for(int i=0;i<26;i++){
+			if(arr1[i] < arr2[i]) return false;
+		}
+		return true;
+	}
+
+	public boolean isEqualWindow(int[] arr1, int[] arr2){
+		for(int i=0;i<26;i++){
+			if(arr1[i] != arr2[i]) return false;
+		}
+		return true;
+	}
+
 }
