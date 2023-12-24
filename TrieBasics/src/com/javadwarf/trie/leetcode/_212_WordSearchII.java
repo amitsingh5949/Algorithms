@@ -34,91 +34,73 @@ public class _212_WordSearchII {
 		System.out.println(x);
 	}
 
-	class TrieNode {
-
-		public Map<Character,TrieNode> map = null;
-		public boolean endOfWord = false;
-
-		public TrieNode() {
-			map = new HashMap<>();
-			endOfWord = false;
-		}
-	}
-
-	class Pos{
-		int x,y;
-		public Pos(int x, int y) {
-			super();
-			this.x = x;
-			this.y = y;
-		}
-	}
-
-	TrieNode root = new TrieNode();
-	Set<String> l = new HashSet<String>();
-
-	public List<String> findWords(char[][] board, String[] words) {
-
-		this.l = new HashSet<String>();
-
-		if(board == null || board.length == 0 || words == null || words.length == 0) {
-			return new ArrayList<String>(this.l);
-		}
-
-		for(String word : words) {
-			insert(word);
-		}
-
-		for(int i=0; i<board.length; i++) {
-			for(int j=0; j<board[i].length; j++) {
-				dfsTrieSearch(new Pos(i,j), board, new boolean[board.length][board[i].length], root, "");
-			}
-		}
-		return new ArrayList<String>(this.l);
-	}
-
-	private void insert(String word) {
-
-		TrieNode curr = root;
-
-		int i= 0;
-		while(i < word.length()) {
-			Character ch = word.charAt(i);
-			if(!curr.map.containsKey(ch)) {
-				curr.map.put(ch, new TrieNode());
-			}
-			curr = curr.map.get(ch);
-			i++;
-		}
-		curr.endOfWord = true;
-	}
-
-	public void dfsTrieSearch(Pos p, char[][] board, boolean[][] visited, TrieNode curr, String currWord ) {
-		
-		visited[p.x][p.y] = true;
-		Character ch = board[p.x][p.y];
-		currWord += ch;
-		
-		if(curr != null && curr.map.get(ch)!= null && curr.map.get(ch).endOfWord) {
-			this.l.add(currWord);
-		}
-
-		if(!curr.map.containsKey(ch)) {
-			return;
-		}
-
-		int[] xArr = {0,-1,1,0};
-		int[] yArr = {-1,0,0,1};
-
-		for(int i=0; i<xArr.length; i++) {
-
-			int x = p.x + xArr[i];
-			int y = p.y + yArr[i];
-
-			if(x>=0 && x<board.length && y>=0 && y<board[x].length && !visited[x][y]) {
-				dfsTrieSearch(new Pos(x,y), board, visited, curr.map.get(ch), currWord);
-				visited[x][y] = false;
-			}
-		}
-	}
+	TrieNode root;
+    List<String> res;
+    
+    int[] xArr = {-1,0,0,1};
+    int[] yArr = {0,-1,1,0};
+    
+    public List<String> findWords(char[][] board, String[] words) {
+        root = new TrieNode();
+        res = new ArrayList<>();
+        if(board == null || words == null || board.length == 0 || words.length==0) return res;
+        
+        for(String word : words){
+            insert(word);
+        }
+        
+        for(int i=0; i<board.length; i++){
+            for(int j=0; j<board[0].length; j++){
+                dfs(board, i, j, new boolean[board.length][board[0].length], root, new StringBuilder());
+            }  
+        }  
+        
+        return res;
+    }
+    
+    public void dfs(char[][] board, int x, int y, boolean[][] visited, TrieNode curr, StringBuilder sb){
+        
+        char ch = board[x][y];
+        if(curr.map[ch-'a'] == null) return;
+        
+        sb.append(ch);
+        visited[x][y] = true;
+        
+        if(curr.map[ch-'a'] != null &&  curr.map[ch-'a'].end){
+            curr.map[ch-'a'].end = false;
+            res.add(new String(sb.toString()));
+        }
+      
+        for(int i=0;i<xArr.length; i++){
+            int xNew = x + xArr[i];
+            int yNew = y + yArr[i];
+            if(xNew>=0 && xNew<board.length  && yNew>=0 && yNew<board[0].length && !visited[xNew][yNew]){
+                dfs(board, xNew, yNew, visited, curr.map[ch-'a'],sb);
+            }
+        }
+        sb.deleteCharAt(sb.length()-1);
+        visited[x][y] = false;
+    }
+    
+    public void insert(String word){
+        TrieNode curr = root;
+        int i=0;
+        while(i<word.length()){
+            char ch = word.charAt(i);
+            if(curr.map[ch-'a'] == null) curr.map[ch-'a'] = new TrieNode();
+            curr = curr.map[ch-'a'];
+            i++;
+        }
+        curr.end = true;
+    }
+    
+    
+    class TrieNode{
+        TrieNode[] map;
+        boolean end;
+        public TrieNode(){
+            map = new TrieNode[26];
+            end = false;
+        }
+    }
 }

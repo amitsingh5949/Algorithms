@@ -42,7 +42,6 @@ public class _295_MedianInStream {
 		}
 		else {
 			if(pqMin.peek()<num) {
-				pqMax.add(pqMin.poll());
 				pqMin.add(num);
 			}
 			else {

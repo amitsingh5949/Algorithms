@@ -10,15 +10,13 @@ import java.util.Set;
 public class _207_CourseSchedule {
 
 	public static void main(String[] args) {
-		//int[][] matrix  = {{2,0},{1,0},{3,1},{3,2},{1,3}};
-		//int[][] matrix  = {{0,1},{0,2},{1,2}};
-		int[][] matrix  = {{0,1},{1,0}};
-		System.out.println(canFinish(2, matrix));
 	}
 	
-	//below is time : v(v+e), check from every node can you come back to same node
 	
-	public boolean canFinishBruteForse(int numCourses, int[][] prerequisites) {
+	 /******************************************************************************************************************************************************************/
+	//below is time : v(v+e), check from every node can you come back to same node, exponential time( exploring each path starting every node, visiting the node and backtracking)
+	
+	public boolean canFinishBacktrackingBruteForce(int numCourses, int[][] prerequisites) {
         boolean ans = true;
         generateGraph(numCourses, prerequisites);
         
@@ -56,7 +54,36 @@ public class _207_CourseSchedule {
         }
     }
     
+    /******************************************************************************************************************************************************************/
+    //Modification to above solution to bring down complexity from exponential to v(v+e)
+    
+    public boolean canFinisDFSBruteForce(int numCourses, int[][] prerequisites) {
+        boolean ans = true;
+        generateGraph(numCourses, prerequisites);
+        
+        for(int i=0; i<numCourses; i++){
+            ans = ans && dfsOptimised(i,i, new HashSet<>());
+        }
+        return ans;
+    }
+    
+    public boolean dfsOptimised(int start, int curr, Set<Integer> visited){
+        List<Integer> neighbors = graph1.getOrDefault(curr, new ArrayList<>());
+        boolean ans = true;
+        for(int i=0; i<neighbors.size(); i++){
+            if(neighbors.get(i) == start) return false;
+            if(!visited.contains(neighbors.get(i))){
+                visited.add(neighbors.get(i));
+                ans = ans && dfsOptimised(start, neighbors.get(i), visited);
+            }
+        }
+        return ans;
+    }
+    
+    /******************************************************************************************************************************************************************/
+    
     //Using  dfs topological sorting using unexplored, exploring and explored set
+    // order in which nodes are added in explored set is the topological order
     
 public boolean canFinishDFSToplogicalSort(int numCourses, int[][] prerequisites) {
         
@@ -72,7 +99,7 @@ public boolean canFinishDFSToplogicalSort(int numCourses, int[][] prerequisites)
         
         boolean ans = true;
         for(int i=0; i<numCourses; i++){
-            if(unexplored.contains(i)){
+            if(ans && unexplored.contains(i)){ // can also write if(ans && !explored.contains(i)) and get rid of unexplored set all together. Only exploring and explored set needed.
                 ans = ans && dfs(i, unexplored, exploring, explored);
             }
         }
@@ -97,8 +124,8 @@ public boolean canFinishDFSToplogicalSort(int numCourses, int[][] prerequisites)
         return ans;
     }
 	
-	
-	// the below code will give TLE if comment line if(!result) break; 
+	// Below two codes are exactly same as first solution. Need to check complexity again, is it 2^v  or some other exponential 
+	// interesting thing is , the below two codes will give TLE and first will not, exponential time( exploring each path starting every node , visiting the node and backtracking)
 	/*******************************************************************/
 
 	public static boolean result = true;
@@ -107,7 +134,7 @@ public boolean canFinishDFSToplogicalSort(int numCourses, int[][] prerequisites)
 		result = true;
 		createGraph(numCourses, prerequisites);
 		for(int i=0; i<numCourses; i++) {
-			hasNoLoop(i,new boolean[numCourses]);
+			hasNoLoop(i,new boolean[numCourses]);// for every course we are creating new visited arr, so new dfs for evry node
 			if(!result) break;
 		}
 		return result;
@@ -128,10 +155,10 @@ public boolean canFinishDFSToplogicalSort(int numCourses, int[][] prerequisites)
 		}
 	}
 
-	/*
-	 Code same as above but without use global variable
+	 /******************************************************************************************************************************************************************/
+	// Code same as above but without use global variable
 
-	 public static boolean canFinish(int numCourses, int[][] prerequisites) {
+	 public static boolean canFinishBF(int numCourses, int[][] prerequisites) {
 		createGraph(numCourses, prerequisites);
 		boolean res = true;
 		for(int i=0; i<numCourses; i++) {
@@ -156,7 +183,7 @@ public boolean canFinishDFSToplogicalSort(int numCourses, int[][] prerequisites)
 		}
 		return res;
 	}
-	 */
+	 
 
 
 

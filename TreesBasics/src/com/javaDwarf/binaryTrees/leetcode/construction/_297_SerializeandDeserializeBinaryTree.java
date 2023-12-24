@@ -38,7 +38,7 @@ public class _297_SerializeandDeserializeBinaryTree {
 
 	public String preorder(TreeNode root, String res){
 		if(root == null) return res+"null,";
-		res  += root.val+",";;
+		res  += root.val+",";
 		res = preorder(root.left, res);
 		res = preorder(root.right, res);
 		return res;

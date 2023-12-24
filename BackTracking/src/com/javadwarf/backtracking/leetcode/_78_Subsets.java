@@ -9,6 +9,8 @@ public class _78_Subsets {
 		System.out.println(new _78_Subsets().subsets(new int[] {1,2,3}));
 	}
 
+	
+	// for loop method with backtracking
 	List<List<Integer>> res = null;
 
 	public List<List<Integer>> subsets(int[] nums) {
@@ -53,4 +55,23 @@ public class _78_Subsets {
 	    }
 	    
 	}
+	
+	//iterative solution, if we have answer for [1,2] and we need answer for [1,2,3] then add 3 in all list of [1,2]
+	public List<List<Integer>> subsetsItr(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        res.add( new ArrayList<>());
+
+        for(int i=0; i<nums.length; i++){
+            int size = res.size();
+            for(int j=0; j<size; j++){
+                List<Integer> temp = new ArrayList<>(res.get(j));
+                temp.add(nums[i]);
+                res.add(temp);
+            }
+        }
+        
+        return res;
+    }
+	
+	// bit manipulation method
 }

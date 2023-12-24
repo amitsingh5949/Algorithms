@@ -9,6 +9,7 @@ public class _695_MaxAreaofIsland {
 
 	}
 
+	// below approach works but if we try global pointer then it won't work. helper function must calculate area and return
 	public int maxAreaOfIsland(int[][] grid) {
 		
 		int max = 0;

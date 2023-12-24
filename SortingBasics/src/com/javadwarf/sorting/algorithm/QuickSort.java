@@ -23,7 +23,7 @@ class QuickSort {
 		//different strategies to select pivot
 		//int random = low + (high -low)/2;
 		//int random = high;
-		int random = (int)Math.floor(Math.random()*(high-low+1)+low);
+		int random = (int)(Math.random()*(high-low+1))+low;
 		swap(arr, random, high);
 
 		int pivot = high; 

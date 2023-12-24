@@ -9,6 +9,8 @@ public class _130_SurroundedRegions {
 		System.out.println(new String(board1[1]));
 	}
 
+	
+	// wrong code below, see BFS approach, understand it and maybe then can write DFS based on BFS approach. (Hint : same as rotten orange)
 	public void solve(char[][] board) {
 
 		if(board ==  null || board.length == 0) return;

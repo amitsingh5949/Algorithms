@@ -98,7 +98,7 @@ public class _98_ValidateBinarySearchTree {
 	
 	
 	
-	// Logic wont work
+	// Logic wont work //[5,4,6,null,null,3,7]
 	public  boolean isValidBST1(TreeNode root) {
 		if(root == null) return true;
         if(root.left != null && root.left.val > root.val) return false;

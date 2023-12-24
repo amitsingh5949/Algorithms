@@ -63,6 +63,58 @@ public class _621_TaskScheduler {
 		}
 		return sum;
 	}
+	//same as above
+
+	public int leastInterval12(char[] tasks, int n) {
+
+		class Task{
+			char id;
+			int count;
+			public Task(char id, int count){
+				this.id = id;
+				this.count = count;
+			}
+		}
+
+		Queue<Task> q1 = new PriorityQueue<>( (a,b) -> Integer.compare(b.count, a.count));
+		q1.add( new Task('#', -1));
+		Queue<Task> q2 = new LinkedList<>();
+		int res = 0;
+
+		int[] count = new int[26];
+		int totalTask = 0;
+		for(char ch : tasks) count[ch-'A']++;
+		for(int i=0; i<26; i++) {
+			if(count[i] != 0){ 
+				q1.add( new Task( (char)(i + 'A'), count[i]));
+				totalTask += count[i];
+			}
+		}
+		//String taskprint = "";
+
+		while(totalTask > 0 ){
+			if(q1.peek().id == '#'){
+				q2.add(q1.peek());
+				//taskprint += "#->";
+			}
+			else{
+				Task t = q1.poll();
+				t.count = t.count-1;
+				totalTask--;
+				q2.add(t);
+				//taskprint += t.id + "->";
+			}
+
+			if(q2.size() > n) {
+				Task t = q2.poll();
+				if(t.count > 0 )
+					q1.add(t);
+			}
+			res++;
+		}
+		//System.out.println(taskprint);
+		return res;
+	}
 
 	//Same as above but lengthy
 

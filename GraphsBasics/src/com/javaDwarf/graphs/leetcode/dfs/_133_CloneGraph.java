@@ -7,10 +7,8 @@ import java.util.Map;
 
 public class _133_CloneGraph {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
+	public static void main(String[] args) {}
+	
 	Map<Integer, Node> map;
     public Node cloneGraph(Node node) {
        if(node == null) return null;

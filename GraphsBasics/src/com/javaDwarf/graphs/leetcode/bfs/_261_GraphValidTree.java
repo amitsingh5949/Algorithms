@@ -1,11 +1,15 @@
-package com.javaDwarf.graphs.leetcode.dfs;
+package com.javaDwarf.graphs.leetcode.bfs;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
+
+import javafx.util.Pair;
 
 public class _261_GraphValidTree {
 
@@ -13,26 +17,33 @@ public class _261_GraphValidTree {
 
 	}
 	// Logic For undirected graph to have cycle : 
-	//The idea is to check for back edges. If while doing DFS, 
+	//The idea is to check for back edges. If while doing BFS, 
 	//a back edge is encountered(an edge leading from the current node to some of it's ancestor node except it's parent), return true else false.
-	
-	// Logic For Undirected graph to connected :
-	// one DFS pass will visit all vertices, that is visited set should have all the vertices.
-	
-	public boolean validTree(int n, int[][] edges) {
-		createGraph(n, edges);
-		Set<Integer> visited = new HashSet<>();
-		boolean res = dfs(0,-1, visited);// check for cycle
-		return  res && visited.size() == n;// and check for graph to be connected(not a forest) 
-	}
 
-	public boolean dfs(int node, int parent, Set<Integer> visited){
-		if(visited.contains(node)) return false;
-		visited.add(node);
-		boolean res = true;
-		for( int i : graph.getOrDefault(node, new ArrayList<>()))
-			if(i != parent) res = res && dfs(i, node, visited);
-		return res;
+	// Logic For Undirected graph to connected :
+	// one BFS pass will visit all vertices, that is visited set should have all the vertices.
+
+	public boolean validTree(int n, int[][] edges) {
+
+		createGraph(n, edges);
+		
+		Set<Integer> visited = new HashSet<>();
+		Queue<Pair<Integer, Integer>> q = new LinkedList<>();
+		q.add(new Pair<>(0, -1));
+
+		while(!q.isEmpty()){
+
+			Pair<Integer, Integer> curr = q.poll();
+
+			if(visited.contains(curr.getKey())) return false;
+			visited.add(curr.getKey());
+
+			for( int i : graph.getOrDefault(curr.getKey(), new ArrayList<>()))
+				if(i != curr.getValue()) 
+					q.add(new Pair<>(i,curr.getKey()));
+		}
+
+		return visited.size() == n;
 	}
 
 	Map<Integer, List<Integer>> graph;
