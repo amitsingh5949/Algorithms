@@ -14,8 +14,42 @@ public class _8_StringtoInteger_atoi {
 		}
 
 	}
+	//similar to question reverse integer
+	//while reversing if your push can cause overflow. below condition to check for overflow
+	  // postive  - push > Integer.MAX_VALUE/10  || (push == Integer.MAX_VALUE/10 && pop > 7)
+	  //negative  - push < Integer.MIN_VALUE/10 || (push == Integer.MIN_VALUE/10 && pop < -8)
+	public int myAtoi(String s) {
 
-	public int myAtoi(String str) {
+		Boolean isPostive = null;
+		int push = 0;
+
+		for( int i=0; i<s.length(); i++){
+			char ch = s.charAt(i);
+			if(isPostive == null && ch == ' ' ){
+				continue;
+			}
+			else if(isPostive == null && ch == '+' ){
+				isPostive = true;
+			}
+			else if(isPostive == null && ch == '-'){
+				isPostive = false;
+			}
+			else if(Character.isDigit(ch)){
+				if(isPostive == null) isPostive = true;
+				int x = ch - '0';
+				if( isPostive &&  ( push > Integer.MAX_VALUE/10 || (push == Integer.MAX_VALUE/10 && x > 7))) return Integer.MAX_VALUE;
+				if( !isPostive && ( push*-1 < Integer.MIN_VALUE/10 || (push*-1 == Integer.MIN_VALUE/10 && x*-1 < -8))) return Integer.MIN_VALUE;
+				push = push * 10 + x;   
+			}
+			else {
+				break;
+			}
+		}
+
+		return isPostive != null && isPostive  ? push : -1 * push;
+	}
+
+	public int myAtoi1(String str) {
 
 		int result = 0;
 
@@ -33,7 +67,7 @@ public class _8_StringtoInteger_atoi {
 			if((ch == '-' || ch == '+' ) && ( i==str.length()-1 || !Character.isDigit(str.charAt(i+1)) ) ) {
 				break;
 			}
-			
+
 			if(ch == '-' ||  ch == '+' || Character.isDigit(str.charAt(i))){
 				start = i;
 				end = extractDigits(str, i+1);
@@ -42,11 +76,11 @@ public class _8_StringtoInteger_atoi {
 		}
 
 		if(start != -1 && end !=-1) {
-			
+
 			String digitStr = str.substring(start, end+1);
 
 			BigInteger l = new BigInteger(digitStr);
-			
+
 			if(l.compareTo(new BigInteger(Integer.MAX_VALUE+"")) == 1) {
 				result = Integer.MAX_VALUE;
 			}

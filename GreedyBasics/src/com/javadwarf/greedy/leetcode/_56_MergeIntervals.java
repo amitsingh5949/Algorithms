@@ -12,6 +12,29 @@ public class _56_MergeIntervals {
 		new _56_MergeIntervals().merge(new int[][] {{2,3},{4,5},{6,7},{8,9},{1,10}});
 
 	}
+	
+	//o(nlogn)
+	// sort array by start time and then end time
+	// compare end time of i with start time of i+1 for intervals to be overlapping
+	public int[][] mergeInterval(int[][] intervals) {
+
+        Arrays.sort(intervals, (a,b) -> {
+           if(a[0]-b[0] == 0) return a[1]-b[1];
+            return a[0]-b[0];
+        });
+        
+        List<int[]> l = new ArrayList<>();
+        l.add(intervals[0]);
+        
+        for(int i=1; i<intervals.length; i++){
+            if(l.get(l.size()-1)[1] >= intervals[i][0]) l.get(l.size()-1)[1] = Math.max(l.get(l.size()-1)[1], intervals[i][1] );
+            else l.add(intervals[i]);
+        }
+        
+        return l.toArray(new int[l.size()][2]);
+    }
+	
+	/************************************************************************/
 
 	public int[][] merge(int[][] intervals) {
 

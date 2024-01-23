@@ -32,6 +32,29 @@ public class _45_JumpGameII {
 		return jumpCount[nums.length-1];
 	}
 
+	//Greedy Brute Force o(n^2) and o(1)
+	// try to reach lastPos, if you can reach lastPos from i , your i becomes lastPos, see if you can reach 0
+	public int jumpGreedyBF(int[] nums) {
+
+		int lastPos = nums.length-1;
+		int count = 0;
+
+		while( lastPos > 0){
+
+			int temp = lastPos;
+
+			for(int j=lastPos-1; j>=0; j--){
+
+				if( j + nums[j] >= lastPos){
+					temp = j;
+				}
+			}
+			lastPos = temp;
+			count++;
+		}
+		return count;        
+	}
+
 	// Greedy - o(n) solution
 
 	// take two variables and initialize  them with arr[0]
@@ -61,7 +84,7 @@ public class _45_JumpGameII {
 		return count;
 	}
 	//Greedy Method : o(n) and o(1)
-		// idea is move to a index which will take you closed to the end i.e an index which has nums[i] - (n-i) greater .i.e power - distance from end
+	// idea is move to a index which will take you closed to the end i.e an index which has nums[i] - (n-i) greater .i.e power - distance from end
 
 	public int jumpOptimized(int[] nums) {
 

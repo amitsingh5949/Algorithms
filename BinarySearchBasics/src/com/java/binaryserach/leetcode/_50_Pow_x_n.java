@@ -9,7 +9,7 @@ public class _50_Pow_x_n {
 	public double myPow(double x, int n) {
 		
 		boolean isNegative = (n < 0) ? true : false;
-		return isNegative ? 1.0/pow(x, n) : pow(x, n);
+		return isNegative ? 1.0/pow(x, n) : pow(x, n);// or return isNegative ? 1.0/pow(x, -n) : pow(x, n); n or -n both works
 	}
 
 	public double pow(double x, int n) {

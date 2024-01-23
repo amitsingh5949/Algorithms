@@ -123,6 +123,7 @@ public class _198_HouseRobber {
 		return Integer.max(currMax, prevMax);
 	}
 
+	
 // top down - memoization
 	int[] money;
     public int rob23(int[] nums) {
@@ -159,6 +160,8 @@ public class _198_HouseRobber {
         return money[0];
         
     }
+    
+    // In both the approaches above you do not whole money array, you just need two variable to store max money stolen so far for last two houses 
 
 
 

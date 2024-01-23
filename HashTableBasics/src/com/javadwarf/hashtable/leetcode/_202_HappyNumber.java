@@ -10,6 +10,22 @@ public class _202_HappyNumber {
 	}
 
 	// Detecting cycle using hashSet
+	
+	public boolean isHappy(int n) {
+        Set<Integer> set = new HashSet<>();
+        while(!set.contains(n) && n != 1){
+            set.add( n);
+            int x = 0;
+            while( n > 0){
+                int y = n % 10;
+                x += y*y;
+                n = n/10;
+            }
+            n = x;
+        }
+        return n==1;        
+    }
+	// same as above 
 	public boolean isHappy1(int n) {
 		String res = Integer.valueOf(n).toString();
 		Set<Integer> set = new HashSet<>();
@@ -31,7 +47,7 @@ public class _202_HappyNumber {
 	}
 
 	//cycle detection using floyd tortoise and hare algorithm
-	public boolean isHappy(int n) {
+	public boolean isHappy2(int n) {
 		
 		int slow = n;
 		int fast = getNext(n);
@@ -39,7 +55,6 @@ public class _202_HappyNumber {
 		while(fast != 0 || slow != fast) {
 			 slow = getNext(slow);
 			 fast = getNext(getNext(fast));
-			
 		}
 
 		return fast==0;

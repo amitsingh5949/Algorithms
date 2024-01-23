@@ -35,7 +35,7 @@ public class _5_LongestPalindromicSubstring {
 		String max = "";
 		
 		for(int i=0;i<s.length();i++) {
-			String x1 = expand(s, i-1, i+1);
+			String x1 = expand(s, i-1, i+1); // or String x1 = expand(s,i,i);
 			String x2 = expand(s, i, i+1);
 			if(x1.length() > x2.length() && x1.length() > max.length()) {
 				max = x1;

@@ -19,8 +19,10 @@ public class _152_MaxProductArray {
 
 	}
 	
-	// 9 0 8 -1 -2 -2 6 
+	/****************************************************************************************************************************************/
 	
+	// 9 0 8 -1 -2 -2 6 
+	// idea is maintain running min and running max from beginning till end, compare each index with min/max*nums[i]
 	public static int maxProduct(int[] nums) {
     	if(nums.length==0) return 0;
     	
@@ -47,6 +49,29 @@ public class _152_MaxProductArray {
     	return result;
         
     }
+	
+	/****************************************************************************************************************************************/
+	
+	//Same as above, with variables
+	// idea is maintain running min and running max from beginning till end, compare each index with min/max*nums[i]
+	
+	public int maxProductAgain(int[] nums) {
+	       
+        int res = nums[0];
+        int min = nums[0];
+        int max = nums[0];
+        
+        for( int i=1; i<nums.length; i++){
+            int temp = Integer.max(nums[i], Integer.max(max*nums[i], min*nums[i]));
+            min = Integer.min(nums[i], Integer.min(max*nums[i], min*nums[i]));
+            max = temp;
+            res = Math.max(res, max);
+        }
+        
+        return res;
+    }
+	
+	/****************************************************************************************************************************************/
 	
     public static int maxProduct1(int[] nums) {
     	if(nums.length==0) return 0;
@@ -82,6 +107,8 @@ public class _152_MaxProductArray {
     	return max;
         
     }
+    
+    /****************************************************************************************************************************************/
 
 }
 

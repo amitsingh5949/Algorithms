@@ -67,4 +67,30 @@ public class _91_DecodeWays {
 		memo.put(s, count);
 		return count;
 	}
+	
+	
+	//*********Another way of writing dp, partion at every index and call recursion
+	
+	public int numDecodingsTOPDOWN(String s) {
+        return helper(s, 0, new Integer[s.length()]);
+    }
+    
+    public int helper(String s, int index, Integer[] dp){
+        
+        if(index == s.length()) return 1;
+        if(dp[index] != null) return dp[index];
+        
+        dp[index] = 0;
+        
+        for(int i=index; i<s.length(); i++){
+            String str = s.substring(index, i+1);
+            if(str.length() <=2 && str.charAt(0) != '0') {
+                int x = Integer.parseInt(str);
+                if( x>=1 && x<=26){
+                    dp[index] += helper(s, i+1, dp);
+                }
+            }
+        }
+        return dp[index];
+    }
 }

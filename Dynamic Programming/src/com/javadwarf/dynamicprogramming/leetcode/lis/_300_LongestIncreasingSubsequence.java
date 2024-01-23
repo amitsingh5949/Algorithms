@@ -57,6 +57,19 @@ public class _300_LongestIncreasingSubsequence {
 
 
 	// Binary Search based solution - O(nlogn) and o(n)
+	
+	/*
+	 * Algorithm
+
+		Initialize an array sub which contains the first element of nums.
+		
+		Iterate through the input, starting from the second element. For each element num:
+		
+		a.)If num is greater than largest or last element in sub, then add num to sub.
+		b.)Otherwise, iterate through sub and find the first element that is greater than or equal to num. Replace that element with num.
+		
+		Return the length of sub.
+	 */
 	public int lengthOfLISBS(int[] nums) {
 
 		if(nums == null || nums.length == 0) return 0;

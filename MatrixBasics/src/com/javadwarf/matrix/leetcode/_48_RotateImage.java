@@ -6,6 +6,8 @@ public class _48_RotateImage {
 
 	}
 
+	
+	// transpose solution
 	public void rotate(int[][] matrix) {
 
 		transpose(matrix);
@@ -36,5 +38,39 @@ public class _48_RotateImage {
 			}
 		}
 	}
+	
+	// Approach : reverse all diagonals and then reverse all columns
+	public void rotate1(int[][] matrix) {
+        for(int j=0;j<matrix[0].length;j++) reverseDiagonal(matrix,0,j);
+        for(int i=1;i<matrix.length;i++) reverseDiagonal(matrix,i,0);
+        for(int j=0;j<matrix[0].length;j++) reverseColumn(matrix,0,j);
+    }
+    
+    public void reverseDiagonal(int[][] matrix, int i, int j){
+        int x = i, y = j;
+        while(x<matrix.length && y<matrix[0].length){
+            x++; y++;
+        } 
+        x--; y--;
+        
+        while(i<x && j<y){
+            int temp = matrix[i][j];
+            matrix[i][j] = matrix[x][y];
+            matrix[x][y] = temp;
+            i++; j++; x--; y--;
+        }
+    }
+    
+    public void reverseColumn(int[][] matrix, int i, int j){
+        int x = matrix.length-1, y = j;
+        while(i<x){
+            int temp = matrix[i][j];
+            matrix[i][j] = matrix[x][y];
+            matrix[x][y] = temp;
+            i++; x--;
+        }
+    }
 
 }
+
+

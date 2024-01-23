@@ -8,7 +8,7 @@ import java.util.Set;
 // This question can be solved by using Trie as well, below is the DP solution
 public class _139_WordBreak {
 	
-	
+	// top down
 	Set<String> set;
     int[] dp;
     
