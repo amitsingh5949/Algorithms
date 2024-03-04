@@ -71,5 +71,38 @@ public class _426_ConvertBinarySearchTreetoSortedDoublyLinkedList {
 			right = _right;
 		}
 	}
+	
+	//easier to follow
+	Node dummy;
+    public Node treeToDoublyList1(Node root) {
+        if(root==null) return null;
+        dummy = new Node();
+        Node temp = dummy;
+        helper(root);
+        //connecting first node to last node
+        temp.right.left = dummy;
+        dummy.right = temp.right;
+        return temp.right;
+    }
+    
+    public void helper(Node root){
+        
+        if( root == null) return;
+        
+        Node left = root.left;
+        Node right = root.right;
+        
+        root.left = null;
+        root.right = null;
+        
+        helper(left);
+        
+        dummy.right = root;
+        root.left = dummy;
+        dummy = dummy.right;
+        
+        helper(right);
+        
+    }
 
 }

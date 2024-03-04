@@ -29,6 +29,7 @@ public class _42_TrappingRainWater {
 		int result = 0;
 
 		for(int i=0; i<height.length; i++) {
+			
 			int maxL = height[i];
 			int maxR = height[i];
 

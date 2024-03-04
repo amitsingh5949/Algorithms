@@ -7,7 +7,32 @@ public class _680_ValidPalindromeII {
 		System.out.println(new _680_ValidPalindromeII().validPalindrome("eceec"));
 	}
 
+
 	public boolean validPalindrome(String s) {
+
+		int i=0, j=s.length()-1;
+
+		while(i < j){
+			if(s.charAt(i) != s.charAt(j)){
+				return isPalindrom(s, i, j-1) || isPalindrom(s, i+1, j);
+			}
+			else{
+				i++;
+				j--;
+			}
+		}
+		return true;
+	}
+
+	public boolean isPalindrom(String s, int i , int j){
+		while(i < j){
+			if(s.charAt(i++) != s.charAt(j--)) return false;
+		}
+		return true;
+	}
+
+	//more line of code , older code, same as above , above is better
+	public boolean validPalindrome1(String s) {
 
 		int start = 0;
 		int end = s.length()-1;
@@ -44,7 +69,7 @@ public class _680_ValidPalindromeII {
 
 		return true;
 	}
-	
+
 	public boolean isPalindrom(String s ) {
 		int start = 0;
 		int end = s.length()-1;
