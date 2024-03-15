@@ -5,8 +5,27 @@ public class _278_FirstBadVersion extends VersionControl  {
 	public static void main(String[] args) {
 
 	}
-
+	
 	public int firstBadVersion(int n) {
+        
+		int i=1,j=n;
+        
+		while(i<j){
+            int mid = i+ (j-i)/2;//TLE if (i+j)2 i guess overflow
+            /*if(i==mid){
+                return isBadVersion(mid) ? mid : j;
+            }*/
+            if(isBadVersion(mid)){
+                j=mid;
+            }
+            else{
+                i=mid+1;
+            }
+        }
+        return i;
+    }
+
+	public int firstBadVersion1(int n) {
 
 		if(n < 1) return -1;
 

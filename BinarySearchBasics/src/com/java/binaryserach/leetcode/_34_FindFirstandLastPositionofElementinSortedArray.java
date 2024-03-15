@@ -8,12 +8,104 @@ public class _34_FindFirstandLastPositionofElementinSortedArray {
 		//int[] arr = searchRange(new int[] {1}, 1);
 		System.out.println(arr[0] +" "+ arr[1]);
 	}
-	
+
 	//Time Olog(n)) 
 	//Space O(1)
 
 	//
+	public int[] searchRange11(int[] nums, int target) {
 
+		int i = findFirstOccurence(nums, target);
+		if( i == -1) return new int[]{-1,-1};
+		return new int[]{i, findLastOccurence(nums, target)};
+	}
+
+	public int findFirstOccurence(int[] nums, int target){
+
+		int i=0,j=nums.length-1;
+
+		while(i<=j){
+			int mid = (j-i)/2 + i;
+
+			if(i == mid){
+				return (nums[mid] == target) ? mid : ((nums[j] == target) ? j : -1);
+			}
+
+			if(nums[mid] == target){
+				j = mid; 
+			}
+			else if(nums[mid] < target){
+				i = mid + 1; 
+			}
+			else{
+				j = mid -1; 
+			}
+
+		}
+		return -1;
+	}
+
+	public int findLastOccurence(int[] nums, int target){
+		int i=0,j=nums.length-1;
+
+		while(i<=j){
+			int mid = (j-i)/2 + i;
+
+			if(i == mid){
+				return (nums[j] == target) ? j : ((nums[mid] == target) ? mid : -1);
+			}
+
+			if(nums[mid] == target){
+				i = mid; 
+			}
+			else if(nums[mid] < target){
+				i = mid + 1; 
+			}
+			else{
+				j = mid -1; 
+			}
+
+		}
+		return -1;
+	}
+	/**********************************************************************************************************************************************/
+	//merge two function call to one
+
+	public int[] searchRange12(int[] nums, int target) {
+
+		int i = findBoundOccurence(nums, target, true);
+		if( i == -1) return new int[]{-1,-1};
+		return new int[]{i, findBoundOccurence(nums, target, false)};
+	}
+
+	public int findBoundOccurence(int[] nums, int target, boolean isFirst){
+
+		int i=0,j=nums.length-1;
+
+		while(i<=j){
+			int mid = (j-i)/2 + i;
+
+			if(i == mid){
+				if(isFirst) return (nums[mid] == target) ? mid : ((nums[j] == target) ? j : -1);
+				else return (nums[j] == target) ? j : ((nums[mid] == target) ? mid : -1);
+			}
+
+			if(nums[mid] == target){
+				if(isFirst) j = mid; 
+				else i = mid;
+			}
+			else if(nums[mid] < target){
+				i = mid + 1; 
+			}
+			else{
+				j = mid -1; 
+			}
+
+		}
+		return -1;
+	}
+
+	/**********************************************************************************************************************************************/
 	public static int[] searchRange(int[] nums, int target) {
 
 		int[] arr = {-1,-1};
@@ -27,9 +119,9 @@ public class _34_FindFirstandLastPositionofElementinSortedArray {
 
 	// idea is to move end to the first occurrence of the target from right to left
 	//exact same binary search, if target found just store the location mid before moving end to mid-1 so that we don't loose the last found start.
-	
+
 	public static int findStartingPosition(int[] nums, int target){
-		
+
 		int targetStartingIndex = -1;
 
 		int begin = 0;
@@ -50,14 +142,14 @@ public class _34_FindFirstandLastPositionofElementinSortedArray {
 				end = mid-1;
 			}
 		}
-		
+
 		return targetStartingIndex;
 
 	}
 
 	// idea is to move begin to the last occurrence of the target
 	public static int findEndingPosition(int[] nums, int target){
-		
+
 		int targetEndigIndex = -1;
 
 		int begin = 0;
@@ -79,8 +171,8 @@ public class _34_FindFirstandLastPositionofElementinSortedArray {
 		}
 		return targetEndigIndex;
 	}
-	
-	
+
+
 	/**********************************************************************************************************************************************/
 	// Below approach also works in o(logn) 
 
@@ -166,6 +258,44 @@ public class _34_FindFirstandLastPositionofElementinSortedArray {
 		}
 
 		return result;
+	}
+	/**********************************************************************************************************************************************/
+	// same as just merged first and last in onr function 
+	public int[] searchRange23(int[] nums, int target) {
+		int i = findAnyOccurence(nums, target, 0, nums.length-1);
+		if( i == -1) return new int[]{-1,-1};
+		return new int[]{findBoundOccurence(nums, target, 0, i, true), findBoundOccurence(nums, target, i, nums.length-1, false)};
+	}
+
+	public int findAnyOccurence(int[] nums, int target, int i, int j){
+		while(i<=j){
+			int mid = (j-i)/2 + i;
+			if(nums[mid] == target) return mid;
+			else if(nums[mid] > target) j = mid-1;
+			else i = mid+1;
+		}
+		return -1;
+	}
+
+	public int findBoundOccurence(int[] nums, int target, int i, int j, boolean isFirst){
+		while(i<=j){
+			int mid = (j-i)/2 + i;
+
+			if( i == mid){
+				if(isFirst) return (nums[mid] == target) ? mid : j;
+				else return (nums[j] == target) ? j : mid;   
+			}  
+
+			if(nums[mid] == target) {
+				if(isFirst) j = mid;
+				else i = mid;
+			}
+			else{
+				if(isFirst)  i = mid+1;
+				else j = mid-1;
+			} 
+		}
+		return -1;
 	}
 
 	/**********************************************************************************************************************************************/

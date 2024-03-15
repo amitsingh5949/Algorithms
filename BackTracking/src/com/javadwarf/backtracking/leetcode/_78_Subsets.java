@@ -55,6 +55,25 @@ public class _78_Subsets {
 	    }
 	    
 	}
+
+	//same as above, different conditions
+	    public List<List<Integer>> subsetsLOL(int[] nums) {
+	        res = new ArrayList<>();
+	        helper(nums, 0, new ArrayList<>());    
+	        return res;
+	    }
+	    
+	    public void helper(int[] nums, int i, List<Integer> sb){
+	        if(i == nums.length) {
+	            res.add(new ArrayList<>(sb));
+	            return;
+	        }
+	        helper(nums, i+1, sb);
+	        sb.add(nums[i]);
+	        helper(nums, i+1, sb);
+	        sb.remove(sb.size()-1);
+	        
+	    }
 	
 	//iterative solution, if we have answer for [1,2] and we need answer for [1,2,3] then add 3 in all list of [1,2]
 	public List<List<Integer>> subsetsItr(int[] nums) {
