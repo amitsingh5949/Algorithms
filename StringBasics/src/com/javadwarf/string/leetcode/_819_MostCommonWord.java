@@ -34,7 +34,8 @@ public class _819_MostCommonWord {
 				int count = map.getOrDefault(word, 0);
 				count++;
 				map.put(word, count);
-				if(maxlen < count || ((maxlen == count && word.compareTo(maxStr) < 0))) {
+				//if(maxlen < count || ((maxlen == count && word.compareTo(maxStr) < 0))) {// extra condition not needed
+				if(maxlen < count) {
 					maxlen = count;
 					maxStr = word;
 				}

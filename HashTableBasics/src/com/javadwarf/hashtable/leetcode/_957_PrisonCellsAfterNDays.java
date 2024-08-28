@@ -111,4 +111,41 @@ public class _957_PrisonCellsAfterNDays {
 		return newState;
 	}
 
+	//o(1) space
+	public int[] prisonAfterNDaysConstantSpace(int[] arr, int n) {
+
+		int zeroToOne = 2;
+		int oneToZero = 3;
+
+		int p  = 0;
+		while(p < n ){
+			for( int i = 1; i<arr.length-1; i++){
+
+				if( ((arr[i-1] == 0 || arr[i-1] == 2) && (arr[i+1] == 0 || arr[i+1] == 2)) ||
+						((arr[i-1] == 1 || arr[i-1] == 3) && (arr[i+1] == 1 || arr[i+1] == 3))){
+					if(arr[i] == 0 ) arr[i] = 2;
+				}
+
+				else if(arr[i] == 1 ) {
+					arr[i] = 3;
+				}
+			}
+
+			for( int i = 1; i<arr.length-1; i++){
+				if(arr[i] == 2)arr[i] = 1;
+				if(arr[i] == 3)arr[i] = 0;
+			}
+
+			if(p == 0){
+				arr[0] = 0;
+				arr[arr.length-1] = 0;
+			}
+
+			p++;
+
+		}
+		return arr;
+
+	}
+
 }

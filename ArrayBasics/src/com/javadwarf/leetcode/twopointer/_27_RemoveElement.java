@@ -7,8 +7,32 @@ public class _27_RemoveElement {
 		System.out.println();
 		//removeElement(new int[] {1,0});
 	}
-
+	
 	public static int removeElement(int[] nums, int val) {
+	     
+        int i = 0, j= nums.length-1;
+        
+        while( i <= j){
+            
+            if(nums[i] != val){
+                i++;
+            }
+            else if(nums[j] == val){
+                j--;
+            }
+            else{
+                nums[i] = nums[j];
+                nums[j] = val;
+            }
+            
+        }
+        
+        return i;
+    }
+	
+	//same as above, little complex
+
+	public static int removeElement1(int[] nums, int val) {
 		
 		int result = 0;
 		

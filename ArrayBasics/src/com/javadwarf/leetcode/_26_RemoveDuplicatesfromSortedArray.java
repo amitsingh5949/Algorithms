@@ -6,9 +6,25 @@ public class _26_RemoveDuplicatesfromSortedArray {
 	public static void main(String[] args) {
 		System.out.println(removeDuplicates(new int[] {1,2,2}));
 	}
-
-
+	
 	public static int removeDuplicates(int[] nums) {
+        int i = 0,j=1;
+        
+        while(j < nums.length){
+            if( nums[j] == nums[j-1]){
+                j++;
+            }
+            else{
+                nums[++i] = nums[j];
+                j++;
+            }
+        }
+        
+        return i+1;
+    }
+
+	//will work but complex - ignore below: Was first draft
+	public static int removeDuplicates1(int[] nums) {
 		int result = 0;
 
 

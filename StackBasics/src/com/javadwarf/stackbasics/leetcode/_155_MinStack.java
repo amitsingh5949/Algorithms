@@ -4,6 +4,12 @@ import java.util.Stack;
 
 public class _155_MinStack {
 	
+	public static void main(String... args) {
+		Integer a =  new Integer(1);
+		Integer b  =  new Integer(1);
+		System.out.print(a == b);
+	}
+	
 	// space complexity O(n)
 		// Time complexity 
 		//push , getmin and top, pop() and peek() - O(1)
@@ -43,6 +49,29 @@ public class _155_MinStack {
 	    }
 	}
 
+	// below is two stack approach
+	Stack<Integer> curr =  new Stack<>();
+    Stack<Integer> min =  new Stack<>();
+    
+    public void push(int val) {
+        curr.push(val);
+        if(min.isEmpty() || val <= min.peek()) min.push(val);
+    }
+    
+    public void pop() {
+        if(curr.pop().intValue() == min.peek().intValue()) min.pop();
+        //if(curr.pop() == min.peek()) min.pop(); incorrect 
+    }
+    
+    public int top() {
+        return curr.peek();
+    }
+    
+    public int getMin() {
+        return min.peek();
+    }
+	 
+	
 	/**
 	 * Your MinStack object will be instantiated and called as such:
 	 * MinStack obj = new MinStack();

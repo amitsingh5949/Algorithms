@@ -4,20 +4,23 @@ public class _79_WordSearch {
 
 	public static void main(String[] args) {
 		char[][] arr = {
-				  {'A','B','C','E'},
-				  {'S','F','C','S'},
-				  {'A','D','E','E'}
-				};
-		
+				{'A','B','C','E'},
+				{'S','F','C','S'},
+				{'A','D','E','E'}
+		};
+
 		System.out.println(new _79_WordSearch().exist(arr, "ABCCED"));
 
 	}
 
 	public boolean exist(char[][] board, String word) {
-		for(int i=0; i<board.length; i++) {
-			for(int j=0; j<board[i].length; j++) {
-				if(word.charAt(0) == board[i][j] && 
-						dfs(0, i,j,word, board, new boolean[board.length][board[0].length], false)) {
+
+		if(word == null || word.length()== 0 || board == null || board.length == 0 ) return false;
+
+		for( int i=0; i<board.length; i++){
+			for(int j=0; j<board[i].length; j++){
+				if(board[i][j] == word.charAt(0) && 
+						helper(board, word, i,j,1, new boolean[board.length][board[0].length])){
 					return true;
 				}
 			}
@@ -25,32 +28,29 @@ public class _79_WordSearch {
 		return false;
 	}
 
-	public boolean dfs(int pos, int x, int y,  String word, char[][] board, boolean[][] visited, boolean result) {
+	int[] xArr = {-1,1,0,0};
+	int[] yArr = {0,0,-1,1};
 
-		if(result || pos == word.length()-1) {
-			return true;
-		}
+	public boolean helper(char[][] board, String word, int x, int y, int idx, boolean[][] visited){
 
 		visited[x][y] = true;
 
-		int[] xArr = {0,-1,1,0};
-		int[] yArr = {-1,0,0,1};
+		if(idx == word.length()) return true;
 
-		for(int i=0; i<xArr.length; i++) {
+		boolean result = false;
 
-			int xNew = x + xArr[i];
-			int yNew = y + yArr[i];
+		for( int k=0; k<xArr.length; k++){
+			int xn = x + xArr[k];
+			int yn = y + yArr[k];
 
-			if(xNew >= 0 && xNew < board.length && yNew >=0 && yNew < board[0].length
-					&& !visited[xNew][yNew] && pos < word.length()-1 && board[xNew][yNew] == word.charAt(pos+1)) {
-				pos += 1;
-				visited[xNew][yNew] = true;
-				result = result || dfs(pos, xNew, yNew, word, board, visited, result);
-				pos -= 1;
-				visited[xNew][yNew] = false;
+			if(xn >=0 && xn<board.length && yn>=0 && yn<board[0].length
+					&& board[xn][yn] == word.charAt(idx) && !visited[xn][yn]){
+				result = result || helper(board, word, xn, yn, idx+1, visited);
 			}
-
 		}
+
+		visited[x][y] = false;
+
 		return result;
 	}
 }

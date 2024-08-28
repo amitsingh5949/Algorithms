@@ -1,5 +1,6 @@
 package com.javadwarf.heap.leetcode;
 
+import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
@@ -15,10 +16,7 @@ public class _973_KClosestPointstoOrigin {
 			q.add(arr);
 			if(q.size() > k) q.poll();
 		}
-		int[][] res = new int[k][2];
-		int i=0;
-		while(!q.isEmpty()) res[i++] = q.poll();
-		return res;
+		return new ArrayList<>(q).toArray(new int[q.size()][2]);
 	}
 
 	//Divide and Conquer Approach is o(n) + o(n) -- using quick select, divide the array at a pivot point such that all coordinates

@@ -1,6 +1,7 @@
 package com.javaDwarf.binaryTrees.leetcode.bfs;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -13,7 +14,7 @@ public class _103_BinaryTreeZigzagLevelOrderTraversal {
 	public static void main(String[] args) {
 
 	}
-	
+
 	//Note : just by flag using one queue it wont work
 
 	public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
@@ -68,45 +69,68 @@ public class _103_BinaryTreeZigzagLevelOrderTraversal {
 		}
 		return l;
 	}
-	
-	
-	
-	
+
+
+	public List<List<Integer>> zigzagLevelOrder22(TreeNode root) {
+		List<List<Integer>> res = new ArrayList<>();
+		if( root == null) return res;
+
+		Queue<TreeNode> q = new LinkedList<>();
+		q.add(root);
+		boolean flag = false;
+
+		while(!q.isEmpty()){
+			int size = q.size();
+			List<Integer> temp = new ArrayList<>();
+			for(int i=0; i<size; i++){
+				TreeNode curr = q.poll();
+				temp.add(curr.val);
+				if(curr.left!=null) q.add(curr.left);
+				if(curr.right!=null) q.add(curr.right);
+			}
+			if(flag)Collections.reverse(temp);
+			flag = !flag;
+			res.add(temp);
+		}
+
+		return res;
+	}
+
 	///****technique 4 using 1 Queue and Using linkedlist in the resultant List which we need to return*/
 	public List<List<Integer>> zigzagLevelOrder4(TreeNode root) {
-	       
-        List<List<Integer>> res = new ArrayList<>();
-        if(root == null) return res;
-        
-        boolean flag = true;
-        
-        Queue<TreeNode> q = new LinkedList<>();
-        q.add(root);
-        
-        while(!q.isEmpty()){
-            
-            int size = q.size();
-            LinkedList<Integer> temp = new LinkedList<>();
-            
-            for(int i=0; i<size; i++){
-                TreeNode curr = q.poll();
-                
-                if(curr.left != null)
-                        q.add(curr.left);
-                if(curr.right != null)
-                        q.add(curr.right);
-                if(flag){
-                    temp.add(curr.val);
-                }
-                else{
-                    temp.addFirst(curr.val);
-                }
-                
-            }
-            flag = !flag;
-            res.add(temp);
-        }
-        return res;
-    }
+
+		List<List<Integer>> res = new ArrayList<>();
+		if(root == null) return res;
+
+		boolean flag = true;
+
+		Queue<TreeNode> q = new LinkedList<>();
+		q.add(root);
+
+		while(!q.isEmpty()){
+
+			int size = q.size();
+			LinkedList<Integer> temp = new LinkedList<>();
+
+			for(int i=0; i<size; i++){
+				TreeNode curr = q.poll();
+
+				if(curr.left != null)
+					q.add(curr.left);
+				if(curr.right != null)
+					q.add(curr.right);
+				if(flag){
+					temp.add(curr.val);
+				}
+				else{
+					temp.addFirst(curr.val);
+				}
+
+			}
+			flag = !flag;
+			res.add(temp);
+		}
+		return res;
+	}
 
 }

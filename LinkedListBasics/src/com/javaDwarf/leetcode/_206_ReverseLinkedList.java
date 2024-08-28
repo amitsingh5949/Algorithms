@@ -14,7 +14,7 @@ public class _206_ReverseLinkedList {
 		n3.next =n4;
 		n4.next =n5;
 
-		ListNode temp = reverseList1(n1);
+		ListNode temp = reverseList11(n1);
 		System.out.println(temp);
 
 
@@ -36,22 +36,16 @@ public class _206_ReverseLinkedList {
 		return prev; 
 	}
 	//recursion logic
-	public static ListNode reverseList1(ListNode a){
-		if(a==null || a.next ==null) return a;
-		ListNode temp = reverse(a, a.next);
-		a.next = null;
-		return temp;
-	}
-
-	public static ListNode reverse(ListNode curr, ListNode nxt){
-		if(nxt.next ==null){
-			nxt.next = curr;
-			return nxt;
-		}
-		ListNode temp = reverse(nxt, nxt.next);
-		nxt.next = curr;
-		return temp;
-	}
+	public static ListNode reverseList11(ListNode head) {
+        return reverseList11(null, head);
+    }
+    
+    public static ListNode reverseList11(ListNode prev, ListNode curr) {
+        if(curr == null) return prev;
+        ListNode head =  reverseList11( curr, curr.next);
+        curr.next = prev;
+        return head;
+    }
 	
 	//iterative : cleaner code than above, no need of next and curr variables
 	public ListNode reverseList23(ListNode head) {

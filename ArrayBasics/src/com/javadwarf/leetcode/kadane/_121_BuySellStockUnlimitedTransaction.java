@@ -51,6 +51,26 @@ public class _121_BuySellStockUnlimitedTransaction {
 		return totalProfit;
 	}
 	
+	//one transaction
+	public int maxProfitOneTransaction(int[] prices) {
+        
+		int i=0, j=0, profit = Integer.MIN_VALUE;
+        
+		while(j < prices.length){
+        
+			if(prices[j] >= prices[i]){
+                profit = Math.max(profit, prices[j] - prices[i]);
+            }
+            else{
+                i = j;
+            }
+            
+			j++;
+        }
+        return profit;
+    }
+	
+	//unlimited transaction
 	public static int maxProfitOptimized(int[] prices) {
 
 		if(prices == null ||  prices.length<2) return 0;

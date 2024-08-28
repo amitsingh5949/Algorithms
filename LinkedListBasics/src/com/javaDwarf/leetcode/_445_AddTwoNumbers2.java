@@ -1,8 +1,63 @@
 package com.javaDwarf.leetcode;
 
 public class _445_AddTwoNumbers2 {
+	
+	
+public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        
+        if( l1 == null ) return l2;
+        if( l2 == null ) return l1;
+        
+        if(getSize(l1) > getSize(l2)) return addTwoNumbers(l2, l1);
+        
+        ListNode temp1 = l1;
+        ListNode temp2 = l2;
+        
+        int carry = 0;
+        
+        while(temp1 != null){
+            int temp = temp1.val + temp2.val + carry;// add small + big list
+            int rem = temp % 10;
+            carry = temp /10;
+            
+            temp2.val = rem;
+            
+            temp1 = temp1.next;
+            temp2 = temp2.next;
+            
+        }
+        
+        while(temp2 != null){
+            int temp = temp2.val + carry;// add remaining big list
+            int rem = temp % 10;
+            carry = temp /10;
+            
+            temp2.val = rem;
+            
+            temp2 = temp2.next;          
+        }
+        
+        if(carry == 1){
+            temp2 = l2;
+            while(temp2 != null && temp2.next != null) temp2 = temp2.next;// add carry to last element of final list
+            temp2.next = new ListNode(1);
+        }
+        
+        return l2;
+    }
+    
+    public int getSize(ListNode l){
+        int size = 0;
+        while(l != null){
+            size++;
+            l = l.next;
+        }
+        return size;
+    }
+	
+    //Method 2
 
-	public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+	public ListNode addTwoNumbers1(ListNode l1, ListNode l2) {
 
 		ListNode result = null;
 		ListNode head = null;

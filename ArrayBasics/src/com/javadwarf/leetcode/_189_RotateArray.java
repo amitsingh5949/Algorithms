@@ -16,6 +16,15 @@ public class _189_RotateArray {
 		reverse(nums, k, nums.length-1);
 
 	}
+	
+	//above or this --anything works
+	 public void rotate22(int[] nums, int k) {
+	        k = k % nums.length;
+	        int l = nums.length-k;
+	        reverse(nums, 0, l-1);
+	        reverse(nums, l, nums.length-1);
+	        reverse(nums, 0, nums.length-1);
+	    }
 
 	private void reverse(int[] nums, int start, int end){
 		while(start<end){

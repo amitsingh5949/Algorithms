@@ -69,4 +69,52 @@ public class _295_MedianInStream {
 		}
 		return median;
 	}
+	
+	////more LOC but easy to understand
+	PriorityQueue<Integer> min = new PriorityQueue<>();;
+    PriorityQueue<Integer> max = new PriorityQueue<>(Collections.reverseOrder());
+   
+    public void addNumLOC(int num) {
+        if(min.isEmpty() && max.isEmpty()) {
+            min.add(num);
+        }
+        else{
+            if(min.size() == max.size()){
+                int curr = min.peek();
+                if(num <= curr){
+                    max.add(num);
+                }
+                else{
+                     min.add(num);
+                }
+            }
+            else if(min.size() > max.size()){
+                int curr = min.peek();
+                if(num <= curr){
+                    max.add(num);
+                }
+                else{
+                    max.add(min.poll());
+                    min.add(num);
+                }
+            }
+            else if(min.size() < max.size()){
+                int curr = max.peek();
+                if(num <= curr){
+                    min.add(max.poll());
+                    max.add(num);
+                }
+                else{
+                    min.add(num);
+                }
+            }
+        }
+    }
+    
+    public double findMedianLOC() {
+        if(min.isEmpty() && max.isEmpty()) return -1;
+        else if(min.size() == max.size()) return (max.peek() + min.peek())/2.0d;
+        else if(min.size() > max.size()) return min.peek();
+        else return max.peek();
+    }
 }

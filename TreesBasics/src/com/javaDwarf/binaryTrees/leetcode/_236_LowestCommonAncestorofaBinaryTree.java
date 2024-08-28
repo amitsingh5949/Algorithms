@@ -37,28 +37,22 @@ public class _236_LowestCommonAncestorofaBinaryTree {
 	}
 	
 	// Neater solution 
-	public  TreeNode lowestCommonAncestor1(TreeNode root, TreeNode n1,TreeNode n2) {
-		if(root != null) {
-			if(root.val==n1.val || root.val==n2.val) {
-				return root;
-			}
-			TreeNode left = lowestCommonAncestor1(root.left,n1,n2);
-			TreeNode right = lowestCommonAncestor1(root.right,n1,n2);
-
-			if(left !=null && right==null) {
-				root =  left;
-			}
-			else if(left ==null && right!=null) {
-				root =  right;
-			}
-			else if(left ==null && right==null) {
-				root =  null;
-			}
-		}
-		return root;
+	public  TreeNode lowestCommonAncestor1(TreeNode root, TreeNode p,TreeNode q) {
+		
+		if( root == null) return null;
+        if(root.val == p.val || root.val == q.val) return root;// don't need to go further down to check second element
+        
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        
+        if(left != null && right != null) return root;
+        if(left != null) return left;
+        if(right != null) return right;
+        
+        return null;
 	}
 	
-	//even neater solution
+	//above solution is better
 	// idea is we are expecting two trues from left and right sub tree if the numbers are found and 1 true can be expected if the root itself is p or q
 	// so if count is 2 or more that means its an LCA, however if count > 0 that means its not LC but this subtree should return true
 	TreeNode result;

@@ -7,40 +7,63 @@ import java.util.Set;
 
 // This question can be solved by using Trie as well, below is the DP solution
 public class _139_WordBreak {
-	
+
+	//*******************************************************************************************/
+	//top-down with n^2 space but more easy to understand
+
+	public boolean wordBreakTOPDOWN(String s, List<String> wordDict) {
+		return helper( s, new HashSet<>(wordDict), 0, s.length()-1, 
+				new Boolean[s.length()][s.length()] );
+	}
+
+	public boolean helper(String s, Set<String> wordDict, int start , int end, Boolean[][] dp){
+
+		if(wordDict.contains(s.substring(start, end+1))) return true;
+		if(start >= end) return false;
+		if(dp[start][end] != null) return dp[start][end];
+
+		boolean res = false;
+		for(int i= start; i<end; i++){
+			res = res || ( helper(s, wordDict, start, i, dp) && helper(s, wordDict, i+1, end, dp) );
+		}
+		dp[start][end] = res;
+		return res;
+
+	}
+	//*******************************************************************************************/
 	// top down
 	Set<String> set;
-    int[] dp;
-    
-    public boolean wordBreaktopDown(String s, List<String> wordDict) {
-        set = new HashSet<>(wordDict);
-        dp = new int[s.length()];
-        Arrays.fill(dp, -1);
-        dp[0] = helper(s,0);
-        return dp[0] == 1;
-    }
-    
-    public int helper(String s, int index){
-        
-        if(s.length() == index) return 1;
+	int[] dp;
 
-        if(dp[index] != -1) return dp[index];
-        
-        boolean res = false;
-        
-        for(int i = index; i< s.length() && !res; i++){
-            String substr =  s.substring(index, i+1);
-            boolean part1 = set.contains(substr);
-            boolean part2 = helper(s, i+1) == 1 ? true : false;
-            res = part1 && part2;
-        }
-        
-        dp[index] = res==true ? 1 : 0;
-        return dp[index];
-        
-    }
-	
-	
+	public boolean wordBreaktopDown(String s, List<String> wordDict) {
+		set = new HashSet<>(wordDict);
+		dp = new int[s.length()];
+		Arrays.fill(dp, -1);
+		dp[0] = helper(s,0);
+		return dp[0] == 1;
+	}
+
+	public int helper(String s, int index){
+
+		if(s.length() == index) return 1;
+
+		if(dp[index] != -1) return dp[index];
+
+		boolean res = false;
+
+		for(int i = index; i< s.length() && !res; i++){
+			String substr =  s.substring(index, i+1);
+			boolean part1 = set.contains(substr);
+			boolean part2 = helper(s, i+1) == 1 ? true : false;
+			res = part1 && part2;
+		}
+
+		dp[index] = res==true ? 1 : 0;
+		return dp[index];
+
+	}
+
+	//*******************************************************************************************/
 	// bottom up
 	public static void main(String[] args) {
 		List<String >wordDict = Arrays.asList( new String[]{"leet", "code"});

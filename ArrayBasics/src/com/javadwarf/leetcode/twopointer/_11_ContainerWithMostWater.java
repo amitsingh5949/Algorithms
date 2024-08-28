@@ -51,7 +51,7 @@ public class _11_ContainerWithMostWater {
 		return result;
 	}
 
-	//same logic as above , consice code
+	//same logic as above , concise code
 	public int maxArea2(int[] height) {
 
 		if(height == null || height.length <2) return 0;

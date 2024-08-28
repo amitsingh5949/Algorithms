@@ -155,76 +155,78 @@ class LRUCache {
 
 	class Node {
 		int key;
-		int val;
+		int value;
 		Node next;
 		Node prev;
-		public Node(int key, int val) {this.key = key; this.val = val;}
+		public Node(int key, int value) {this.key = key; this.value = value;}
 	}
 
 	Map<Integer, Node> map;
-	int totalCapacity;
-	int initialCapacity;
-	Node head;
-	Node tail;
+    Node head;
+    Node tail;
+    int capacity;
+    int currCapacity;
+    
+    public LRUCache(int capacity) {
+        map = new HashMap<>();
+        head = new Node(-1,-1);
+        tail = new Node(-1,-1);
+        head.next = tail;
+        tail.prev = head;
+        this.capacity = capacity;
+        currCapacity = 0;
+    }
+    
+    public int get(int key) {
+        if(map.containsKey(key)){
+            int value = map.get(key).value;
+            put(key, value);
+            return value;
+        }
+        return -1;
+    }
+    
+    public void put(int key, int value) {
+        if(map.containsKey(key)){
+            removeNode(key);
+        }
+        if(currCapacity == capacity){
+            removeNode(tail.prev.key);
+        }
+        addNode(key, value);
+    }
+    
+    public void addNode( int key, int value){
+        Node curr = new Node(key, value);
+        
+        Node prev = head;
+        Node next = head.next;
+        
+        prev.next = curr;
+        curr.prev = prev;
+        
+        curr.next = next;
+        next.prev = curr;
+        
+        map.put(key, curr);
+        currCapacity++;
+    }
+    
+    public void removeNode(int key){
+        
+        if(!map.containsKey(key)) return;
+        
+        Node curr = map.get(key);
+        
+        Node prev = curr.prev;
+        Node next = curr.next;
 
-	public LRUCache(int capacity) {
-		map = new HashMap<>();
-		this.totalCapacity = capacity;
-		this.initialCapacity = 0;
-		head = new Node(-1, -1);
-		tail = new Node(-1, -1);
-		head.next = tail;
-		tail.prev = head;
-	}
-
-	public int get(int key) {
-		if(map.containsKey(key)){
-			Node n = removeElement(key);
-			addElement(key, n.val);
-			return n.val;
-		}
-		return -1;
-	}
-
-	public void put(int key, int value) {
-		int x = get(key);
-		if(x == -1){
-			if(initialCapacity == totalCapacity) removeElement(tail.prev.key);
-			addElement(key, value);
-		}
-		else{
-			removeElement(key);
-			addElement(key, value);
-		}
-	}
-
-	public void addElement(int key, int val){
-		Node n = new Node(key, val);
-		//adding at head
-		Node next = head.next;
-
-		head.next = n;
-		n.prev = head;
-		n.next = next;
-		next.prev = n;
-
-		map.put(key,n);
-		initialCapacity++;
-	}
-
-	public Node removeElement(int key){
-		Node n = map.get(key);
-
-		Node prevE = n.prev;
-		Node nextE = n. next;
-
-		prevE.next = nextE;
-		nextE.prev = prevE;
-
-		map.remove(key);
-		initialCapacity--;
-		return n;
-	}
+        prev.next = next;
+        next.prev = prev;
+        
+        map.remove(key);
+        currCapacity--;
+    }
 }
 
 /**

@@ -1,4 +1,4 @@
-package com.javadwarf.greedy.leetcode;
+ package com.javadwarf.greedy.leetcode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,6 +32,28 @@ public class _56_MergeIntervals {
         }
         
         return l.toArray(new int[l.size()][2]);
+    }
+	
+	/************************************************************************/	
+	/************************************************************************/
+	//Same as above , without use of List<>, o(1) space
+	
+	public int[][] merge22(int[][] intervals) {
+        
+        Arrays.sort(intervals, (a,b) -> Integer.compare(a[0],b[0]) == 0 ?
+                   Integer.compare(a[1],b[1]) : Integer.compare(a[0],b[0]));
+        
+        int merged = 0;
+        
+        for( int i=1; i<intervals.length; i++){
+            if(intervals[merged][1] >= intervals[i][0]){
+                intervals[merged][1] = Math.max(intervals[merged][1], intervals[i][1]);
+            }
+            else{
+                intervals[++merged] = intervals[i];           
+            }
+        }
+        return Arrays.copyOfRange(intervals, 0, merged+1);
     }
 	
 	/************************************************************************/

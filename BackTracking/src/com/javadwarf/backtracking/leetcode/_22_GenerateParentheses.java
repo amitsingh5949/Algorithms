@@ -10,38 +10,30 @@ public class _22_GenerateParentheses {
 
 	}
 
-	public static List<String> ll = null;
-
 	public List<String> generateParenthesis(int n) {
-		ll = new ArrayList<>();
-		parenthesisChecker(new StringBuffer(), n, 0);
-		return ll;
+		return helper(n, 0, new StringBuilder(), new ArrayList<>());
 	}
 
-	public static StringBuffer parenthesisChecker(StringBuffer word, int k, int count){
-		if( count < 0) {
-			return word;
-		}
+	public List<String> helper(int n, int count, StringBuilder sb, List<String> result){
+		
+		if(count < 0) return result;
+		if(count > n) return result;
 
-		if(word.length()==2*k  ) {
+		if( 2*n == sb.length()  ){
 			if(count == 0)
-				ll.add(word.toString());
-			return word;
+				result.add(sb.toString());
+			return result;
 		}
 
-		word.append("(");
-		count = count + 1;
-		parenthesisChecker(word,k, count);
-		word.deleteCharAt(word.length()-1);
-		count = count - 1;
+		sb.append("(");
+		helper(n, count+1, sb, result);
+		sb.deleteCharAt(sb.length()-1);
 
-		word.append(")");
-		count = count - 1;
-		parenthesisChecker(word,k, count);
-		word.deleteCharAt(word.length()-1);
-		count = count + 1;
+		sb.append(")");
+		helper(n, count-1, sb, result);
+		sb.deleteCharAt(sb.length()-1);
 
-		return word;
+		return result;
 	}
 
 }
